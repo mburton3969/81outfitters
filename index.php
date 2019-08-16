@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Coming Soon 14</title>
+	<title>Coming Soon | 81 Outfitters</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -29,7 +29,7 @@
 		<div class="flex-w flex-col-sb wsize1 bg0 p-l-70 p-t-37 p-b-52 p-r-50 respon1">
 			<div class="wrappic1">
 				<a href="#">
-					<img src="images/icons/logo.png" alt="IMG">
+					<img src="images/logo-tagline.png" alt="Logo">
 				</a>
 			</div>		
 	
@@ -43,8 +43,8 @@
 					Follow us for update now!
 				</p>
 
-				<form class="contact100-form validate-form m-t-10 m-b-10">
-					<div class="wrap-input100 validate-input m-lr-auto-lg" data-validate = "Email is required: ex@abc.xyz">
+				<form class="contact100-form validate-form m-t-10 m-b-10" action="index.php" method="GET">
+					<div class="wrap-input100 validate-input m-lr-auto-lg" data-validate = "Email is required: email@example.com">
 						<input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email" placeholder="Email Address">
 
 						<button class="flex-c-m ab-t-r size2 hov1 respon5">
