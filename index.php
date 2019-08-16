@@ -40,7 +40,7 @@
 				</h3>
 
 				<p class="m2-txt1 p-b-46">
-					Follow us for update now!
+					Follow us for updates now!
 				</p>
 
 				<form class="contact100-form validate-form m-t-10 m-b-10" action="index.php" method="POST">
@@ -60,7 +60,7 @@
 			</div>
 			
 			<div class="flex-w flex-m">
-				<span class="m2-txt2 p-r-40">
+				<!--<span class="m2-txt2 p-r-40">
 					Follow us
 				</span>
 
@@ -74,7 +74,7 @@
 
 				<a href="#" class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
 					<i class="fa fa-youtube-play"></i>
-				</a>
+				</a>-->
 			</div>
 		</div>
 			
