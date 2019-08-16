@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Coming Soon | 81 Outfitters</title>
+	<title>81 Outfitters | Coming Soon</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -43,9 +43,9 @@
 					Follow us for update now!
 				</p>
 
-				<form class="contact100-form validate-form m-t-10 m-b-10" action="index.php" method="GET">
+				<form class="contact100-form validate-form m-t-10 m-b-10" action="index.php" method="POST">
 					<div class="wrap-input100 validate-input m-lr-auto-lg" data-validate = "Email is required: email@example.com">
-						<input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email" placeholder="Email Address">
+						<input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email" id="email" placeholder="Email Address">
 
 						<button class="flex-c-m ab-t-r size2 hov1 respon5">
 							<i class="zmdi zmdi-long-arrow-right fs-30 cl1 trans-04"></i>
@@ -98,6 +98,31 @@
 	<script src="vendor/tilt/tilt.jquery.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	
+<?php
+	//echo '<h1>SUCCESS</h1>';
+$conn = mysqli_connect('localhost','mburton9_michael','Mths3969','mburton9_81outfitters') or die('ERROR: ' . $conn->error);
+if(isset($_POST['email'])){
+	//echo '<h1>SUCCESS</h1>';
+	$q = "SELECT * FROM `subscribers` WHERE `email` = '" . $_POST['email'] . "'";
+	$g = mysqli_query($conn, $q) or die($conn->error);
+	if(mysqli_num_rows($g) <= 0){
+		$iq = "INSERT INTO `subscribers` (`IP`,`email`,`inactive`) VALUES ('" . $_SERVER['REMOTE_ADDR'] . "','" . $_POST['email'] . "','No')";
+		mysqli_query($conn, $iq) or die($conn->error);
+		echo '<script>
+						//alert("Success");
+						document.getElementById("email").style.background = "#2BE028";
+						document.getElementById("email").setAttribute("placeholder","Thank You For Subscribing!");
+					</script>';
+	}else{
+		echo '<script>
+						//alert("Success");
+						document.getElementById("email").style.background = "#2BE028";
+						document.getElementById("email").setAttribute("placeholder","Email is Already Subscribed!");
+					</script>';
+	}
+}
+?>
 
 </body>
 </html>
