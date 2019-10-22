@@ -27,13 +27,38 @@
 
 	<div class="flex-w flex-str size1 overlay1">
 		<div class="flex-w flex-col-sb wsize1 bg0 p-l-70 p-t-37 p-b-52 p-r-50 respon1">
-			<div class="wrappic1">
+			<div class="wrappic1 p-b-25">
 				<a href="#">
 					<img src="images/logo-tagline.png" alt="Logo">
 				</a>
 			</div>		
 	
-			<div class="w-full p-t-100 p-b-90 p-l-48 p-l-0-md">
+			<div class="w-full text-center">
+				<h4>Styles & brands you love. Prices lower than you expect.</h4>
+				<br>
+				<h5>Great selection for women, men & kids.</h5>
+				<br><br>
+				<h3>Store Locations:</h3>
+				<br>
+				<p>
+					2186 Northumberland Hwy<br>
+					Lottsburg VA 22511
+				</p>
+				<hr>
+				<p>
+					808 Berryville Ave<br>
+					Winchester VA 22601<br>
+					(Coming September 2019)
+				</p>
+				<br>
+				<h5>
+					Shop our online store here!
+					<!--<br>
+					Coming Soon &#128522; -->
+				</h5>
+			</div>
+			
+			<div class="w-full p-t-50 p-b-90 p-l-48 p-l-0-md">
 				
 				<h3 class="l1-txt1 p-b-34 respon3">
 					Coming Soon
@@ -79,7 +104,7 @@
 		</div>
 			
 
-		<div class="wsize2 bg-img1 respon2" style="background-image: url('images/bg01.jpg');">
+		<div class="wsize2 bg-img1 respon2" style="background-image: url('images/clothing.jpg');">
 		</div>
 	</div>
 
