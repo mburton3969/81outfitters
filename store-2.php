@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>81 Outfitters | 60-90% off Top Brand Clothes</title>
+	<title> Lottsburg | 81 Outfitters</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -32,50 +32,74 @@
 					<img src="images/logo-tagline.png" alt="Logo">
 				</a>
 			</div>		
-	<br />
-	
+			
 			<div class="w-full text-center border">
+				<br /><br />
 				<h4 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Brands & Styles<br />You Love</h4>
 				<br>
 				<h4 style="text-transform: uppercase; color: #90581b;"><b style="font-size: 60px;">60-90% </b><br /><b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 30px;">Below Retail</b></h4>
 				<br>
 				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 31px;">HUGE SELECTION<br /><b style="font-size: 20px;">Women's - Men's - Kids</b></h5>
 				<br />
-				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5>				
-			</div>
-			
-			<br><br>
-			<div class="w-full text-center">	
-				<h4 style="font-family:auo-pro-new, sans-serif; font-style: normal;">Store Locations:</h4>
-				<br>
-				<a href="store-1.php"><h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 25px; text-transform: uppercase; color: #333333;"><b><u>Winchester, VA</u></b></h5></a>
-				<p>
-					store coupon code
-				</p>
-				<hr>
-				<a href="store-2.php"><h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 25px; text-transform: uppercase; color: #333333;"><b><u>Lottsburg, VA</u></b></h5></a>
-				<p>
-					store coupon code
-				</p>
-				<br>
+				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5>	
+				<br />
+				
+				<!-- <h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5> -->
+				
 				<!-- <h5>
 					Shop our online store here!
 					<!--<br>
 					Coming Soon &#128522;
 				</h5> -->
-			</div>
-			
-			<div class="w-full p-t-50 p-b-90 p-l-48 p-l-0-md">
 				
-				<h3 class="l1-txt1 p-b-34 respon3" style="font-family:interstate-mono, monospace; font-style: normal;">
-					Online Store Coming Soon
+				</div>
+								
+			<div class="w-full text-center">
+				
+				<br />
+				<h4 class="text-center" style="text-transform: uppercase; color: #90581b;"><b style="font-size: 45px;">Additional <br />10% Off </b><br /><b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 30px;">ENTIRE PURCHASE</b></h4>
+				<br>
+				<h3 class="l1-txt1 p-b-34 respon3 text-center" style="font-family:interstate-mono, monospace; font-style: normal;">
+					POLD10
 				</h3>
-
-				<p class="m2-txt1 p-b-46" style="font-family:auo-pro-new, sans-serif; font-style: normal;">
-					I want to be updated and receive discount codes:
+				
+		<!-- <p class="m2-txt1 p-b-46" style="font-family:auo-pro-new, sans-serif; font-style: normal;">
+					Use This Coupon Code:
 				</p>
 
-				<form class="contact100-form validate-form m-t-10 m-b-10" action="index.php" method="POST">
+				
+				<h3 class="l1-txt1 p-b-34 respon3" style="font-family:interstate-mono, monospace; font-style: normal;">
+					POLD10
+				</h3> -->
+	
+			<div class="w-full text-center">
+				<h3 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Lottsburg:</h3>
+				<br>
+				<p style="font-family:auo-pro-new, sans-serif; font-style: normal;">
+					2186 Northumberland Hwy<br>
+					Lottsburg, VA 22511<br>
+					<i style="font-size: 12px;">(Next to Fas Mart Gas)</i>	
+				</p>
+				<br />
+				<a href="tel:#" style="color: #333333; font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;"><h5>(804) 529-1802</h5></a>
+				<br />
+				<hr>
+				<br />
+				<h3 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Hours of Operation:</h3>
+				<br>
+				<p style="font-family:auo-pro-new, sans-serif; font-style: normal;">
+					Thursday-Friday: 11am to 5pm<br>
+					Saturday: 10am to 4pm
+				</p>
+				</div>
+				
+				<br><br />
+
+				
+
+				
+				
+				<!-- <form class="contact100-form validate-form m-t-10 m-b-10" action="index.php" method="POST">
 					<div class="wrap-input100 validate-input m-lr-auto-lg" data-validate = "Email is required: email@example.com">
 						<input class="s2-txt1 placeholder0 input100 trans-04" type="text" name="email" id="email" placeholder="Email Address">
 
@@ -83,38 +107,36 @@
 							<i class="zmdi zmdi-long-arrow-right fs-30 cl1 trans-04"></i>
 						</button>
 
-						
-						<br />
-						<p style="font-family:oswald, sans-serif; font-size: 10px;">
-						We will only use your address to notify you of store opening or discounts <br />(4 times/year or less). We will never sell or give your email address away. 
-						<br />Click unsubscribe at any time to be instantly removed from our list.
-						</p>
+						<div class="flex-c-m ab-t-l s2-txt1 size4 bor1 respon4">
+							<span>Subcribe Now:</span>
+						</div>
 					</div>		
-				</form>
+				</form> -->
 				
 			</div>
 			
-			<div class="flex-w flex-m" style="width:fit-content; padding-left:50px;">
-				<span class="m2-txt2 p-r-40">
+			<div class="flex-w flex-m">
+				<!--<span class="m2-txt2 p-r-40">
 					Follow us
 				</span>
 
-				<a href="https://www.facebook.com/81Outfitters/?__tn__=%2Cd%2CP-R&eid=ARBQlyaVwEOpaYQp_2kmwSNPk0Oz__f0iK6CpqxAaUjWSPdAzAkmTCmX9Bv6gr2MFZOPTFMS0qrxPgM6" class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
+				<a href="#" class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
 					<i class="fa fa-facebook"></i>
 				</a>
 
-				<!-- <a href="#" class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
+				<a href="#" class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
 					<i class="fa fa-twitter"></i>
 				</a>
 
 				<a href="#" class="size3 flex-c-m how-social trans-04 m-r-15 m-b-5 m-t-5">
 					<i class="fa fa-youtube-play"></i>
-				</a> -->
+				</a>-->
 			</div>
 		</div>
 			
 
-		<div class="wsize2 bg-img1 respon2" style="background-image: url('images/clothing.jpg');">
+		<div class="wsize2 bg-img1 respon2 maps" style="overflow:hidden;">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.4246049442213!2d-76.52599228506105!3d37.96721910883764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b756986aa6f74b%3A0xdc3922ff1b071763!2s2186%20Northumberland%20Hwy%2C%20Lottsburg%2C%20VA%2022511!5e0!3m2!1sen!2sus!4v1573859674273!5m2!1sen!2sus" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 		</div>
 	</div>
 
