@@ -31,18 +31,44 @@
 				<a href="index.php">
 					<img src="images/logo-tagline.png" alt="Logo">
 				</a>
-			</div>		
-	<br />
-	
-			<div class="w-full text-center border">
+				
+				<br /><br />
+				
+				<div class="w-full text-center border">
+				<br />
 				<h4 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Brands & Styles<br />You Love</h4>
 				<br>
 				<h4 style="text-transform: uppercase; color: #90581b;"><b style="font-size: 60px;">60-90% </b><br /><b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 30px;">Below Retail</b></h4>
 				<br>
 				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 31px;">HUGE SELECTION<br /><b style="font-size: 20px;">Women's - Men's - Kids</b></h5>
 				<br />
-				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5>				
+				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5>	
+				<br />
+				</div>
+								
+	<!-- SUBTITLE OPTION 1 -->
+				<!-- <a href="index.php">
+					<img src="images/subtitle.jpg" alt="Logo">
+				</a> 
+				
+				<hr></hr> -->
+				 
+				 
+	<!-- SUBTITLE OPTION 2 -->				
+			<!-- <div class="text-center" style="line-height: 0.5cm;">
+				<h4 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 18px; text-transform: uppercase;">Brands & Styles You Love</h4>
+				
+				<div>
+					<h4 style="text-transform: uppercase; color: #90581b;"><b style="font-size: 60px;">60-90% </b></h4>
+					<b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px; text-transform: uppercase; color: #90581b; letter-spacing: 3px;">Below Retail</b>
+				</div>
+				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 25px; letter-spacing: 3px; color: #0c0c0c;"><b>HUGE SELECTION</b></h5>
+				<h5><b style="font-size: 20px; font-family:interstate-mono, monospace; font-style: normal; letter-spacing: 0.05cm; color: #0c0c0c;">Women - Men - Kids</b></h5>
+				<h4 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 18px; text-transform: uppercase;">New Clothes Added Daily</h4>	
 			</div>
+		</div>		
+	<br /> -->
+
 			
 			<br><br>
 			<div class="w-full text-center">	

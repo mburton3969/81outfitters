@@ -34,7 +34,7 @@
 			</div>		
 			
 			<div class="w-full text-center border">
-				<br /><br />
+				<br />
 				<h4 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Brands & Styles<br />You Love</h4>
 				<br>
 				<h4 style="text-transform: uppercase; color: #90581b;"><b style="font-size: 60px;">60-90% </b><br /><b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 30px;">Below Retail</b></h4>

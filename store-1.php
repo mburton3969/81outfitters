@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Winchester | 81 Outfitters</title>
+	<title> Winchester | 81 Outfitters</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -34,7 +34,7 @@
 			</div>		
 			
 			<div class="w-full text-center border">
-				<br /><br />
+				<br />
 				<h4 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Brands & Styles<br />You Love</h4>
 				<br>
 				<h4 style="text-transform: uppercase; color: #90581b;"><b style="font-size: 60px;">60-90% </b><br /><b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 30px;">Below Retail</b></h4>
@@ -43,7 +43,7 @@
 				<br />
 				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5>	
 				<br />
-	
+				
 				<!-- <h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5> -->
 				
 				<!-- <h5>
@@ -60,7 +60,7 @@
 				<h4 class="text-center" style="text-transform: uppercase; color: #90581b;"><b style="font-size: 45px;">Additional <br />10% Off </b><br /><b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 30px;">ENTIRE PURCHASE</b></h4>
 				<br>
 				<h3 class="l1-txt1 p-b-34 respon3 text-center" style="font-family:interstate-mono, monospace; font-style: normal;">
-					POWD10
+					POLD10
 				</h3>
 				
 		<!-- <p class="m2-txt1 p-b-46" style="font-family:auo-pro-new, sans-serif; font-style: normal;">
@@ -73,9 +73,9 @@
 				</h3> -->
 	
 			<div class="w-full text-center">
-				<h3 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Winchester:</h3>
+				<h3 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Winchester</h3>
 				<br>
-				<p>
+				<p style="font-family:auo-pro-new, sans-serif; font-style: normal;">
 					808 Berryville Ave<br>
 					Winchester VA 22601<br>
 					<i style="font-size: 12px;">(Next to Sharp Shopper)</i>	
@@ -87,13 +87,15 @@
 				<br />
 				<h3 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Hours of Operation:</h3>
 				<br>
-				<p>
-					Monday - Saturday: 10am to 7pm<br>
+				<p style="font-family:auo-pro-new, sans-serif; font-style: normal;">
+					Monday-Saturday: 10am to 7pm<br>
 					Sunday: Noon to 5pm
 				</p>
 				</div>
 				
 				<br><br />
+
+				
 
 				
 				
