@@ -32,26 +32,16 @@
 					<img src="images/logo-tagline.png" alt="Logo">
 				</a>
 				
-				<br /><br />
-				
-				<div class="w-full text-center border">
 				<br />
-				<h4 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Brands & Styles<br />You Love</h4>
-				<br>
-				<h4 style="text-transform: uppercase; color: #90581b;"><b style="font-size: 60px;">60-90% </b><br /><b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 30px;">Below Retail</b></h4>
-				<br>
-				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 31px;">HUGE SELECTION<br /><b style="font-size: 20px;">Women's - Men's - Kids</b></h5>
-				<br />
-				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5>	
-				<br />
-				</div>
+
 								
 	<!-- SUBTITLE OPTION 1 -->
-				<!-- <a href="index.php">
-					<img src="images/subtitle.jpg" alt="Logo">
-				</a> 
+		<hr></hr>
+
+			<img src="images/subtitle-2.png" alt="Logo">
 				
-				<hr></hr> -->
+				<hr></hr>
+				
 				 
 				 
 	<!-- SUBTITLE OPTION 2 -->				
@@ -69,6 +59,13 @@
 		</div>		
 	<br /> -->
 
+		<!-- Black Friday Ad -->
+			
+			<br /><br />
+			
+			<img src="images/ad_blackfriday.jpg" alt="Logo">
+				
+			<br /><br />
 			
 			<br><br>
 			<div class="w-full text-center">	
@@ -91,11 +88,18 @@
 				</h5> -->
 			</div>
 			
-			<div class="w-full p-t-50 p-b-90 p-l-48 p-l-0-md">
+			
+			
+			
 				
-				<h3 class="l1-txt1 p-b-34 respon3" style="font-family:interstate-mono, monospace; font-style: normal;">
+			<!-- Bottom Information -->
+			
+			<div class="w-full p-t-50 p-b-90 p-l-48 p-l-0-md">
+		
+				
+				<!-- <h3 class="l1-txt1 p-b-34 respon3" style="font-family:interstate-mono, monospace; font-style: normal;">
 					Online Store Coming Soon
-				</h3>
+				</h3> -->
 
 				<p class="m2-txt1 p-b-46" style="font-family:auo-pro-new, sans-serif; font-style: normal;">
 					I want to be updated and receive discount codes:
