@@ -101,6 +101,13 @@
 					Online Store Coming Soon
 				</h3> -->
 
+				
+				<a class="text-center" href="index.php">
+					<img src="images/black-friday.pdf">
+				</a>
+
+				<br /><br />
+
 				<p class="m2-txt1 p-b-46" style="font-family:auo-pro-new, sans-serif; font-style: normal;">
 					I want to be updated and receive discount codes:
 				</p>
