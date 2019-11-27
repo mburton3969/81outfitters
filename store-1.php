@@ -31,36 +31,46 @@
 				<a href="index.php">
 					<img src="images/logo-tagline.png" alt="Logo">
 				</a>
+				
+				<hr></hr>
+				
+	<!-- SUBTITLE OPTION 1 -->
+			
+			<img src="images/subtitle-2.png" alt="Logo">
+				
+				
+			<hr></hr>
+				
 			</div>		
 			
-			<div class="w-full text-center border">
-				<br />
-				<h4 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Brands & Styles<br />You Love</h4>
-				<br>
-				<h4 style="text-transform: uppercase; color: #90581b;"><b style="font-size: 60px;">60-90% </b><br /><b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 30px;">Below Retail</b></h4>
-				<br>
-				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 31px;">HUGE SELECTION<br /><b style="font-size: 20px;">Women's - Men's - Kids</b></h5>
-				<br />
-				<h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5>	
-				<br />
+	<!-- Black Friday Ad -->
+			<div>
+			<br /><br />
+			
+			<img src="images/ad_blackfriday.jpg" alt="Logo" style="height: 400px;">
+			
 				
-				<!-- <h5 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 20px;">New Clothes Added Daily</h5> -->
+			<br /><br />
+			</div>
+			
+			<hr></hr>
 				
-				<!-- <h5>
-					Shop our online store here!
-					<!--<br>
-					Coming Soon &#128522;
-				</h5> -->
+				<br />
+			
+			
+			<div class="w-full text-center">
+				
 				
 				</div>
 								
 			<div class="w-full text-center">
-				
-				<br />
+		
+		<!-- 10% off DISCOUNT CODE -->
+				<!-- <br />
 				<h4 class="text-center" style="text-transform: uppercase; color: #90581b;"><b style="font-size: 45px;">Additional <br />10% Off </b><br /><b style="font-family:interstate-mono, monospace; font-style: normal; font-size: 30px;">ENTIRE PURCHASE</b></h4>
 				<br>
 				<h3 class="l1-txt1 p-b-34 respon3 text-center" style="font-family:interstate-mono, monospace; font-style: normal;">
-					POLD10
+					POWD10
 				</h3>
 				
 		<!-- <p class="m2-txt1 p-b-46" style="font-family:auo-pro-new, sans-serif; font-style: normal;">
@@ -71,6 +81,8 @@
 				<h3 class="l1-txt1 p-b-34 respon3" style="font-family:interstate-mono, monospace; font-style: normal;">
 					POLD10
 				</h3> -->
+		
+		<!-- Location & Store Hours -->		
 	
 			<div class="w-full text-center">
 				<h3 style="font-family:interstate-mono, monospace; font-style: normal; font-size: 27px; text-transform: uppercase;">Winchester</h3>
@@ -91,11 +103,12 @@
 					Monday-Saturday: 10am to 7pm<br>
 					Sunday: Noon to 5pm
 				</p>
+			
 				</div>
 				
 				<br><br />
-
 				
+	
 
 				
 				
