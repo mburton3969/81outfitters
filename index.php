@@ -102,9 +102,6 @@
 				</h3> -->
 
 				
-				<a class="text-center" href="index.php">
-					<img src="images/black-friday.pdf">
-				</a>
 
 				<br /><br />
 
