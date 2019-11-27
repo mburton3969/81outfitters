@@ -139,12 +139,10 @@
 			</div>
 		</div>
 			
-
+    </div>
 		<div class="wsize2 bg-img1 respon2" style="background-image: url('images/clothing.jpg');">
 		</div>
-	</div>
-
-
+  </div>
 
 	
 
