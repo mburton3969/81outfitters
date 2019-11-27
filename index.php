@@ -93,9 +93,15 @@
 			
 			<div class="w-full p-t-50 p-b-90 p-l-48 p-l-0-md">
 				
-				<h3 class="l1-txt1 p-b-34 respon3" style="font-family:interstate-mono, monospace; font-style: normal;">
+				<!-- <h3 class="l1-txt1 p-b-34 respon3" style="font-family:interstate-mono, monospace; font-style: normal;">
 					Online Store Coming Soon
-				</h3>
+				</h3> -->
+				
+				<a class="text-center" href="index.php">
+					<img src="images/black-friday.pdf">
+				</a>
+
+				<br /><br />
 
 				<p class="m2-txt1 p-b-46" style="font-family:auo-pro-new, sans-serif; font-style: normal;">
 					I want to be updated and receive discount codes:
