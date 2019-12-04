@@ -41,6 +41,7 @@
 			<img src="images/subtitle-2.png" alt="Logo">
 				
 				<hr></hr>
+		</div>		
 				
 				 
 				 
@@ -58,14 +59,14 @@
 			</div>
 		</div>		
 	<br /> -->
+	
 
 		<!-- Black Friday Ad -->
 			
-			<br /><br />
+			<!-- <br /><br />
 			
-			<img src="images/ad_blackfriday.jpg" alt="Logo">
+			<img src="images/ad_blackfriday.jpg" alt="Logo"> -->
 				
-			<br /><br />
 			
 			<br><br>
 			<div class="w-full text-center">	
@@ -147,7 +148,7 @@
 			</div>
 		</div>
 			
-    </div>
+	<!-- Images Photo -->
 		<div class="wsize2 bg-img1 respon2" style="background-image: url('images/clothing.jpg');">
 		</div>
   </div>
