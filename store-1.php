@@ -43,20 +43,22 @@
 				
 			</div>		
 			
-	<!-- Black Friday Ad -->
+
 			<div>
-			<br /><br />
+			<br />
 			
-			<img src="images/ad_blackfriday.jpg" alt="Logo" style="height: 400px;">
+		<!-- Black Friday Ad -->
+			<!-- <img src="images/ad_blackfriday.jpg" alt="Logo" style="height: 400px;"> 
 			
 				
 			<br /><br />
 			</div>
 			
-			<hr></hr>
+			<hr></hr> 
 				
-				<br />
-			
+				<br /> -->
+
+			</div>			
 			
 			<div class="w-full text-center">
 				
