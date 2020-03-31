@@ -1,0 +1,64 @@
+{{header}}
+<div class="container">
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			<li> <a href="{{breadcrumb['href']}}"> {{breadcrumb['text']}}</a> </li>
+		{% endfor %}
+	</ul>
+	<div class="row">{{column_left}}
+		{% if (column_left and column_right) %}
+			{%set class = 'col-sm-6' %}
+		{% elseif (column_left or column_right) %}
+			{%set class = 'col-sm-9' %}
+		{% else %}
+			{%set class = 'col-sm-12' %}
+		{% endif %}
+		<div id="content" class="{{ class }}">{{content_top}}
+			<h1>{{heading_title}}</h1>
+			{% if (categories) %}
+				<p class="brands"><strong>{{text_index}}</strong>
+					{% for category in categories %}
+						&nbsp;&nbsp;&nbsp;<a href="index.php?route=product/manufacturer#{{category['name']}}">{{category['name']}}</a>
+					{% endfor %}
+				</p>
+				{% for category in categories %}
+					<div class="manufacturer-list">
+						<div class="manufacturer-heading">
+							<span id="{{category['name']}}">{{category['name']}}</span>
+						</div>
+						{% if (category['manufacturer']) %}
+							<div class="manufacturer-content">
+								{% for manufacturers in category['manufacturer']|batch(4) %}
+									<div class="row">
+										{% for manufacturer in manufacturers %}
+											<div class="col-sm-6"><a href="{{manufacturer['href']}}">{{manufacturer['name']}}</a></div>
+										{% endfor %}
+									</div>
+								{% endfor %}
+							</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			{% else %}
+				<p>{{text_empty}}</p>
+				<div class="buttons clearfix">
+					<div class="pull-right"><a href="{{continue}}" class="btn btn-primary">{{button_continue}}</a></div>
+				</div>
+			{% endif %}
+			{{content_bottom}}</div>
+			{{column_right}}</div>
+		</div>
+
+		<script>
+			(function ($) {
+				$('.brands a').click(function (e) {
+					e.preventDefault()
+					var str = $(this).attr('href');
+					$('html, body').animate({
+						'scrollTop': $('#' + str.charAt(str.length - 1)).offset().top - ($('#stuck').outerHeight() + 24)
+					}, 1000);
+					$('#reviews_form_title').addClass('close-tab').parents('#tab-review').find('#reviews_form').slideDown();
+				})
+			})(jQuery)
+		</script>
+		{{footer}}

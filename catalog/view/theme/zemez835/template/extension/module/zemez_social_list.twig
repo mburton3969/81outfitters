@@ -1,0 +1,15 @@
+<div class="module-social">
+	<div class="social-block">
+		<h3 class="box-heading"><span>{{ title }}</span></h3>
+		<div class="box-content">
+			<p>{{ description }}</p>
+			{% if (socials) %} 
+			<ul class="social-list list-unstyled">
+				{% for social in socials %} 
+				<li><a class="{{ social['css'] }}" href="{{ social['link'] }}" data-toggle="tooltip" title="{{ social['name'] }}"></a></li>
+				{% endfor %} 
+			</ul>
+			{% endif %} 
+		</div>
+	</div>
+</div>

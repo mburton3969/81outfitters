@@ -1,0 +1,63 @@
+<div class="col-sm-4">
+	<div class="box twitter soc_info text-center">
+		<div class="box-heading">
+			<h3>{{ heading_title }}</h3>
+		</div>
+		<div id="twitterRefresher" class="box-content">
+			<a class="twitter-timeline" width="{{ width }}" height="{{ height }}" data-theme="{{ color_scheme }}" href="{{ page_url }}" data-tweet-limit="{{ tweet_limit }}" data-widget-id="{{ widget_id }}">
+			</a>
+		</div>
+	</div>
+</div>
+<script>
+	window.twttr = (function (d, s, id) {
+		var t, js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "https://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		return window.twttr || (t = {
+			_e: [], ready: function (f) {
+				t._e.push(f)
+			}
+		});
+	}(document, "script", "twitter-wjs"));
+
+	var TwitterRefresh = function (options) {
+		this.id = options.id;
+		this.code = options.code;
+	}
+
+	TwitterRefresh.prototype.doRefresh = function () {
+		document.getElementById(this.id).innerHTML = this.code;
+		if (document.getElementById('twitter-wjs') != null) {
+			document.getElementById('twitter-wjs').remove();
+		}
+		window.twttr = (function (d, s, id) {
+			var t, js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "https://platform.twitter.com/widgets.js";
+			fjs.parentNode.insertBefore(js, fjs);
+			return window.twttr || (t = {
+				_e: [], ready: function (f) {
+					t._e.push(f)
+				}
+			});
+		}(document, "script", "twitter-wjs"));
+
+	}
+
+	var twtrefresher = new TwitterRefresh({
+		id: 'twitterRefresher',
+		code: '<a class="twitter-timeline" width="{{ width }}" height="{{ height }}" data-theme="{{ color_scheme }}" href="{{ page_url }}" data-tweet-limit="{{ tweet_limit }}" data-widget-id="{{ widget_id }}"></a>'
+	});
+
+	;(function ($) {
+		$(window).on('resize', function () {
+
+		})
+	})(jQuery)
+</script>

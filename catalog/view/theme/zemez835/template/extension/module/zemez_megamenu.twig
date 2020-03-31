@@ -1,0 +1,71 @@
+{% if (menu_items) %}
+	<div class="megamenu">
+		<ul class="sf-menu">
+			{% for menu_item in menu_items %}
+				<li {{ menu_item['mega'] is not empty ? 'class="' ~ menu_item['mega'] ~ '"' : '' }}>
+					{% if (menu_item['href'] is empty) %}
+						<span>{{ menu_item['name'] }}</span>
+					{% else %}
+						<a href="{{ menu_item['href'] }}" data-letters="{{ menu_item['name'] }}"><span>{{ menu_item['name'] }}</span></a>
+					{% endif %}
+					{% if (menu_item['multi'] is not empty) %}
+						{{ menu_item['multi'] }}
+					{% elseif (menu_item['mega'] is not empty) %}
+						<ul class="sf-mega" {{ menu_item['background'] is not empty ? 'style="background-image: url(' ~ menu_item['background'] ~ ');"' : '' }}>
+							{% for item in menu_item %}
+								{%set column = menu_item['column'][loop.index0] %}
+								{% if (loop.index0 % menu_item['per-row'] == 0 and loop.index0 != 0) %}
+								</li><li class="sf-mega_row">
+							{% elseif (loop.index0 == 0) %}
+								<li class="sf-mega_row">
+								{% endif %}
+								<div class="sf-mega_section" style="width: {{ column['width'] }}">
+									{% if (column['custom_category'] is not empty) %}
+										<div class="submenu_category_title">
+											<a href="{{ column['custom_category_href'] }}">
+												{{ column['custom_category']['name'] }}
+											</a>
+										</div>
+									{% endif %}
+									{% if (column['module'] is not empty) %}
+										<div class="megamenu_module">
+											{{ column['module'] }}
+										</div>
+									{% endif %}
+									{% if (column['list'] is not empty) %}
+										<ul>
+											{{ column['list'] }}
+										</ul>
+									{% endif %}
+								</div>
+								{% if (loop.index0 == menu_item['column']|length) %}
+								</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+<script>
+	;(function ($) {
+		$(window).load(function () {
+			var o = $('.sf-menu');
+			o.superfish();
+			o.find('li a').each(function () {
+				if ($(location).attr('href').indexOf($(this).attr('href')) >= 0){
+					$(this).addClass('active');
+					return;
+				}
+			})
+			if (o.parents('aside').length){
+				var width = $('.container').outerWidth() - $('aside').outerWidth();
+				o.find('.sf-mega').each(function () {
+					$(this).width(width);
+				})
+			}
+		});
+	})(jQuery);
+</script>
+{% endif %}

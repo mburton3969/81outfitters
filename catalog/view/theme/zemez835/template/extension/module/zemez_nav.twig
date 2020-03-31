@@ -1,0 +1,23 @@
+<nav id="top-links" class="nav toggle-wrap">
+	<a href="#" class="toggle"><i class="fa fa-user"></i></a>
+	<ul class="toggle_cont toggle_cont__right">
+	{% if (logged) %}
+			<li><a href="{{ order }}">{{ text_order }}</a></li>
+			<li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+			<li><a href="{{ compare }}" id="compare-total2">{{ text_compare }}</a></li>
+			<li><a href="{{ shopping_cart }}">{{ text_shopping_cart }}</a></li>
+			<li><a href="{{ checkout }}">{{ text_checkout }}</a></li>
+			<li><a href="{{ logout }}">{{ text_logout }}</a></li>
+		
+	{% else %}
+			<li><a href="{{ login }}">{{ text_login }}</a></li>
+			<li><a href="{{ register }}">{{ text_register }}</a></li>
+			<li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+	{% endif %}
+		<li>{{ currency }}</li>
+		<li>{{ language }}</li>
+	</ul>
+</nav>
+
+
+

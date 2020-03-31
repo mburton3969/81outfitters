@@ -1,0 +1,99 @@
+{{ header }}
+<div class="container">
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			<li>
+				<a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="row">{{ column_left }}
+		{% if column_left and column_right %}
+			class 'col-sm-6'
+		{% elseif column_left or column_right %}
+			class 'col-sm-9'
+		{% else %}
+			class 'col-sm-12'
+		{% endif %}
+		<div id="content" class="{{ class }}">
+			{{ content_top }}
+			<h1>{{ heading_title }}</h1>
+			{% if articles %}
+				{% for article in articles %}
+					<article class="blog_article">
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								{% if article.image %}
+									{% if article.featured_found %}
+										<figure class="article-image">
+											<img src="{{ article.image }}"
+											alt="{{ article.article_title }}"/>
+										</figure>
+									{% else %}
+										<figure class="article-thumbnail-image">
+											<img src="{{ article.image }}"
+											alt="{{ article.article_title }}"/>
+											<figcaption class="article-description">
+												{{ article.description }}
+											</figcaption>
+										</figure>
+									{% endif %}
+								{% endif %}
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<h2 class="article-title">
+									<a href='{{ article.href }}'>
+										{{ article.article_title }}
+									</a>
+								</h2>
+								<div class="article-sub-title">
+									<span class="article-date material-design-clock100">
+										{{ article.date_added }}
+									</span>
+									{% if article.allow_comment %}
+										<span class="article-comments material-design-add183">
+											<a href="{{ article.comment_href }}#comment-section">
+												{{ article.total_comment }}
+											</a>
+										</span>
+									{% endif %}
+									<span class="article-author material-design-user157">
+										<a href="{{ article.author_href }}">
+											{{ article.author_name }}
+										</a>
+									</span>
+								</div>
+								{% if article.featured_found %}
+									<div class="article-description">
+										{{ article.description }}
+									</div>
+								{% else %}
+									<div class="article-description">
+										{{ article.description }}
+									</div>
+								{% endif %}
+								<div>
+									<a class="btn" href="{{ article.href }}">
+										{{ button_continue_reading }}
+									</a>
+								</div>
+							</div>
+						</div>
+						{% if not article.featured_found %}
+							<div class="article-thumbnail-found"></div>
+						{% endif %}
+					</article>
+				{% endfor %}
+				<div class="row">
+					<div class="col-sm-12 col-xs-12 text-left">{{ pagination }}</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right">{{ results }}</div>
+				</div>
+			{% else %}
+				<h3 class="text-center">{{ text_no_found }}</h3>
+			{% endif %}
+			{{ content_bottom }}
+		</div>
+		{{ column_right }}
+	</div>
+</div>
+{{ footer }}

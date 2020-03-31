@@ -1,0 +1,77 @@
+{% if (categories) %} 
+<div class="box blog-categories">
+	<div class="box-heading"><h3>{{ heading_title }}</h3></div>
+	<div class="box-content">
+		<ul class="list-unstyled menu">
+			{% for category in categories %} 
+			<li>
+				{% if (category['simple_blog_category_id'] == category_id) %} 
+				<a href="{{ category['href'] }}" class="active">{{ category['name'] }}</a>
+				{% else %} 
+				<a href="{{ category['href'] }}">{{ category['name'] }}</a>
+				{% endif %} 
+
+				{% if (category['children']) %} 
+				<ul>
+					{% for child in category['children'] %} 
+					<li>
+						{% if (child['category_id'] == child_id) %} 
+						<a href="{{ child['href'] }}" class="active">{{ child['name'] }}</a>
+						{% else %} 
+						<a href="{{ child['href'] }}">{{ child['name'] }}</a>
+						{% endif %} 
+					</li>
+					{% endfor %} 
+				</ul>
+				{% endif %} 
+			</li>
+
+			{% endfor %} 
+		</ul>
+	</div>
+</div>
+{% endif %} 
+{% if ((category_search_article is defined) and (category_search_article)) %} 
+<div class="box blog-search">
+	<div class="box-heading"><h3>{{ text_search_article }}</h3></div>
+	<div class="box-content">
+		<div id="blog-search">
+			<div>
+				<input type="text" name="article_search" value="{{ blog_search }}" placeholder="{{ text_search_article }}" class="form-control" style="margin-bottom: 5px;"/>
+				<a id="button-search" href="#"></a>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+<script type="text/javascript">
+	jQuery('#blog-search input[name=\'article_search\']').keydown(function (e) {
+		if (e.keyCode == 13) {
+			jQuery('#button-search').trigger('click');
+		}
+	});
+	jQuery('#button-search').bind('click', function (e) {
+		e.preventDefault();
+		url = 'index.php?route=simple_blog/search';
+
+		var article_search = jQuery('#blog-search input[name=\'article_search\']').val();
+
+		if (article_search) {
+			url += '&blog_search=' + encodeURIComponent(article_search);
+		}
+
+		location = url;
+	});
+	jQuery(document).ready(function(){
+		jQuery('.blog-categories .menu').find('li>ul').before('<i class="material-design-keyboard54"></i>');
+		jQuery('.blog-categories .menu li i').on("click", function () {
+			if (jQuery(this).hasClass('material-design-keyboard53')) {
+				jQuery(this).removeClass('material-design-keyboard53').parent('li').find('> ul').slideToggle();
+			}
+			else {
+				jQuery(this).addClass('material-design-keyboard53').parent('li').find('> ul').slideToggle();
+			}
+		});
+	})
+	;
+</script>

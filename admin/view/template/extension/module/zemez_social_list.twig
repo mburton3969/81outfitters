@@ -1,0 +1,179 @@
+{{ header }}{{ column_left }}
+<div id="content">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="pull-right">
+				<button type="submit" form="form-social-list" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary">
+					<i class="fa fa-save"></i>
+				</button>
+				<a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default">
+					<i class="fa fa-reply"></i>
+				</a>
+			</div>
+			<h1>{{ heading_title }}</h1>
+			<ul class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+					<li>
+						<a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		{% if (error_warning) %}
+			<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+			</div>
+			<div class="panel-body">
+				<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-social-list" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="input-name">{{ entry_name }}</label>
+						<div class="col-sm-10">
+							<input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control"/>
+							{% if (error_name) %}
+								<div class="text-danger">{{ error_name }}</div>
+							{% endif %}
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+						<div class="col-sm-10">
+							<select name="status" id="input-status" class="form-control">
+								{% if (status) %}
+									<option value="1" selected="selected">{{ text_enabled }}</option>
+									<option value="0">{{ text_disabled }}</option>
+								{% else %}
+									<option value="1">{{ text_enabled }}</option>
+									<option value="0" selected="selected">{{ text_disabled }}</option>
+								{% endif %}
+							</select>
+						</div>
+					</div>
+					<div class="tab-pane">
+						<ul class="nav nav-tabs" id="language">
+							{% for language in languages %}
+								<li><a href="#language{{ language['language_id'] }}" data-toggle="tab"><img src="language/{{ language['code'] }}/{{ language['code'] }}.png" title="{{ language['name'] }}" /> {{ language['name'] }}</a></li>
+							{% endfor %}
+						</ul>
+						<div class="tab-content">
+							{% for language in languages %}
+								<div class="tab-pane" id="language{{ language['language_id'] }}">
+									<fieldset>
+										<legend>{{ entry_social_info }}</legend>
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="input-title{{ language['language_id'] }}">{{ entry_title }}</label>
+											<div class="col-sm-10">
+												<input type="text" name="title[{{ language['language_id'] }}]" value="{{ title[language['language_id']] }}" placeholder="{{ entry_name }}" id="input-title{{ language['language_id'] }}" class="form-control"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label" for="input-description{{ language['language_id'] }}">{{ entry_description }}</label>
+											<div class="col-sm-10">
+												<textarea name="description[{{ language['language_id'] }}]" placeholder="{{ entry_description }}" id="input-description{{ language['language_id'] }}" class="form-control summernote">
+													{{ description[language['language_id']] is defined ? description[language['language_id']] : '' }}
+												</textarea>
+											</div>
+										</div>
+									</fieldset>
+									<fieldset class="socials" data-language_id="{{ language['language_id'] }}">
+										<legend>{{ entry_social_icons }}</legend>
+										{% if (socials[language['language_id']] is defined) %}
+											{% for social_id,social in socials[language['language_id']] %}
+												<div class="form-group social-info-{{ social_id }}">
+													<div class="col-lg-4">
+														<div class="row">
+															<label class="col-sm-4 control-label" for="input-social-name-{{ language['language_id'] ~ '-' ~ social_id }}">{{ entry_social_name }}</label>
+															<div class="col-sm-8">
+																<input type="text" name="socials[{{ language['language_id'] }}][{{ social_id }}][name]" value="{{ socials[language['language_id']][social_id]['name'] is defined ? socials[language['language_id']][social_id]['name'] : '' }}" placeholder="{{ entry_social_name }}" id="input-social-name-{{ language['language_id'] ~ '-' ~ social_id }}" class="form-control"/>
+															</div>
+														</div>
+													</div>
+													<div class="col-lg-4">
+														<div class="row">
+															<label class="col-sm-4 control-label" for="input-social-link-{{ language['language_id'] ~ '-' ~ social_id }}">{{ entry_social_link }}</label>
+															<div class="col-sm-8">
+																<input type="text" name="socials[{{ language['language_id'] }}][{{ social_id }}][link]" value="{{ socials[language['language_id']][social_id]['link'] is defined ? socials[language['language_id']][social_id]['link'] : '' }}" placeholder="{{ entry_social_link }}" id="input-social-link-{{ language['language_id'] ~ '-' ~ social_id }}" class="form-control"/>
+															</div>
+														</div>
+													</div>
+													<div class="col-lg-3">
+														<div class="row">
+															<label class="col-sm-4 control-label" for="input-social-css-{{ language['language_id'] ~ '-' ~ social_id }}">{{ entry_social_css }}</label>
+															<div class="col-sm-8">
+																<input type="text" name="socials[{{ language['language_id'] }}][{{ social_id }}][css]" value="{{ socials[language['language_id']][social_id]['css'] is defined ? socials[language['language_id']][social_id]['css'] : '' }}" placeholder="{{ entry_social_css }}" id="input-social-css-{{ language['language_id'] ~ '-' ~ social_id }}" class="form-control"/>
+															</div>
+														</div>
+													</div>
+													<div class="col-lg-1 text-right">
+														<button type="button" onclick="$('.social-info-{{ social_id }}').remove();" data-toggle="tooltip" title="{{ button_remove_social }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>
+													</div>
+												</div>
+											{% endfor %}
+										{% endif %}
+									</fieldset>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12 text-right">
+							<button type="button" onclick="addSocial();" data-toggle="tooltip" title="{{ button_add_social }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var socialCount = $('.socials:first [class*="social-info"]').length ? ($('.socials:first [class*="social-info"]').length + 1) : 0;
+	function addSocial() {
+		socialCount++;
+		$('.socials').each(function(){
+			var language_id = $(this).data('language_id');
+			var html = '<div class="form-group social-info-' + socialCount + '">';
+			html += '	<div class="col-lg-4">';
+			html += '		<div class="row">';
+			html += '			<label class="col-sm-4 control-label" for="input-social-name-' + language_id + '-' + socialCount + '">{{ entry_social_name }}</label>';
+			html += '			<div class="col-sm-8">';
+			html += '				<input type="text" name="socials[' + language_id + '][' + socialCount + '][name]" value="" placeholder="{{ entry_social_name }}" id="input-social-name-' + language_id + '-' + socialCount + '" class="form-control"/>';
+			html += '			</div>';
+			html += '		</div>';
+			html += '	</div>';
+			html += '	<div class="col-lg-4">';
+			html += '		<div class="row">';
+			html += '			<label class="col-sm-4 control-label" for="input-social-link-' + language_id + '-' + socialCount + '">{{ entry_social_link }}</label>';
+			html += '			<div class="col-sm-8">';
+			html += '				<input type="text" name="socials[' + language_id + '][' + socialCount + '][link]" value="" placeholder="{{ entry_social_link }}" id="input-social-link-' + language_id + '-' + socialCount + '" class="form-control"/>';
+			html += '			</div>';
+			html += '		</div>';
+			html += '	</div>';
+			html += '	<div class="col-lg-3">';
+			html += '		<div class="row">';
+			html += '			<label class="col-sm-4 control-label" for="input-social-css-' + language_id + '-' + socialCount + '">{{ entry_social_css }}</label>';
+			html += '			<div class="col-sm-8">';
+			html += '				<input type="text" name="socials[' + language_id + '][' + socialCount + '][css]" value="" placeholder="{{ entry_social_css }}" id="input-social-css-' + language_id + '-' + socialCount + '" class="form-control"/>';
+			html += '			</div>';
+			html += '		</div>';
+			html += '	</div>';
+			html += '	<div class="col-lg-1 text-right">';
+			html += '		<button type="button" onclick="$(\'.social-info-' + socialCount + '\').remove();" data-toggle="tooltip" title="{{ button_remove_social }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button>';
+			html += '	</div>';
+			html += '</div>';
+			$(this).append(html);
+		});
+	}
+</script>
+<script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
+<script type="text/javascript">
+	$('#language a:first').tab('show');
+</script>
+{{ footer }}

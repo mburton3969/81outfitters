@@ -1,0 +1,50 @@
+{% if comments %}
+	{% for comment in comments %}
+		<div class="article-comment">
+			<div class="author">
+				<b>{{ comment.author }}</b>
+			</div>
+			<div class="reply-message">
+				<a onclick="setArticleId({{ comment.simple_blog_comment_id }});" style="cursor: pointer;">
+					{{ text_reply_comment }}
+				</a>
+			</div>
+			<div class="comment-date">
+				{{ comment.date_added }}
+			</div>
+			<div class="text">
+				{{ comment.comment }}
+			</div>
+			{% if comment.comment_reply %}
+				{% for comment_reply in comment.comment_reply %}
+					<div class="article-reply">
+						<div class="author"> 
+							<b>{{ comment_reply.author|capitalize }}</b>
+						</div>
+						<div class="comment-date">
+							{{ comment_reply.date_added }}
+						</div>
+						<div class="text">
+							{{ comment_reply.comment }}
+						</div>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	{% endfor %}
+{% else %}
+	<h5>{{ text_no_blog }}</h5>
+	<div class="form-group">
+		<div class="col-lg-6 col-sm-12 text-left">{{ pagination }}</div>
+		<div class="col-lg-6 col-sm-12 text-right">{{ results }}</div>
+	</div>
+{% endif %}
+<script type="text/javascript">
+	function setArticleId(article_id) {
+		$("#blog-reply-id").val(article_id);
+		$("#reply-remove").css('display', 'inline');
+		$('html, body').animate({
+			'scrollTop': $('#review-title').offset().top - ($('#stuck').outerHeight() + 50)
+		}, 500);
+	}
+</script>

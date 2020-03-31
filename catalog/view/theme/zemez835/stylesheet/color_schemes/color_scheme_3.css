@@ -1,0 +1,178 @@
+h1, h2, h3, h4, h5, h6,
+nav .toggle,
+.top-search,
+.cart > button,
+.btn, .btn:visited, .btn-default, .btn-default:visited, .btn-primary, .btn-primary:visited, .btn-success, .btn-success:visited, .btn-info, .btn-info:visited, .btn-warning, .btn-warning:visited, .btn-danger, .btn-danger:visited,
+a, a:visited, a:focus,
+.price, .price-new,
+.link:focus, .link:visited,
+.product-rating-status .review-link-show a, .product-rating-status .review-link-show a:visited, .product-rating-status .review-link-show a:focus {
+  color: #354352;
+}
+
+a:hover,
+.product-rating-status .review-link-show a:hover,
+.general_info a:hover,
+.link:hover,
+#information-information #content h4 a:hover,
+#information-information #content h5 a:hover,
+nav .toggle:hover,
+nav .toggle.active,
+.top-search:hover,
+.top-search.active,
+.top-search.active:hover,
+.cart > button:hover,
+.cart > button.active,
+.swiper-container div.swiper-button-prev:hover, .swiper-container div.swiper-button-next:hover, .swiper-pager div.swiper-button-prev:hover, .swiper-pager div.swiper-button-next:hover,
+.ui-to-top:hover,
+.sf-menu > li.sfHover > a, .sf-menu > li > a:hover, .sf-menu > li > a.active,
+.sf-menu .sf-mega ul li.sfHover > a, .sf-menu .sf-mega ul li > a:hover, .sf-menu .sf-mega ul li > a:focus, .sf-menu .sf-mega ul li > a:active, .sf-menu .sf-mega ul li > a.active,
+.sf-mega .banners > div .banner-box:hover h3, .sf-mega .banners > div .banner-box:hover h3, .sf-mega .banners > div .banner-box:hover h4, .sf-mega .banners > div.banner-box:hover h5,
+#search .inner .button-search:hover, #search .inner .button-search:focus, #search .inner .button-search:active,
+.toggle_cont > li > a:hover, .toggle_cont > li > a:focus, .toggle_cont > li > a:active, .toggle_cont > li > button:hover, .toggle_cont > li > button:focus, .toggle_cont > li > button:active,
+.box-language .btn-group span:hover, .box-language .btn-group span:focus, .box-language .btn-group span:active, .box-language .btn-group span.sfHover, .box-currency .btn-group span:hover, .box-currency .btn-group span:focus, .box-currency .btn-group span:active, .box-currency .btn-group span.sfHover,
+.box-language .dropdown-menu li button:hover, .box-language .dropdown-menu li button:focus, .box-language .dropdown-menu li button:active, .box-language .dropdown-menu li button.selected, .box-language .dropdown-menu li a:hover, .box-language .dropdown-menu li a:focus, .box-language .dropdown-menu li a:active, .box-language .dropdown-menu li a.selected, .box-currency .dropdown-menu li button:hover, .box-currency .dropdown-menu li button:focus, .box-currency .dropdown-menu li button:active, .box-currency .dropdown-menu li button.selected, .box-currency .dropdown-menu li a:hover, .box-currency .dropdown-menu li a:focus, .box-currency .dropdown-menu li a:active, .box-currency .dropdown-menu li a.selected,
+.nav > li.active > a, .nav > li.active > a:focus, .nav > li.active > a:hover,
+.btn-icon:hover,
+.btn-icon:focus,
+.btn-icon:active,
+.sbToggle:hover,
+.sbOptions li a:hover,
+.counter:hover,
+.counter:focus:hover,
+footer .footer_box address a:hover,
+.social-block a:hover,
+span.article-date a:hover, span.article-comments a:hover, span.article-author a:hover,
+aside #blog-search a:hover,
+.article-comment .reply-message a:hover,
+a:hover strong, a:hover b,
+input[type="checkbox"] + label:after {
+  color: #249341;
+}
+
+.breadcrumb a:hover,
+.breadcrumb a:hover i,
+.button-view .compare-total:hover,
+.button-view .compare-total:focus,
+.button-view .compare-total:active,
+#list-view:hover,
+#grid-view:hover,
+#list-view.active,
+#grid-view.active,
+.list-group [id*="filter-group"] label:hover,
+.checkout-checkout #content .table-responsive .table tfoot tr:last-child td:last-child,
+.cart-remove-btn, .cart-remove-btn:visited,
+.count-box strong,
+.testimonials blockquote:before,
+.terms_conditions_page h4:before,
+.well .heading i,
+.box-cart .btn-danger:hover,
+.box-cart .btn-danger:focus:hover,
+.agree:hover b,
+.color-primary,
+.top .blog_articles .image-text h2.article-title a,
+.top .blog_articles .image-text h2.article-title a:visited,
+.top .blog_articles .image-text h2.article-title a:focus,
+.html-module.link-block a:hover i,
+.html-module.link-block a:hover h5,
+#style_switcher .toggler:hover,
+.pagination > li.active > a, .pagination > li.active > a:hover, .pagination > li.active > a:focus, .pagination > li.active > span, .pagination > li.active > span:hover, .pagination > li.active > span:focus,
+.pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus,
+.reply-cancel {
+  color: #73dd8f;
+}
+
+.icon-box i,
+.privacy_page ol li h4:before,
+.site-map-page #content ul.category-list:before,
+.site-map-page #content ul.category-list > li:before,
+.site-map-page #content ul.category-list > li:after,
+.contact_page .icon:before,
+#livesearch_search_results li:hover,
+#livesearch_search_results li:visited:hover,
+#livesearch_search_results li:focus:hover,
+.cart > button .cart-total2,
+.sale, .discount,
+.ajax-quickview-images .next-img:hover,
+.ajax-quickview-images .prev-img:hover,
+#product .product-countdown li.cell,
+aside .blog-categories ul > li > a:hover,
+.rd-mobilemenu_ul .submenu_category_title > a:hover,
+.rd-mobilemenu_ul li > a:hover,
+.lookbook-list,
+.lookbook-block:hover h3,
+.bootstrap-datetimepicker-widget td.day.active,
+.bootstrap-datetimepicker-widget td.day.active:hover,
+input[type="radio"]:checked + label:after {
+  background-color: #73dd8f;
+}
+
+.option-color .radio input[type="radio"]:checked + label:after,
+.thumbnail a:hover,
+.cart .toggle_cont .image a:hover {
+  border-color: #73dd8f;
+}
+
+.lookbook [data-marker] > i, .lookbook [data-marker] .close-btn {
+  background-color: #73dd8f;
+}
+.lookbook .marker__cnt {
+  border-color: #73dd8f;
+}
+
+.lookbook [data-mapid]:not(area).active .img-block {
+  box-shadow: 0 0 0 3px #73dd8f;
+}
+
+.datepicker .prev:hover, .datepicker .prev.active, .datepicker .next:hover, .datepicker .next.active, .datepicker .day:hover, .datepicker .day.active, .datepicker .year:hover, .datepicker .year.active, .datepicker .month:hover, .datepicker .month.active, .datepicker .picker-switch:hover, .datepicker .picker-switch.active {
+  color: #73dd8f;
+}
+
+.btn:hover, .btn:focus, .btn:active, .btn:visited:hover, .btn:focus:active, .btn:active:focus, .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default:visited:hover, .btn-default:focus:active, .btn-default:active:focus, .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:visited:hover, .btn-primary:focus:active, .btn-primary:active:focus, .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success:visited:hover, .btn-success:focus:active, .btn-success:active:focus, .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info:visited:hover, .btn-info:focus:active, .btn-info:active:focus, .btn-warning:hover, .btn-warning:focus, .btn-warning:active, .btn-warning:visited:hover, .btn-warning:focus:active, .btn-warning:active:focus, .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger:visited:hover, .btn-danger:focus:active, .btn-danger:active:focus {
+  color: #249341;
+}
+.btn:hover:after, .btn:focus:after, .btn:active:after, .btn:visited:hover:after, .btn:focus:active:after, .btn:active:focus:after, .btn-default:hover:after, .btn-default:focus:after, .btn-default:active:after, .btn-default:visited:hover:after, .btn-default:focus:active:after, .btn-default:active:focus:after, .btn-primary:hover:after, .btn-primary:focus:after, .btn-primary:active:after, .btn-primary:visited:hover:after, .btn-primary:focus:active:after, .btn-primary:active:focus:after, .btn-success:hover:after, .btn-success:focus:after, .btn-success:active:after, .btn-success:visited:hover:after, .btn-success:focus:active:after, .btn-success:active:focus:after, .btn-info:hover:after, .btn-info:focus:after, .btn-info:active:after, .btn-info:visited:hover:after, .btn-info:focus:active:after, .btn-info:active:focus:after, .btn-warning:hover:after, .btn-warning:focus:after, .btn-warning:active:after, .btn-warning:visited:hover:after, .btn-warning:focus:active:after, .btn-warning:active:focus:after, .btn-danger:hover:after, .btn-danger:focus:after, .btn-danger:active:after, .btn-danger:visited:hover:after, .btn-danger:focus:active:after, .btn-danger:active:focus:after {
+  background-color: #249341;
+}
+
+.btn-primary, .btn-primary:visited {
+  background: #73dd8f;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:visited:hover, .btn-primary:focus:active, .btn-primary:active:focus {
+  color: #fff;
+  background: #5d7690;
+}
+
+@media (min-width: 768px) {
+  .banners > div .link:before,
+  .banners > div .link:after,
+  .banners > div .banner-box .clearfix:before,
+  .banners > div .banner-box .clearfix:after,
+  .top .blog_articles .article-image figure:before,
+  .top .blog_articles .article-image figure:after,
+  .top .blog_articles .article-image .link:before,
+  .top .blog_articles .article-image .link:after {
+    background-color: #5d7690;
+  }
+}
+.bottom-images .swiper-slide a:after {
+  background: rgba(53, 67, 82, 0.4);
+}
+
+.product-btn:hover, .product-btn:focus, .product-btn:active {
+  color: #249341;
+}
+.product-btn:hover i, .product-btn:focus i, .product-btn:active i {
+  color: #249341;
+}
+
+.product-buttons li button {
+  color: #73dd8f;
+}
+.product-buttons li button:hover, .product-buttons li button:focus {
+  color: #000;
+}
+
+.product-gallery .image-thumb .bx-wrapper .bx-prev:hover, .product-gallery .image-thumb .bx-wrapper .bx-next:hover {
+  background-color: rgba(115, 221, 143, 0.8);
+}

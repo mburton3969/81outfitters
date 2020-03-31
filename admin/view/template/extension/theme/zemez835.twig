@@ -1,0 +1,518 @@
+{{ header }}{{ column_left }}
+<div id="content">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="pull-right">
+				<button type="submit" form="form-theme" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+				<a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-zemez"><i class="fa fa-reply"></i></a>
+			</div>
+			<h1>{{ heading_title }}</h1>
+			<ul class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+					<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		{% if error_warning %}
+			<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+			</div>
+			<div class="panel-body">
+				<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-theme" class="form-horizontal">
+					<fieldset>
+						<legend>{{ text_general }}</legend>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="input-directory"><span data-toggle="tooltip" title="{{ help_directory }}">{{ entry_directory }}</span></label>
+							<div class="col-sm-10">
+								<select name="theme_zemez835_directory" id="input-directory" class="form-control">
+									{% for directory in directories %}
+										{% if directory == theme_zemez835_directory %}
+											<option value="{{ directory }}" selected="selected">{{ directory }}</option>
+										{% else %}
+											<option value="{{ directory }}">{{ directory }}</option>
+										{% endif %}
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+							<div class="col-sm-10">
+								<select name="theme_zemez835_status" id="input-status" class="form-control">
+									{% if theme_zemez835_status %}
+										<option value="1" selected="selected">{{ text_enabled }}</option>
+										<option value="0">{{ text_disabled }}</option>
+									{% else %}
+										<option value="1">{{ text_enabled }}</option>
+										<option value="0" selected="selected">{{ text_disabled }}</option>
+									{% endif %}
+								</select>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>{{ entry_responsive }}</legend>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">{{ entry_responsive }}</label>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+								<select name="theme_zemez835_responsive" class="form-control">
+									{% if theme_zemez835_responsive == 1 %}
+										<option value="1" selected='selected'>{{ text_disabled }}</option>
+										<option value="0">{{ text_enabled }}</option>
+									{% else %}
+										<option value="1">{{ text_disabled }}</option>
+										<option value="0" selected="selected">{{ text_enabled }}</option>
+									{% endif %}
+								</select>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>{{ entry_page_direction }}</legend>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">{{ entry_page_direction }}</label>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+								<select name="theme_zemez835_page_direction" class="form-control">
+									{% if theme_zemez835_page_direction == 'rtl' %}
+										<option value="rtl" selected='selected'>{{ text_rtl }}</option>
+										<option value="ltr">{{ text_ltr }}</option>
+									{% else %}
+										<option value="rtl">{{ text_rtl }}</option>
+										<option value="ltr" selected="selected">{{ text_ltr }}</option>
+									{% endif %}
+								</select>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>{{ text_labels }}</legend>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ help_label_sale }}">{{ entry_label_sale }}</span></label>
+							<div class="col-sm-10">
+								<label class="radio-inline">
+									{% if theme_zemez835_label_sale %}
+										<input type="radio" name="theme_zemez835_label_sale" value="1" checked="checked" />
+										{{ text_yes }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_label_sale" value="1" />
+										{{ text_yes }}
+									{% endif %}
+								</label>
+								<label class="radio-inline">
+									{% if not theme_zemez835_label_sale %}
+										<input type="radio" name="theme_zemez835_label_sale" value="0" checked="checked" />
+										{{ text_no }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_label_sale" value="0" />
+										{{ text_no }}
+									{% endif %}
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ help_label_discount }}">{{ entry_label_discount }}</span></label>
+							<div class="col-sm-10">
+								<label class="radio-inline">
+									{% if theme_zemez835_label_discount %}
+										<input type="radio" name="theme_zemez835_label_discount" value="1" checked="checked" />
+										{{ text_yes }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_label_discount" value="1" />
+										{{ text_yes }}
+									{% endif %}
+								</label>
+								<label class="radio-inline">
+									{% if not theme_zemez835_label_discount %}
+										<input type="radio" name="theme_zemez835_label_discount" value="0" checked="checked" />
+										{{ text_no }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_label_discount" value="0" />
+										{{ text_no }}
+									{% endif %}
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><span data-toggle="tooltip" title="{{ help_label_new }}">{{ entry_label_new }}</span></label>
+							<div class="col-sm-10">
+								<label class="radio-inline">
+									{% if theme_zemez835_label_new %}
+										<input type="radio" name="theme_zemez835_label_new" value="1" checked="checked" />
+										{{ text_yes }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_label_new" value="1" />
+										{{ text_yes }}
+									{% endif %}
+								</label>
+								<label class="radio-inline">
+									{% if not theme_zemez835_label_new %}
+										<input type="radio" name="theme_zemez835_label_new" value="0" checked="checked" />
+										{{ text_no }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_label_new" value="0" />
+										{{ text_no }}
+									{% endif %}
+								</label>
+							</div>
+						</div>
+						<div class="form-group required label-new-option {{ theme_zemez835_label_new ? '' : 'hidden' }}">
+							<label class="col-sm-2 control-label" for="input-label_new_limit">
+								{{ entry_label_new_limit }}
+							</label>
+							<div class="col-sm-10">
+								<input type="text" name="theme_zemez835_label_new_limit" value="{{ theme_zemez835_label_new_limit }}" placeholder="{{ entry_label_new_limit }}" id="input-label_new_limit" class="form-control" />
+								{% if error_label_new_limit %}
+									<div class="text-danger">
+										{{ error_label_new_limit }}
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>{{ text_zoom_type }}</legend>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="input-product_zoom_type">{{ text_zoom_type }}</label>
+							<div class="col-sm-10">
+								<select name="theme_zemez835_product_zoom_type" id="input-product_zoom_type" class="form-control">
+									{% for type_index, type_value in product_zoom_types %}
+										{% if theme_zemez835_product_zoom_type == type_index %}
+											<option value="{{ type_index }}" selected="selected">{{ type_value }}</option>
+										{% else %}
+											<option value="{{ type_index }}">{{ type_value }}</option>
+										{% endif %}
+									{% endfor %}
+								</select>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>{{ text_quick }}</legend>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-quickview">{{ entry_image_quickview }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_quickview_width" value="{{ theme_zemez835_image_quickview_width }}" placeholder="{{ entry_width }}" id="input-image-location" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_quickview_height" value="{{ theme_zemez835_image_quickview_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_quickview %}
+									<div class="text-danger">{{ error_image_quickview }}</div>
+								{% endif %}
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>{{ text_product }}</legend>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-catalog-limit"><span data-toggle="tooltip" title="{{ help_product_limit }}">{{ entry_product_limit }}</span></label>
+							<div class="col-sm-10">
+								<input type="text" name="theme_zemez835_product_limit" value="{{ theme_zemez835_product_limit }}" placeholder="{{ entry_product_limit }}" id="input-catalog-limit" class="form-control" />
+								{% if error_product_limit %}
+									<div class="text-danger">{{ error_product_limit }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-description-limit"><span data-toggle="tooltip" title="{{ help_product_description_length }}">{{ entry_product_description_length }}</span></label>
+							<div class="col-sm-10">
+								<input type="text" name="theme_zemez835_product_description_length" value="{{ theme_zemez835_product_description_length }}" placeholder="{{ entry_product_description_length }}" id="input-description-limit" class="form-control" />
+								{% if error_product_description_length %}
+									<div class="text-danger">{{ error_product_description_length }}</div>
+								{% endif %}
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>{{ entry_simple_blog }}</legend>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">{{ entry_status }}</label>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+								<select name="theme_zemez835_simple_blog_status" class="form-control">
+									{% if (theme_zemez835_simple_blog_status == 1) %}
+										<option value="1" selected='selected'>{{ text_enabled }}</option>
+										<option value="0">{{ text_disabled }}</option>
+									{% else %}
+										<option value="1">{{ text_enabled }}</option>
+										<option value="0" selected="selected">{{ text_disabled }}</option>
+									{% endif %}
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								<span data-toggle="tooltip" title="{{ help_limit }}">{{ entry_limit }}</span>
+							</label>
+							<div class="col-sm-10">
+								<input type="text" name="theme_zemez835_simple_blog_limit" value="{{ theme_zemez835_simple_blog_limit is defined ? theme_zemez835_simple_blog_limit : '5' }}" placeholder="{{ entry_limit }}" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">
+								{{ entry_description_limit }}
+							</label>
+							<div class="col-sm-10">
+								<input type="text" name="theme_zemez835_simple_blog_description_limit" value="{{ theme_zemez835_simple_blog_description_limit is defined ? theme_zemez835_simple_blog_description_limit : '5' }}" placeholder="{{ entry_description_limit }}" class="form-control" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">
+								<span data-toggle="tooltip" title="{{ help_comment_approval }}">{{ entry_comment_approval }}</span>
+							</label>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+								<div class="checkbox-inline">
+									{% if (theme_zemez835_simple_blog_comment_auto_approval is defined) %}
+										<input type="radio" name="theme_zemez835_simple_blog_comment_auto_approval" value="1" checked="checked"/> {{ text_yes }}&nbsp;
+										<input type="radio" name="theme_zemez835_simple_blog_comment_auto_approval" value="0"/> {{ text_no }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_simple_blog_comment_auto_approval" value="1"/> {{ text_yes }}&nbsp;
+										<input type="radio" name="theme_zemez835_simple_blog_comment_auto_approval" value="0" checked="checked"/> {{ text_no }}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label"><span
+								data-toggle="tooltip"
+								title="{{ help_author_information }}">{{ entry_author_information }}</span>
+							</label>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+								<div class="checkbox-inline">
+									{% if (theme_zemez835_simple_blog_author_information is defined) %}
+										<input type="radio" name="theme_zemez835_simple_blog_author_information" value="1" checked="checked"/> {{ text_enabled }}&nbsp;
+										<input type="radio" name="theme_zemez835_simple_blog_author_information" value="0"/> {{ text_disabled }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_simple_blog_author_information" value="1"/> {{ text_enabled }}&nbsp;
+										<input type="radio" name="theme_zemez835_simple_blog_author_information" value="0" checked="checked"/> {{ text_disabled }}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">
+								<span data-toggle="tooltip" title="{{ help_related_article }}">{{ entry_related_article }}</span>
+							</label>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+								<div class="checkbox-inline">
+									{% if (theme_zemez835_simple_blog_related_articles is defined) %}
+										<input type="radio" name="theme_zemez835_simple_blog_related_articles" value="1" checked="checked"/> {{ text_enabled }}&nbsp;
+										<input type="radio" name="theme_zemez835_simple_blog_related_articles" value="0"/> {{ text_disabled }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_simple_blog_related_articles" value="1"/> {{ text_enabled }}&nbsp;
+										<input type="radio" name="theme_zemez835_simple_blog_related_articles" value="0" checked="checked"/> {{ text_disabled }}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">
+								<span data-toggle="tooltip" title="{{ help_show_social_site_option }}">
+									{{ entry_show_social_site_option }}
+								</span>
+							</label>
+							<div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+								<div class="checkbox-inline">
+									{% if (theme_zemez835_simple_blog_share_social_site is defined) %}
+										<input type="radio" name="theme_zemez835_simple_blog_share_social_site" value="1" checked="checked"/> {{ text_enabled }}&nbsp;
+										<input type="radio" name="theme_zemez835_simple_blog_share_social_site" value="0"/> {{ text_disabled }}
+									{% else %}
+										<input type="radio" name="theme_zemez835_simple_blog_share_social_site" value="1"/> {{ text_enabled }}&nbsp;
+										<input type="radio" name="theme_zemez835_simple_blog_share_social_site" value="0" checked="checked"/> {{ text_disabled }}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>{{ text_image }}</legend>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-category-width">{{ entry_image_category }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_category_width" value="{{ theme_zemez835_image_category_width }}" placeholder="{{ entry_width }}" id="input-image-category-width" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_category_height" value="{{ theme_zemez835_image_category_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_category %}
+									<div class="text-danger">{{ error_image_category }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-thumb-width">{{ entry_image_thumb }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_thumb_width" value="{{ theme_zemez835_image_thumb_width }}" placeholder="{{ entry_width }}" id="input-image-thumb-width" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_thumb_height" value="{{ theme_zemez835_image_thumb_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_thumb %}
+									<div class="text-danger">{{ error_image_thumb }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-popup-width">{{ entry_image_popup }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_popup_width" value="{{ theme_zemez835_image_popup_width }}" placeholder="{{ entry_width }}" id="input-image-popup-width" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_popup_height" value="{{ theme_zemez835_image_popup_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_popup %}
+									<div class="text-danger">{{ error_image_popup }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-product-width">{{ entry_image_product }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_product_width" value="{{ theme_zemez835_image_product_width }}" placeholder="{{ entry_width }}" id="input-image-product-width" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_product_height" value="{{ theme_zemez835_image_product_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_product %}
+									<div class="text-danger">{{ error_image_product }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-additional-width">{{ entry_image_additional }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_additional_width" value="{{ theme_zemez835_image_additional_width }}" placeholder="{{ entry_width }}" id="input-image-additional-width" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_additional_height" value="{{ theme_zemez835_image_additional_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_additional %}
+									<div class="text-danger">{{ error_image_additional }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-related">{{ entry_image_related }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_related_width" value="{{ theme_zemez835_image_related_width }}" placeholder="{{ entry_width }}" id="input-image-related" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_related_height" value="{{ theme_zemez835_image_related_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_related %}
+									<div class="text-danger">{{ error_image_related }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-compare">{{ entry_image_compare }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_compare_width" value="{{ theme_zemez835_image_compare_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_compare_height" value="{{ theme_zemez835_image_compare_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_compare %}
+									<div class="text-danger">{{ error_image_compare }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-wishlist">{{ entry_image_wishlist }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_wishlist_width" value="{{ theme_zemez835_image_wishlist_width }}" placeholder="{{ entry_width }}" id="input-image-wishlist" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_wishlist_height" value="{{ theme_zemez835_image_wishlist_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_wishlist %}
+									<div class="text-danger">{{ error_image_wishlist }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-cart">{{ entry_image_cart }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_cart_width" value="{{ theme_zemez835_image_cart_width }}" placeholder="{{ entry_width }}" id="input-image-cart" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_cart_height" value="{{ theme_zemez835_image_cart_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_cart %}
+									<div class="text-danger">{{ error_image_cart }}</div>
+								{% endif %}
+							</div>
+						</div>
+						<div class="form-group required">
+							<label class="col-sm-2 control-label" for="input-image-location">{{ entry_image_location }}</label>
+							<div class="col-sm-10">
+								<div class="row">
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_location_width" value="{{ theme_zemez835_image_location_width }}" placeholder="{{ entry_width }}" id="input-image-location" class="form-control" />
+									</div>
+									<div class="col-sm-6">
+										<input type="text" name="theme_zemez835_image_location_height" value="{{ theme_zemez835_image_location_height }}" placeholder="{{ entry_height }}" class="form-control" />
+									</div>
+								</div>
+								{% if error_image_location %}
+									<div class="text-danger">{{ error_image_location }}</div>
+								{% endif %}
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{{ footer }}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('[name=\'theme_zemez835_label_new\']').on('click', function(){
+			toggle($(this), "1", $('.label-new-option'));
+		});
+	});
+	function toggle(e1, v, e2){
+		if (e1.val() == v) {
+			e2.removeClass('hidden');
+		} else {
+			e2.addClass('hidden');
+		}
+	}
+</script>
