@@ -1,0 +1,235 @@
+{{ header }}{{ column_left }} 
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+            </div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if (error['error_warning'] is defined) %} 
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error['error_warning'] }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        {% if (success is defined and success != '') %} 
+            <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit_product_sync }}</h3>
+            </div>
+            <div class="panel-body">
+                {{ tab_common }} 
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{ text_product_sync_to_ebay }}</div>
+                        <div class="panel-body">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <a target="_blank" href="{{ local_sync_ebay_link }}" class="btn btn-primary">{{ text_local_sync }}</a>
+                                    <div style="text-align: left; margin-top: 20px">
+                                        {{ local_sync_cron_hint }} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{ text_product_sync_to_ebay }}</div>
+                        <div class="panel-body">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <a target="_blank" href="{{ product_sync_ebay_link }}" class="btn btn-primary">{{ text_sync_product }}</a>
+                                    <div style="text-align: left; margin-top: 20px">
+                                        {{ text_sync_product_hint }} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{ text_product_revise_to_ebay }}</div>
+                        <div class="panel-body">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <a target="_blank" href="{{ product_revise_ebay_link }}" class="btn btn-primary">{{ text_product_revise_to_ebay }}</a>
+                                    <div style="text-align: left; margin-top: 20px">
+                                        {{ product_update_sync_cron_hint }} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{ text_product_relist_to_ebay }}</div>
+                        <div class="panel-body">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <a target="_blank" href="{{ product_relist_ebay_link }}" class="btn btn-primary">{{ text_product_relist_to_ebay }}</a>
+                                    <div style="text-align: left; margin-top: 20px">
+                                        {{ product_relist_sync_cron_hint }} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{ text_product_delete_to_ebay }}</div>
+                        <div class="panel-body">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <a target="_blank" href="{{ product_delete_ebay_link }}" class="btn btn-primary">{{ text_product_delete_button }}</a>
+                                    <div style="text-align: left; margin-top: 20px">
+                                        {{ product_delete_cron_hint }} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{ text_product_list_report_ebay }}</div>
+                        <div class="panel-body">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <a target="_blank" href="{{ product_report_ebay_link }}" class="btn btn-primary">{{ text_product_list_report_button }}</a>
+                                    <div style="text-align: left; margin-top: 20px">
+                                        {{ product_status_sync_cron_hint }} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{ text_sync_ebay_orders }}</div>
+                        <div class="panel-body">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <a target="_blank" href="{{ order_sync_link }}" class="btn btn-primary">{{ text_sync_order }}</a>
+                                    <div style="text-align: left; margin-top: 20px">
+                                        {{ order_sync_cron_hint }} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">{{ text_update_order_status }}</div>
+                        <div class="panel-body">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <a target="_blank" href="{{ order_sync_ebay_link }}" class="btn btn-primary">{{ text_update_order }}</a>
+                                    <div style="text-align: left; margin-top: 20px">
+                                        {{ order_status_sync_cron_hint }} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+
+                <div class="well" style="margin-top: 20px; clear: both">
+                    <label>{{ text_cron_config }}</label><br>
+                    <p>{{ text_cron_config_help }}</p>
+
+                    <b>{{ text_cron_via_cp }}</b><br>
+                    <ul>
+                        <li><b>{{ text_sync_product }}({{ text_cron_every_hour }}):</b> {{ product_sync_ebay_link }}</li>
+                        <li><b>{{ text_product_relist_to_ebay }}({{ text_cron_every_3_hours }}):</b> {{ product_relist_ebay_link }}</li>
+                        <li><b>{{ text_product_revise_to_ebay }}({{ text_cron_every_hour }}):</b> {{ product_revise_ebay_link }}</li>
+                        <li><b>{{ text_product_delete_to_ebay }}({{ text_cron_once_a_day }}):</b> {{ product_delete_ebay_link }}</li>
+                        <li><b>{{ text_product_list_report_ebay }}({{ text_cron_every_3_hours }}):</b> {{ product_report_ebay_link }}</li>
+                        <li><b>{{ text_sync_ebay_orders }}({{ text_cron_every_15_mins }}):</b> {{ order_sync_link }}</li>
+                        <li><b>{{ text_update_order_status }}({{ text_cron_every_30_mins }}):</b> {{ order_sync_ebay_link }}</li>
+                    </ul>
+                    <b>{{ text_cron_via_ssh }}</b><br>
+                    <ul>
+                        <li>0 */1 * * * * wget -O /dev/null '{{ product_sync_ebay_link }}'</li>
+                        <li>0 */3 * * * wget -O /dev/null '{{ product_relist_ebay_link }}'</li>
+                        <li>0 */1 * * * * wget -O /dev/null '{{ product_revise_ebay_link }}'</li>
+                        <li>0 * * * * wget -O /dev/null '{{ product_delete_ebay_link }}'</li>
+                        <li>0 */3 * * * * wget -O /dev/null '{{ product_report_ebay_link }}'</li>
+                        <li>0,15,30,45 * * * * wget -O /dev/null '{{ order_sync_link }}'</li>
+                        <li>05,35 * * * * wget -O /dev/null '{{ order_sync_ebay_link }}'</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="wait"><span></span></div>  
+<div class="clearfix"></div>
+<style type="text/css">
+    .card-body {
+        height: 170px;
+    }
+    .custom-tabs .tile .tile-body i{
+        font-size: 150px !important;
+    }
+    .custom-tabs .tile-heading{
+        text-align: center !important;
+    }
+    .custom-tabs .tile-body{
+        padding: 40px 12px !important;
+        background: white;
+        border: 1px solid #e8e4e4;
+    }
+    .loading-image{
+        width: 20px;
+        height: 20px !important;
+        margin-left: 10px;
+    }
+    .button-sync, .button-sync1{
+        color: white;
+        background: #25b9d7;
+        padding: 10px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 150px;
+        display: inline-block;
+        text-align: center;
+    }
+    .form-group{
+        border-bottom: 1px solid #cccccc;
+        padding: 14px 0px;
+    }
+</style>
+
+{{ footer }} 

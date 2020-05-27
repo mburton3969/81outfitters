@@ -51,6 +51,30 @@ class ControllerExtensionModuleZemezMegaMenu extends Controller
 							}
 
 							switch ($column['content']) {
+                case 5://Case 5 Added by Ignition Innovations [5-2-20] @MichaelB.
+								isset($column_categories[$column['category_id']]) ? $column_categories[$column['category_id']]++ : $column_categories[$column['category_id']] = 0;
+
+								$cats_2 = $this->model_catalog_category->getCategories($column['category_id']);
+
+								if (isset($cats_2[$column_categories[$column['category_id']]]) && strpos($cats_2[$column_categories[$column['category_id']]]['name'],'Clothing') !== false){
+									//$list .= "<li class=\"submenu_title\">\n<a href=\"" . $this->url->link('product/category', 'path=' . $cats_2[$column_categories[$column['category_id']]]['category_id'], true) . "\">" . $cats_2[$column_categories[$column['category_id']]]['name'] . "</a>\n</li>\n";
+
+									$cats_3 = $this->model_catalog_category->getCategories($cats_2[$column_categories[$column['category_id']]]['category_id']);
+
+									foreach ($cats_3 as $cats_3_key => $cats_3_value) {
+										if ($column['limit'] <= $cats_3_key) {
+											break;
+										}
+										$list .= "<li>\n<a href=\"" . $this->url->link('product/category', 'path=' . $cats_3_value['category_id'], true) . "\">" . $cats_3_value['name'] . "</a>\n</li>\n";
+									}
+								}elseif(strpos($cats_2[$column_categories[$column['category_id']]]['name'],'Clothing') == false){
+										//$list .= "<li>\n<a href=\"" . $this->url->link('product/category', 'path=' . $cats_2[$column_categories[$column['category_id']]]['category_id'], true) . "\">" . $cats_2[$column_categories[$column['category_id']]]['name'] . "</a>\n</li>\n";
+                }
+                  //Set the Category Top Header...
+                  $category_lv_2      = $this->model_catalog_category->getCategory($cats_2[$column_categories[$column['category_id']]]['category_id']);
+                  $category_lv_2_href = $this->url->link('product/category', 'path=' . $cats_2[$column_categories[$column['category_id']]]['category_id'], true);
+								
+                break;
 								case 4:
 								$filter_data = array(
 									'filter_category_id'  => $column['category_id'],
@@ -229,6 +253,28 @@ class ControllerExtensionModuleZemezMegaMenu extends Controller
 								$cats_2 = array_slice($this->model_catalog_category->getCategories($category_id), $categories_count[$category_id], $column['limit']);
 
 								foreach ($cats_2 as $cat) {
+                  //Ignition Innovations MichaelB. [4-29-20] 
+                  /*$fl = '0';
+                  $faq = "SELECT `c`.`category_id`,`c`,`parent_id`,`cd`.`name` 
+                          FROM `oc_category` AS `c` 
+                          LEFT JOIN `oc_category_description` AS `cd` 
+                          ON `oc_category`.`category_id` = `oc_category_description`.`category_id` 
+                          WHERE `category_id` = '" . $cat['category_id'] . "'";
+                  $fag = mysqli_query($conn, $faq) or die('Error: ' . $conn->error . ' on line 234 of zemez_megamenu.php');
+                  if(mysqli_num_rows($fag) > 0){
+                    $far = mysqli_fetch_array($fag);
+                    $pc = $far['parent_id'];
+                    $faq = "SELECT `c`.`category_id`,`c`,`parent_id`,`cd`.`name` 
+                          FROM `oc_category` AS `c` 
+                          LEFT JOIN `oc_category_description` AS `cd` 
+                          ON `oc_category`.`category_id` = `oc_category_description`.`category_id` 
+                          WHERE `category_id` = '" . $pc . "'";
+                    $fag = mysqli_query($conn, $faq) or die($conn->error);
+                    if(mysqli_num_rows($fag) > 0){
+                     $far = 
+                    }
+                  }*/
+                  //END Ignition Innovations Additions...
 									$list .= "<li>\n<a href=\"" . $this->url->link('product/category', 'path=' . $cat['category_id'], true) . "\">" . $cat['name'] . "</a>\n</li>\n";
 								}
 								break;

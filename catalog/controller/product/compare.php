@@ -25,6 +25,7 @@ class ControllerProductCompare extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+    $data['text_empty'] = $this->language->get('text_empty');//Added by Ignition Innovations [MB] [4-13-20]
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(

@@ -1,0 +1,134 @@
+{{ header }}{{ column_left }} 
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+            </div>
+
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if (error['error_warning'] is defined) %} 
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error['error_warning'] }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        {% if (success) %} 
+            <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit_order_list }}</h3>
+            </div>
+            <div class="panel-body">
+                {{ tab_common }} 
+                <form method="post" enctype="multipart/form-data" id="form-product">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-left">{% if (sort == 'o.order_id') %} 
+                                            <a href="{{ sort_order_id }}" class="{{ order }}">{{ column_order_id }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_order_id }}">{{ column_order_id }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">{% if (sort == 'eo.ebay_order_id') %} 
+                                            <a href="{{ sort_ebay_order_id }}" class="{{ order }}">{{ column_ebay_order_id }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_ebay_order_id }}">{{ column_ebay_order_id }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">
+                                        {{ column_customer_name }} 
+                                    </td>
+                                    <td class="text-left">{% if (sort == 'o.total') %} 
+                                            <a href="{{ sort_total }}" class="{{ order }}">{{ column_total }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_total }}">{{ column_total }}</a>
+                                        {% endif %}</td>
+                                    <td class="text-left">{% if (sort == 'o.payment_method') %} 
+                                            <a href="{{ sort_payment_method }}" class="{{ order }}">{{ column_payment }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_payment_method }}">{{ column_payment }}</a>
+                                        {% endif %}</td>
+                                    <td class="text-left">{% if (sort == 'o.date_added') %} 
+                                            <a href="{{ sort_date_added }}" class="{{ order }}">{{ column_order_date }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_date_added }}">{{ column_order_date }}</a>
+                                        {% endif %}</td>
+                                    <td class="text-right">
+                                        {{ column_action }} 
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if (product_listed) %} 
+                                    {% for listed in product_listed %} 
+                                        <tr>
+                                            <td class="text-left">{{ listed['order_id'] }}</td>
+                                            <td class="text-left">{{ listed['ebay_order_id'] }}</td>
+                                            <td class="text-left">{{ listed['firstname'] }}</td>
+                                            <td class="text-left">{{ listed['total'] }}</td>
+                                            <td class="text-left">{{ listed['payment_method'] }}</td>
+                                            <td class="text-left">{{ listed['date_added'] }}</td>
+                                            <td class="text-right"><a href="{{ listed['action'] }}" data-toggle="tooltip" title="{{ button_view }}" class="btn btn-info"><i class="fa fa-eye"></i></a></td>
+                                        </tr>
+                                    {% endfor %} 
+                                {% else %} 
+                                    <tr>
+                                        <td class="text-center" colspan="9">{{ text_no_results }}</td>
+                                    </tr>
+                                {% endif %} 
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript"><!--
+$('#button-filter').on('click', function() {
+    var url = '{{ route }}';
+    
+    var filter_product_name = $('input[name=\'filter_product_name\']').val();
+    if (filter_product_name) {
+        url += '&filter_product_name=' + encodeURIComponent(filter_product_name);
+    }
+
+    var filter_listing_status = $( "#listing_status" ).val();
+    if (filter_listing_status) {
+        url += '&filter_listing_status=' + encodeURIComponent(filter_listing_status);
+    }
+    location = url;
+});
+
+$('.delete-products').bind('click',function(){
+    var id = $(this).attr('data');
+    var url = $(this).attr('data_url');
+    var url_redirect = $(this).attr('data_url_red');
+    $.ajax({
+		url: url+'&id='+id,
+        beforeSend: function(){
+            $(this).parent().append('<span class="loading-image"></span>');
+        },
+        success: function() {
+            location = url_redirect;
+        }
+    });
+});
+//--></script>
+{{ footer }}

@@ -4,9 +4,17 @@
 			{% for menu_item in menu_items %}
 				<li {{ menu_item['mega'] is not empty ? 'class="' ~ menu_item['mega'] ~ '"' : '' }}>
 					{% if (menu_item['href'] is empty) %}
-						<span>{{ menu_item['name'] }}</span>
+            {% if (menu_item['name'] == 'SALE') %}
+						  <span style="color:red;font-weight:800 !important;">{{ menu_item['name'] }}</span>
+            {% else %}
+              <span>{{ menu_item['name'] }}</span>
+            {% endif %}
 					{% else %}
-						<a href="{{ menu_item['href'] }}" data-letters="{{ menu_item['name'] }}"><span>{{ menu_item['name'] }}</span></a>
+            {% if (menu_item['name'] == 'SALE') %}
+              <a href="{{ menu_item['href'] }}" data-letters="{{ menu_item['name'] }}"><span style="color:red;font-weight:800 !important;">{{ menu_item['name'] }}</span></a>
+            {% else %}
+              <a href="{{ menu_item['href'] }}" data-letters="{{ menu_item['name'] }}"><span>{{ menu_item['name'] }}</span></a>
+            {% endif %}
 					{% endif %}
 					{% if (menu_item['multi'] is not empty) %}
 						{{ menu_item['multi'] }}

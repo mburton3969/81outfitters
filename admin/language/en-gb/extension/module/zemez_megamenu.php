@@ -21,6 +21,7 @@ $_['text_type_category']                 = 'Category';
 $_['text_type_megamenu']                 = 'Megamenu';
 $_['text_type_multilevel']               = 'Multilevel';
 $_['text_column']                        = 'Column';
+$_['text_type_sub_with_sub_custom']      = 'Custom - Subcategory 2nd level with subcategory 3rd level';
 $_['text_type_sub_with_sub']             = 'Subcategory 2nd level with subcategory 3rd level';
 $_['text_type_sub_with_prod']            = 'Subcategory 2nd level with products';
 $_['text_type_subcategories']            = 'Subcategories';

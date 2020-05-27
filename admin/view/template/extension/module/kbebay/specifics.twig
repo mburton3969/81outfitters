@@ -1,0 +1,95 @@
+<form action="{{ action }}" method="post" enctype="multipart/form-data" id="ebay-profile-specifics_form" class="form-horizontal">
+    <div class='clearfix'></div>
+    <input type="hidden" name="profile[specific][id_ebay_profiles]" value="{{ id_ebay_profiles }}" placeholder="" id="specific_id_ebay_profiles" class="form-control"/>
+    {% for specific in specifics %} 
+        {% if (specific['is_mandatory'] == 1) %} 
+            <div class="form-group required">
+                <label class="control-label col-lg-2 required">
+                    {{ specific['specific_name'] }} 
+                </label>
+            {% else %} 
+                <div class="form-group">
+                    <label class="control-label col-lg-2">
+                        {{ specific['specific_name'] }}
+                    </label>
+                {% endif %} 
+                <div class="col-lg-10">
+                        <select name="{{ specific['id_ebay_category_specifics'] }}" class="specific_tab {% if (specific['is_mandatory'] == 1) %} {{ 'required_field' }} {% endif %} fixed-width-xl form-control" id="{{ specific['id_ebay_category_specifics'] }}">
+                            <option value="">{{ text_select_value }}</option>
+                            <optgroup label="{{ text_product_groups }}">
+                                {% for key,product_group in product_groups %} 
+                                    {% if (specific['data'] is defined and specific['data'] == key) %} 
+                                        <option value="Features[{{ key }}]" selected="selected">{{ product_group }}</option>
+                                    {% else %} 
+                                        <option value="Features[{{ key }}]">{{ product_group }}</option>
+                                    {% endif %} 
+                                {% endfor %} 
+                            </optgroup>
+                            <optgroup label="{{ text_attributes }}">
+                                {% for attribute in attribute_groups %} 
+                                    {% if (specific['data'] is defined and specific['data'] == attribute['name']) %} 
+                                        <option value="Attributes[{{ attribute['attribute_id'] }}]" selected="selected">{{ attribute['name'] }}</option>
+                                    {% else %} 
+                                        <option value="Attributes[{{ attribute['attribute_id'] }}]">{{ attribute['name'] }}</option>
+                                    {% endif %} 
+                                {% endfor %} 
+                            </optgroup>
+                            {% set ebay_values = specific['specific_values'] %} 
+                            {% if (ebay_values is not empty) %} 
+                            <optgroup label="{{ text_ebay_values }}">                           
+                                {% for key,val in ebay_values %} 
+                                    {% if (specific['data'] is defined and specific['data'] == val) %} 
+                                        <option value="Ebay[{{ val }}]" selected="selected">{{ val }}</option>
+                                    {% else %} 
+                                        <option value="Ebay[{{ val }}]">{{ val }}</option>
+                                    {% endif %} 
+                            {% endfor %} 
+                            </optgroup>
+                            {% endif %} 
+                        </select>
+                </div>
+            </div>  
+    {% endfor %} 
+</form>
+<script type="text/javascript">
+    $("#ebay-profile-specifics").unbind("click").click(function (e) {
+        var status = 1;
+        $('input, select').removeClass('kb-error-message-field');
+        $('.kb-error-message').remove();
+    
+        $("#ebay-profile-specifics div").each(function () {
+            if ($(this).hasClass("required")) {
+                if ($(this).find('.col-lg-10 select').val() == 0 || $(this).find('.col-lg-10 select').val() == '') {
+                    status = 0;
+                }
+            }
+
+        });
+        $(".required_field").each(function () {
+            
+            if($("#"+(this).id).val()=='') {
+                status = false;
+                $("#"+(this).id).addClass('kb-error-message-field')
+                $("#"+(this).id).after('<span class="kb-error-message">{{text_error_empty_field}}</span>');
+            }
+        });
+        if (status) {
+            $("#ebay-profile-specifics_form").submit();
+        } else {
+            alert('{{ text_required_message }}');
+            return false;
+        }
+
+    });
+    $(document).ready(function () {
+        $('#id_ebay_profiles').val('{{ id_ebay_profiles }}');
+    });
+</script>
+<style>
+.kb-error-message-field{
+    border-color: red;
+}
+.kb-error-message{
+    color: red;
+}
+</style>

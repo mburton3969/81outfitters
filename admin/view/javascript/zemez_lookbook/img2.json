@@ -1,0 +1,23 @@
+{
+  "name": "Test",
+  "collection_name": "Testing",
+  "display_content": "0",
+  "status": "1",
+  "banner_wrapper_class": "image1",
+  "banner_image": "catalog\/banner-4.jpg",
+  "banner_image_width": "370",
+  "banner_image_height": "370",
+  "banner_description": {
+    "1": {
+      "description": "Testing"
+    }
+  },
+  "collection_image": "catalog\/banner-4.jpg",
+  "collection_image_width": "770",
+  "collection_image_height": "520",
+  "product_name": "",
+  "product": ["50"],
+  "product_image_width": "270",
+  "product_image_height": "358",
+  "product_map": "\t\t\t\t\t\t\t\t\t\t&lt;map name=&quot;map&quot;&gt;&lt;area shape=&quot;poly&quot; coords=&quot;115, 184, 67, 240, 51, 270, 42, 306, 38, 351, 42, 416, 47, 488, 51, 514, 81, 519, 116, 517, 144, 510, 169, 500, 173, 519, 307, 519, 295, 456, 293, 426, 293, 393, 290, 365, 286, 338, 282, 318, 279, 297, 278, 279, 274, 257, 265, 237, 254, 224, 242, 214, 235, 211, 236, 221, 237, 227, 231, 230, 217, 229, 203, 224, 188, 218, 163, 202, 133, 183&quot; \/&gt;&lt;\/map&gt;\r\n\t\t\t\t\t\t\t\t\t"
+}

@@ -2419,6 +2419,7 @@
 
            /* Selected image loading */
            function onButtonClick(e) {
+            var tURL = document.getElementById('button').getAttribute('data-url');
            	var data = "image=" + document.getElementsByName('collection_image')[0].value
            	+ "&image_width=" + document.getElementsByName('collection_image_width')[0].value
            	+ "&image_height=" + document.getElementsByName('collection_image_height')[0].value,
@@ -2443,7 +2444,8 @@
            			utils.show(wrapper);
            		}
            	};
-           	xhttp.open("POST", e.target.dataset.url, true);
+           	//xhttp.open("POST", e.target.dataset.url, true);
+           	xhttp.open("POST", tURL, true);
            	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
            	xhttp.send(data);
            	e.preventDefault();
@@ -2513,6 +2515,7 @@
         	}
 
         	function onSaveButtonClick(e) {
+            console.log('Testing');
             // Save in localStorage
             document.getElementById('code_input').innerHTML = app.getHTMLCode(true);
             e.preventDefault();

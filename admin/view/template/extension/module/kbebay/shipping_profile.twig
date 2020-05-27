@@ -1,0 +1,185 @@
+{{ header }}{{ column_left }} 
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="{{ add }}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+            </div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if (error) %} 
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        {% if (success) %} 
+            <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_shipping_profile_list }}</h3>
+            </div>
+            <div class="panel-body">
+                {{ tab_common }} 
+                <div class="well">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" for="shipping_profile_name">{{ text_shipping_profile_title }}</label>
+                                <input type="text" name="filter_shipping_profile_name" value="{{ filter_shipping_profile_name }}" placeholder="{{ text_shipping_profile_title }}" id="shipping_profile_name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" for="shipping_site_name">{{ text_ebay_sites_heading }}</label>
+                                <select name="filter_shipping_profile_site_name"  id="filter_shipping_site_name" class="form-control"/>
+                                <option value=""></option>
+                                {% for ebay_site in ebay_sites %} 
+                                    <option value="{{ ebay_site['id_ebay_countries'] }}" {% if (ebay_site['id_ebay_countries'] == filter_shipping_profile_site_name) %} selected="selected"{% endif %}>{{ ebay_site['description'] }}</option>
+                                {% endfor %} 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" for="shipping_international_shipping">{{ text_international_shipping_allowed }}</label>
+                                <select name="filter_international_shipping"  id="filter_international_shipping" class="form-control" />
+                                    <option value=""></option>
+                                    <option value="0" {% if (filter_international_shipping == "0") %} selected="selected" {% endif %}>{{ text_no }}</option>
+                                    <option value="1" {% if (filter_international_shipping == "1") %} selected="selected" {% endif %}>{{ text_yes }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group" style="margin-top: 20px">
+                                <button type="button" id="button-filter" class="btn btn-primary"><i class="fa fa-search"></i> {{ button_filter }}</button>
+                                <button type="button" id="button-refresh" class="btn btn-default" style="margin-right: 2px;"><i class="fa fa-refresh"></i> {{ button_reset }}</button>&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data" id="form-product">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-left">
+                                        {% if (sort == 'id_ebay_shipping') %} 
+                                            <a href="{{ sort_id_shipping_profile }}" class="{{ order }}">{{ column_shipping_profile_id }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_id_shipping_profile }}">{{ column_shipping_profile_id }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">{% if (sort == 'shipping_profile_name') %} 
+                                            <a href="{{ sort_ebay_shipping_profile_name }}" class="{{ order }}">{{ column_shipping_profile_name }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_ebay_shipping_profile_name }}">{{ column_shipping_profile_name }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">{% if (sort == 'site_id') %} 
+                                            <a href="{{ sort_ebay_shipping_profile_site }}" class="{{ order }}">{{ column_shipping_profile_site }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_ebay_shipping_profile_site }}">{{ column_shipping_profile_site }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">
+                                        {% if (sort == 'international_shipping_allowed') %} 
+                                        <a href="{{ sort_ebay_shipping_profile_international }}" class="{{ order }}">{{ column_shipping_profile_international_shipping }}</a>
+                                        {% else %} 
+                                        <a href="{{ sort_ebay_shipping_profile_international }}">{{ column_shipping_profile_international_shipping }}</a>
+                                        {% endif %} 
+                                        
+                                    </td>
+                                    <td class="text-left">
+                                        {% if (sort == 'date_upd') %} 
+                                        <a href="{{ sort_ebay_shipping_profile_last_update }}" class="{{ order }}">{{ column_shipping_profile_last_update }}</a>
+                                        {% else %} 
+                                        <a href="{{ sort_ebay_shipping_profile_last_update }}">{{ column_shipping_profile_last_update }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-right">{{ column_action }}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if (shipping_profiles is defined) %} 
+                                    {% for shipping_profile in shipping_profiles %} 
+                                        <tr>
+                                            <td class="text-left">{{ shipping_profile['id_ebay_shipping'] }}</td>
+                                            <td class="text-left">{{ shipping_profile['shipping_profile_name'] }}</td>
+                                            <td class="text-left">{{ shipping_profile['site_name'] }}</td>
+                                            <td class="text-left">{{ shipping_profile['international_shipping_allowed'] }}</td>
+                                            <td class="text-left">{{ shipping_profile['date_upd'] }}</td>
+                                            <td class="text-right">
+                                                <a href="{{ shipping_profile['edit'] }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                                <a href="{{ shipping_profile['delete'] }}" onclick="return window.confirm('{{ text_confirm }}');" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %} 
+                                {% else %} 
+                                    <tr>
+                                        <td class="text-center" colspan="9">{{ text_no_results }}</td>
+                                    </tr>
+                                {% endif %} 
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-sm" id="errorMessageModal"  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ entry_error_message }}</h5>
+                <button type="button" class="close product-error-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript"><!--
+$('#button-filter').on('click', function () {
+        var url = 'index.php?route={{ module_path }}/kbebay/shippingProfile&{{ session_token_key }}={{ token }}';
+
+        var filter_shipping_profile_name = $('input[name=\'filter_shipping_profile_name\']').val();
+
+        if (filter_shipping_profile_name) {
+            url += '&filter_shipping_profile_name=' + encodeURIComponent(filter_shipping_profile_name);
+        }
+
+        var filter_shipping_profile_site_name = $('#filter_shipping_site_name').val();
+
+        if (filter_shipping_profile_site_name) {
+            url += '&filter_shipping_profile_site_name=' + encodeURIComponent(filter_shipping_profile_site_name);
+        }
+
+        var filter_international_shipping = $('#filter_international_shipping').val();
+        
+        if (filter_international_shipping) {
+            url += '&filter_international_shipping=' + encodeURIComponent(filter_international_shipping);
+        }
+        location = url;
+    });
+    $('#button-refresh').click(function (e) {
+        var url = 'index.php?route={{ module_path }}/kbebay/shippingProfile&{{ session_token_key }}={{ token }}';
+        location = url;
+    });
+//--></script>
+{{ footer }}

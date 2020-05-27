@@ -1,0 +1,386 @@
+{{ header }}{{ column_left }} 
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a form="form-product" formaction="{{ enable_action }}" data-toggle="tooltip" title="{{ button_enable_products }}" class="btn btn-primary formaction"><i style="padding: 0 2px" class="fa fa-step-forward"></i></a>
+                <a form="form-product" formaction="{{ disable_action }}" data-toggle="tooltip" title="{{ button_disable_products }}" class="btn btn-primary formaction"><i class="fa fa-ban"></i></a>
+                <a href="{{ local_sync_link }}" title="{{ text_local_sync }}" data-toggle="tooltip" target="_blank" title="" class="btn btn-warning"><i class="fa fa-refresh"></i></a>
+                <a href="{{ feed_sync_link }}" title="{{ text_feed_sync }}" data-toggle="tooltip" target="_blank" title="" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+                <a href="{{ sync_product_status_link }}" title="{{ text_product_status_sync }}" data-toggle="tooltip" target="_blank" title="" class="btn btn-primary"><i class="fa fa-cog"></i></a>
+                <!--
+                <a data-target="#update_profile_model" data-toggle="modal" data-toggle="tooltip" title="{{ button_swtich_profile }}" class="btn btn-primary"><i class="fa fa-wrench"></i></a>
+                -->
+            </div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        
+        {% if (error is defined and error != "") %} 
+        <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error }} 
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        {% endif %} 
+        {% if (success) %} 
+        <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+        {% endif %} 
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit_product_list }}</h3>
+            </div>
+            <div class="panel-body">
+                {{ tab_common }} 
+                <div class="well">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" for="product_name">{{ text_filter_product_name }}</label>
+                                <input type="text" name="filter_product_name" value="{{ filter_product_name }}" placeholder="{{ text_filter_product_name }}" id="product_name" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" for="listing_status">{{ text_filter_listing_status }}</label>
+                                <select name="filter_listing_status" id="listing_status" class="form-control">
+                                    {% for key,value in listing_status %} 
+                                        {% if (key == filter_listing_status) %} 
+                                            <option value="{{ key }}" selected="selected">{{ value }}</option>
+                                        {% else %} 
+                                            <option value="{{ key }}">{{ value }}</option>
+                                        {% endif %} 
+                                    {% endfor %} 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label" for="filter_ebay_profile">{{ text_filter_ebay_profile }}</label>
+                                <select name="filter_ebay_profile" id="filter_ebay_profile" class="form-control">
+                                    <option value=""></option>
+                                    {% for profile in profiles_to_filter %} 
+                                        {% if (profile['id'] == filter_ebay_profile) %} 
+                                            <option value="{{ profile['id'] }}" selected="selected">{{ profile['name'] }}</option>
+                                        {% else %} 
+                                            <option value="{{ profile['id'] }}">{{ profile['name'] }}</option>
+                                        {% endif %} 
+                                    {% endfor %} 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group" style="margin-top: 20px">
+                                <button type="button" id="button-filter" class="btn btn-primary"><i class="fa fa-search"></i> {{ button_filter }}</button>
+                                <button type="button" id="button-refresh" class="btn btn-default" style="margin-right: 2px;"><i class="fa fa-refresh"></i> {{ button_reset }}</button>&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data" id="form-product">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" />
+                                    </td>
+                                    <td class="text-left">
+                                        {% if (sort == 'pl.id_ebay_profile_products') %} 
+                                            <a href="{{ sort_product_list_id }}" class="{{ order }}">{{ column_product_list_id }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_product_list_id }}">{{ column_product_list_id }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">
+                                        {% if (sort == 'shipping_template_title') %} 
+                                            {{ column_product_image }} 
+                                        {% else %} 
+                                            {{ column_product_image }} 
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">
+                                        {% if (sort == 'pl.ebay_listiing_id') %} 
+                                            <a href="{{ sort_listing_id }}" class="{{ order }}">{{ column_product_listing_id }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_listing_id }}">{{ column_product_listing_id }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">
+                                        {% if (sort == 'pd.name') %} 
+                                            <a href="{{ sort_product_name }}" class="{{ order }}">{{ column_product_name }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_product_name }}">{{ column_product_name }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">
+                                        {% if (sort == 'ep.profile_name') %} 
+                                            <a href="{{ sort_profile_name }}" class="{{ order }}">{{ column_profile_name }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_profile_name }}">{{ column_profile_name }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">
+                                        {% if (sort == 'pl.status') %} 
+                                            <a href="{{ sort_list_status }}" class="{{ order }}">{{ column_list_status }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_list_status }}">{{ column_list_status }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left" style="display: none">
+                                        {% if (sort == 'pl.ebay_status') %} 
+                                            <a href="{{ sort_ebay_list_status }}" class="{{ order }}">{{ column_ebay_list_status }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_ebay_list_status }}">{{ column_ebay_list_status }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">
+                                        {% if (sort == 'pl.date_added') %} 
+                                            <a href="{{ sort_list_date }}" class="{{ order }}">{{ column_list_date }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_list_date }}">{{ column_list_date }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-right">{{ column_action }}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if (product_listed) %} 
+                                    {% for listed in product_listed %} 
+                                        <tr>
+                                            <td class="text-center">
+                                                {% if selected in listed['id_ebay_profile_products'] %} 
+                                                    <input type="checkbox" name="selected[]" value="{{ listed['id_ebay_profile_products'] }}" checked="checked" />
+                                                {% else %} 
+                                                    <input type="checkbox" name="selected[]" value="{{ listed['id_ebay_profile_products'] }}" />
+                                                {% endif %} 
+                                            </td>
+
+                                            <td class="text-left">{{ listed['id_ebay_profile_products'] }}</td>
+                                            <td class="text-center">{% if (listed['image']) %} 
+                                                    <img src="{{ listed['image'] }}" alt="{{ listed['name'] }}" class="img-thumbnail" />
+                                                {% else %} 
+                                                    <span class="img-thumbnail list"><i class="fa fa-camera fa-2x"></i></span>
+                                                {% endif %} 
+                                            </td>
+                                            <td class="text-left">
+                                                {% if (listed['item_url'] != "") %} 
+                                                    <a href="{{ listed['item_url'] }}" target="_blank">{{ listed['ebay_listiing_id'] }}</a>
+                                                {% else %} 
+                                                    {{ listed['ebay_listiing_id'] }} 
+                                                {% endif %} 
+                                            </td>
+                                            <td class="text-left"><a href="{{ listed['admin_edit_link'] }}" target="_blank">{{ listed['name'] }}</a></td>
+                                            <td class="text-left">{{ listed['profile_name'] }}</td>
+
+                                            <td class="text-left">{{ listing_status[listed['status']] }}</td>
+                                            <td class="text-left" style="display: none">
+                                                {% if (listing_status[listed['ebay_status']] is defined) %}
+                                                {{ listing_status[listed['ebay_status']] }}
+                                                {% else %} 
+                                                {{ listed['ebay_status'] }}
+                                                {% endif %} 
+                                            </td>
+                                            <td class="text-left">{{ listed['date_added'] }}</td>
+                                            <td class="text-right">
+                                                {% if (listed["is_disabled"] == 0) %} 
+                                                    
+                                                    <a href='{{ listed["url_disable"] }}' onclick="return window.confirm('{{ text_confirm }}')" data-toggle="tooltip" title="{{ button_disable_product }}" class="btn btn-primary"><i class="fa fa-ban"></i></a>
+                                                    
+                                                    {% if (listed['status'] == 'New') %} 
+                                                        <a href='{{ listed["url_sync_new"] }}' target="_blank" data-toggle="tooltip" title="{{ text_sync_product }}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+                                                    {% endif %} 
+                                                        
+                                                    {% if (listed['status'] == 'Updated') %} 
+                                                        <a href='{{ listed["url_sync_update"] }}' target="_blank" data-toggle="tooltip" title="{{ text_sync_product }}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+                                                    {% endif %} 
+
+                                                    {% if (listed["message"] != "") %} 
+                                                        <a data-message='{{ listed["message"]| e('html') }}' data-toggle="modal" data-target=".bd-example-modal-sm" data-toggle="tooltip" title="{{ text_view_errors }}" class="btn btn-danger"><i class="fa fa-exclamation-circle"></i></a>
+                                                    {% endif %} 
+
+                                                    {% if (listed['status'] != 'Deleted' and listed['ebay_status'] != "Ended") %} 
+                                                        {% if (listed['status'] != 'Updated' and listed['status'] != 'New') %} 
+                                                            <a onclick="confirm('{{ text_confirm }}') ? location.href = '{{ listed['url_revise'] }}' : false;" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="{{ text_mark_update }}"><i class="fa fa-retweet"></i></a>
+                                                        {% endif %} 
+                                                            {% if (listed['status'] != 'New') %} 
+                                                                <a onclick="confirm('{{ text_confirm_product_delete }}') ? location.href = '{{ listed['url_delete'] }}' : false;" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="{{ text_delete_products }}"><i class="fa fa-trash-o"></i></a>
+                                                            {% endif %} 
+                                                    {% endif %} 
+
+                                                    {% if (listed['status'] == "Deleted") %} 
+                                                        <a onclick="confirm('{{ text_confirm }}') ? location.href = '{{ listed['url_relist'] }}' : false;" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="{{ text_mark_relisting }}"><i class="fa fa-refresh"></i></a>
+                                                    {% endif %} 
+                                                {% else %} 
+                                                    <a href='{{ listed["url_enable"] }}' onclick="return window.confirm('{{ text_confirm }}')" data-toggle="tooltip" title="{{ button_enable_product }}" class="btn btn-primary"><i class="fa fa-step-forward"></i></a>
+                                                {% endif %} 
+                                            </td>
+                                        </tr>
+                                        {% endfor %} 
+                                    {% else %} 
+                                    <tr>
+                                        <td class="text-center" colspan="9">{{ text_no_results }}</td>
+                                    </tr>
+                                {% endif %} 
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade bd-example-modal-sm" id="errorMessageModal"  tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ entry_error_message }}</h5>
+                <button type="button" class="close product-error-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">{{ entry_no_error }} 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade saveToken" id="update_profile_model" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" style="display: none;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">{{ txt_set_new_profile }}</h4>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data" id="update_profile_form" class="form-horizontal">
+                <div class="modal-body">
+                    <div class="row" style="font-size: 14px;">
+                        <div id="update_profile_message" style="margin: 10px;"></div>
+                        <div class="form-group required" style="margin-bottom: 10px;">
+                            <label class="col-sm-3 control-label" for="input-title">{{ txt_set_select_profile }}</label>
+                            <div class="col-sm-9">
+                                <select name="profile" id="update_profile_id" class="form-control">
+                                    {% for profile in profiles_to_filter %} 
+                                        {{ '<option value="'~profile['id']~'">'~profile['name']~'</option>' }}
+                                    {% endfor %}
+                                </select>
+                                <div style="font-size: 11px; font-style: italic">
+                                    {{ txt_profile_swtich_hint }} 
+                                </div>
+                                <div id="layout-title-error"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="selected_products" id="selected_products" value=""/>
+                    <input type="hidden" name="switch_profile" value="switch_profile"/>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ button_cancel }}</button>
+                    <button type="button" class="btn btn-primary" id="update_profile">{{ button_save }}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"><!--
+
+$("#update_profile").on('click', function() {
+    $("#update_profile_message").html('');
+    var selected_product = '';
+    $('input[name*=\'selected\']').each(function() {
+        if($(this).prop('checked')) {
+            if(selected_product == "") {
+                selected_product = $(this).val();
+            } else {
+                selected_product = selected_product + "," + $(this).val();
+            }
+        }
+    });
+    $("#selected_products").val(selected_product);
+    
+    if(selected_product == "") {
+        $("#update_profile_message").html('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> Select atleast one product to update the profile.</div>');
+    } else {
+        $("#update_profile_form").submit(); 
+    }
+});
+    
+$('#button-filter').on('click', function () {
+
+    var url = '{{ route }}'.replace(/&amp;/g, '&');
+
+    var filter_product_name = $('input[name=\'filter_product_name\']').val();
+    if (filter_product_name) {
+        url += '&filter_product_name=' + encodeURIComponent(filter_product_name);
+    }
+
+    var filter_listing_status = $("#listing_status").val();
+    if (filter_listing_status) {
+        url += '&filter_listing_status=' + encodeURIComponent(filter_listing_status);
+    }
+
+    var filter_ebay_profile = $("#filter_ebay_profile").val();
+    if (filter_ebay_profile) {
+        url += '&filter_ebay_profile=' + encodeURIComponent(filter_ebay_profile);
+    }
+    location = url;
+
+});
+
+$('#errorMessageModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var message = button.data('message')
+    var modal = $(this);
+    if (message != '' && message != 'undefined') {
+        modal.find('.modal-body').text(message)
+    }
+});
+
+$('.delete-products').bind('click', function () {
+    var id = $(this).attr('data');
+    var url = $(this).attr('data_url');
+    var url_redirect = $(this).attr('data_url_red');
+    $.ajax({
+        url: url + '&id=' + id,
+        beforeSend: function () {
+            $(this).parent().append('<span class="loading-image"></span>');
+        },
+        success: function () {
+            location = url_redirect;
+        }
+    });
+});
+
+$('#button-refresh').click(function (e) {
+    var url = '{{ route }}'.replace(/&amp;/g, '&');
+    location = url;
+});
+
+$(".formaction").bind("click", function() {
+    var confirm = window.confirm('{{ text_confirm }}');
+    if(confirm) {
+        $("#form-product").attr("action", $(this).attr("formaction"));
+        $("#form-product").submit();
+    }
+});
+//-->
+</script>
+<style type="text/css">
+    .product-error-close{
+        margin-top: -30px !important;
+        margin-right: -10px;
+    }
+</style>
+{{ footer }}

@@ -1,0 +1,70 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <td class="text-left">{{ column_date_added }}</td>
+        <td class="text-left">{{ column_description }}</td>
+        <td class="text-right">{{ column_credit }}</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% if credits %}
+      {% for credit in credits %}
+      <tr>
+        <td class="text-left">{{ credit.date_added }}</td>
+        <td class="text-left">{{ credit.description }}</td>
+        <td class="text-right">{{ credit.amount }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td></td>
+        <td class="text-right"><b>{{ column_balance }}</b></td>
+        <td class="text-right">{{ balance }}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td class="text-center" colspan="3">{{ text_no_results }}</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <div class="col-sm-6 text-left">{{ pagination }}</div>
+  <div class="col-sm-6 text-right">{{ results }}</div>
+</div>
+<script type="text/javascript">
+function validate(key, thisthis, nodot) {
+  //getting key code of pressed key
+  var keycode = (key.which) ? key.which : key.keyCode;
+
+  if (keycode == 46) {
+    if (nodot) {
+      return false;
+    }
+
+    var val = $(thisthis).val();
+    if (val == val.replace('.', '')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  if (keycode == 45) {
+    var val = $(thisthis).val();
+    if (val == val.replace('-', '')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  //comparing pressed keycodes
+  if (!(keycode == 8 || keycode == 9 || keycode == 46 || keycode == 116) && (keycode < 48 || keycode > 57)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+</script>

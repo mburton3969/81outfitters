@@ -1,0 +1,60 @@
+<div class="map">
+	{% set arr = (main_geocode|trim)|split(',') %}
+		<div id="google-map" class="map_model" data-zoom="{{ zoom }}"
+		data-y="{{ arr[0] }}"
+		data-x="{{ arr[1] }}"
+		data-disable-ui="{{ disable_ui }}"
+		data-scrollwheel="{{ scrollwheel }}"
+		data-draggable="{{ draggable }}"
+		style="height:{{ height }}; width: {{ width }}">
+	</div>
+	<ul class="map_locations">
+		<li data-x="{{ arr[1] }}" data-y="{{ arr[0] }}">
+			<p> {{ main_address }}</p>
+		</li>
+		{% if (address is not empty and geocode is not empty) %}
+			{% for i, addr in address %}
+				{% if (address[i] is not empty and geocode[i] is not empty) %}
+					{% set arr = geocode[i]|split(',') %}
+						<li data-x="{{ arr[1] }}" data-y="{{ arr[0] }}">
+							<p>{{ address[i] }}</p>
+						</li>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		</ul>
+	</div>
+	<script>
+		var tmp = {{ type }};
+		var marker_path = '{{ marker_image }}';
+		var marker_active_path = '{{ marker_active_image }}';
+		var styles = {{ styles|striptags|convert_encoding('UTF-8', 'HTML-ENTITIES') }};
+		var type;
+		switch (tmp) {
+			case 1:
+			type = google.maps.MapTypeId.ROADMAP;
+			break;
+			case 2:
+			type = google.maps.MapTypeId.TERRAIN;
+			break;
+			case 3:
+			type = google.maps.MapTypeId.HYBRID;
+			break;
+			case 4:
+			type = google.maps.MapTypeId.SATELLITE;
+			break;
+			default:
+			type = google.maps.MapTypeId.ROADMAP;
+		}
+		jQuery(document).ready(function ($) {
+			var o = $('#google-map');
+			o.googleMap({
+				marker: {
+					basic: marker_path,
+					active: marker_active_path
+				},
+				type: type,
+				styles: styles
+			});
+		});
+	</script>

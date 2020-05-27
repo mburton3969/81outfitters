@@ -862,6 +862,7 @@ jQuery(document).ready(function(){
 
 	if (collectionImg.length > 0) {
 		collectionImg.mapTrifecta({'strokeColor' : rgb2hex($('[data-marker] > i').css("background-color"))});
+		//collectionImg.mapTrifecta({'strokeColor' : 'ffed4c'});
 	}
 
 	if (collection.length > 0) {

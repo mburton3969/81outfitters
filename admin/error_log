@@ -1,0 +1,51 @@
+[11-Apr-2020 23:01:05 UTC] PHP Parse error:  syntax error, unexpected 'contains' (T_STRING) in /home1/outfitters/beta/admin/controller/catalog/product.php on line 343
+[11-Apr-2020 23:13:13 UTC] PHP Parse error:  syntax error, unexpected ''sort_order'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home1/outfitters/beta/admin/controller/catalog/product.php on line 1091
+[12-May-2020 19:40:37 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[12-May-2020 19:40:42 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[12-May-2020 19:40:55 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[12-May-2020 19:41:05 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[12-May-2020 19:41:27 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[12-May-2020 19:59:13 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[12-May-2020 21:56:52 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[14-May-2020 13:21:03 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'outfitte_opencart.oc_kb_ebay_profiles' doesn't exist<br />Error No: 1146<br />SELECT COUNT(DISTINCT id_ebay_profiles) AS total FROM oc_kb_ebay_profiles where id_ebay_profiles > 0 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT COUNT(DI...')
+#1 /home1/outfitters/beta/admin/model/setting/kbebay.php(206): DB->query('SELECT COUNT(DI...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelSettingKbebay->getProfileTotal(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home1/outfitters/beta/admin/controller/extension/module/kbebay.php(677): Proxy->__call('getProfileTotal', Array)
+#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleKbebay->profileManagement()
+#6 /home1/outfitters/beta/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
+ in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[14-May-2020 13:22:21 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'outfitte_opencart.oc_kb_ebay_orders' doesn't exist<br />Error No: 1146<br />SELECT count(id_ebay_orders) as total FROM oc_kb_ebay_orders where store_order_id > 0  GROUP BY store_order_id in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT count(id...')
+#1 /home1/outfitters/beta/admin/model/setting/kbebay.php(876): DB->query('SELECT count(id...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelSettingKbebay->getTotalOrderListed(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home1/outfitters/beta/admin/controller/extension/module/kbebay.php(2076): Proxy->__call('getTotalOrderLi...', Array)
+#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleKbebay->ebayOrders()
+#6 /home1/outfitters/beta/admin/controller/startup/router.php(26): Action->execute(Object(Registry) in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[14-May-2020 13:22:37 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'outfitte_opencart.oc_kb_ebay_profiles' doesn't exist<br />Error No: 1146<br />SELECT COUNT(DISTINCT id_ebay_profiles) AS total FROM oc_kb_ebay_profiles where id_ebay_profiles > 0 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT COUNT(DI...')
+#1 /home1/outfitters/beta/admin/model/setting/kbebay.php(206): DB->query('SELECT COUNT(DI...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelSettingKbebay->getProfileTotal(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home1/outfitters/beta/admin/controller/extension/module/kbebay.php(677): Proxy->__call('getProfileTotal', Array)
+#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleKbebay->profileManagement()
+#6 /home1/outfitters/beta/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
+ in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[14-May-2020 13:32:00 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'outfitte_opencart.oc_kb_ebay_sites' doesn't exist<br />Error No: 1146<br />SELECT count(*) as total FROM oc_kb_ebay_sites in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT count(*)...')
+#1 /home1/outfitters/beta/admin/model/setting/kbebay.php(382): DB->query('SELECT count(*)...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelSettingKbebay->getEbaySitesCount()
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home1/outfitters/beta/admin/controller/extension/module/kbebay.php(2820): Proxy->__call('getEbaySitesCou...', Array)
+#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleKbebay->sites()
+#6 /home1/outfitters/beta/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
+#7 /home1/outfitters/storage/modification/system/engine/action.php(7 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[20-May-2020 17:59:14 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 24576 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[20-May-2020 18:01:42 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 24576 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[20-May-2020 18:01:51 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 24576 bytes) in /home1/outfitters/beta/system/library/image.php on line 47

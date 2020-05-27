@@ -340,8 +340,12 @@ class ControllerCatalogProduct extends Controller {
 		$results = $this->model_catalog_product->getProducts($filter_data);
 
 		foreach ($results as $result) {
-			if (is_file(DIR_IMAGE . $result['image'])) {
-				$image = $this->model_tool_image->resize($result['image'], 40, 40);
+			if (is_file(DIR_IMAGE . $result['image']) || strpos($result['image'], 'http') !== false) {//Added  "|| $result['image'] contains 'http'" - Ignition Innovations
+				if(strpos($result['image'], 'http') !== false){//Added by Ignition Innovations [4-11-20]
+          $image = $result['image'];//Added by Ignition Innovations [4-11-20]
+        }else{//Added by Ignition Innovations [4-11-20]
+          $image = $this->model_tool_image->resize($result['image'], 40, 40);
+        }//Added by Ignition Innovations [4-11-20]
 			} else {
 				$image = $this->model_tool_image->resize('no_image.png', 40, 40);
 			}
@@ -1051,7 +1055,11 @@ class ControllerCatalogProduct extends Controller {
 		} elseif (!empty($product_info) && is_file(DIR_IMAGE . $product_info['image'])) {
 			$data['thumb'] = $this->model_tool_image->resize($product_info['image'], 100, 100);
 		} else {
-			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+      if(strpos($product_info['image'], 'http') !== false){//Added by Ignition Innovations [4-11-20]
+        $data['thumb'] = $product_info['image'];//Added by Ignition Innovations [4-11-20]
+      }else{//Added by Ignition Innovations [4-11-20]
+			  $data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+      }//Added by Ignition Innovations [4-11-20]
 		}
 
 		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
@@ -1068,7 +1076,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['product_images'] = array();
 
 		foreach ($product_images as $product_image) {
-			if (is_file(DIR_IMAGE . $product_image['image'])) {
+			if (is_file(DIR_IMAGE . $product_image['image']) || strpos($product_image['image'], 'http') !== false) {//Edit made by Ignition Innovations [4-11-20]
 				$image = $product_image['image'];
 				$thumb = $product_image['image'];
 			} else {
@@ -1078,7 +1086,8 @@ class ControllerCatalogProduct extends Controller {
 
 			$data['product_images'][] = array(
 				'image'      => $image,
-				'thumb'      => $this->model_tool_image->resize($thumb, 100, 100),
+				//'thumb'      => $this->model_tool_image->resize($thumb, 100, 100),//Edits made by Ignition Innovations [4-11-20]
+        'thumb'      => $thumb,//Edits made by Ignition Innovations [4-11-20]
 				'sort_order' => $product_image['sort_order']
 			);
 		}

@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+    <li {% if (active_tab is defined and active_tab == 1 or active_tab is not defined) %} {{ 'class="active"' }} {% endif %}><a href="{{ general_settings }}">{{ text_gs }}</a></li>
+    <li {% if (active_tab is defined and active_tab == 8) %} {{ 'class="active"' }} {% endif %}><a href="{{ order_settings }}">{{ text_os }}</a></li>
+    <li {% if (active_tab is defined and active_tab == 2) %} {{ 'class="active"' }} {% endif %}><a href="{{ profile_management }}">{{ text_pm }}</a></li>
+    <li {% if (active_tab is defined and active_tab == 3) %} {{ 'class="active"' }} {% endif %}><a href="{{ shipping_profile }}">{{ text_sp }}</a></li>
+    <li {% if (active_tab is defined and active_tab == 4) %} {{ 'class="active"' }} {% endif %}><a href="{{ product_listing }}">{{ text_pl }}</a></li>
+    <li {% if (active_tab is defined and active_tab == 5) %} {{ 'class="active"' }} {% endif %}><a href="{{ order_listing }}">{{ text_ol }}</a></li>
+    <li {% if (active_tab is defined and active_tab == 6) %} {{ 'class="active"' }} {% endif %}><a href="{{ synchronization }}">{{ text_sync }}</a></li>
+    <li {% if (active_tab is defined and active_tab == 7) %} {{ 'class="active"' }} {% endif %}><a href="{{ support }}">{{ text_support }}</a></li>
+</ul>
