@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 class ControllerExtensionModuleZemezMegaMenu extends Controller
 {
 
@@ -65,15 +65,30 @@ class ControllerExtensionModuleZemezMegaMenu extends Controller
 										if ($column['limit'] <= $cats_3_key) {
 											break;
 										}
-										$list .= "<li>\n<a href=\"" . $this->url->link('product/category', 'path=' . $cats_3_value['category_id'], true) . "\">" . $cats_3_value['name'] . "</a>\n</li>\n";
+                    
+                    $filter_data = array(
+										'filter_category_id'  => $cats_3_value['category_id'],
+										'filter_sub_category' => true,
+										'sort'                => 'p.date_added',
+										'order'               => 'DESC',
+										'start'               => 0,
+										'limit'               => 5
+										);
+                    $results = $this->model_catalog_product->getTotalProducts($filter_data);
+                    
+                    if($results > 0){
+										  $list .= "<li>\n<a id=\"linker\" href=\"" . $this->url->link('product/category', 'path=' . $cats_3_value['category_id'], true) . "\">" . $cats_3_value['name'] . "</a>\n</li>\n";
+                    }
 									}
 								}elseif(strpos($cats_2[$column_categories[$column['category_id']]]['name'],'Clothing') == false){
-										//$list .= "<li>\n<a href=\"" . $this->url->link('product/category', 'path=' . $cats_2[$column_categories[$column['category_id']]]['category_id'], true) . "\">" . $cats_2[$column_categories[$column['category_id']]]['name'] . "</a>\n</li>\n";
+										$list .= "<li>\n<a id=\"linker\" href=\"" . $this->url->link('product/category', 'path=' . $cats_2[$column_categories[$column['category_id']]]['category_id'], true) . "\">" . $cats_2[$column_categories[$column['category_id']]]['name'] . "</a>\n</li>\n";
                 }
                   //Set the Category Top Header...
                   $category_lv_2      = $this->model_catalog_category->getCategory($cats_2[$column_categories[$column['category_id']]]['category_id']);
                   $category_lv_2_href = $this->url->link('product/category', 'path=' . $cats_2[$column_categories[$column['category_id']]]['category_id'], true);
-								
+								  //$category_lv_2 = '';
+                  //$category_lv_2_href = '';
+                  
                 break;
 								case 4:
 								$filter_data = array(

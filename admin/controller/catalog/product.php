@@ -361,6 +361,13 @@ class ControllerCatalogProduct extends Controller {
 					break;
 				}
 			}
+      
+      $featuredResults = $this->model_catalog_product->checkFeatured($result['product_id']);
+        if($featuredResults['featured'] == 'Yes'){
+          $featured = 'Yes';
+        }else{
+          $featured = 'No';
+        }
 
 			$data['products'][] = array(
 				'product_id' => $result['product_id'],
@@ -369,6 +376,7 @@ class ControllerCatalogProduct extends Controller {
 				'model'      => $result['model'],
 				'price'      => $this->currency->format($result['price'], $this->config->get('config_currency')),
 				'special'    => $special,
+        'featured'   => $featured,
 				'quantity'   => $result['quantity'],
 				'status'     => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
 				'edit'       => $this->url->link('catalog/product/edit', 'user_token=' . $this->session->data['user_token'] . '&product_id=' . $result['product_id'] . $url, true)

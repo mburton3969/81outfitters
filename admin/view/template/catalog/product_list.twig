@@ -38,8 +38,8 @@
               <input type="text" name="filter_name" value="{{ filter_name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
             </div>
             <div class="form-group">
-              <label class="control-label" for="input-model">{{ entry_model }}</label>
-              <input type="text" name="filter_model" value="{{ filter_model }}" placeholder="{{ entry_model }}" id="input-model" class="form-control" />
+              <label class="control-label" for="input-model">{{ entry_upc }}</label>
+              <input type="text" name="filter_model" value="{{ filter_model }}" placeholder="{{ entry_upc }}" id="input-model" class="form-control" />
             </div>
             <div class="form-group">
               <label class="control-label" for="input-price">{{ entry_price }}</label>
@@ -150,6 +150,7 @@
                       <td class="text-right">{% if sort == 'p.price' %} <a href="{{ sort_price }}" class="{{ order|lower }}">{{ column_price }}</a> {% else %} <a href="{{ sort_price }}">{{ column_price }}</a> {% endif %}</td>
                       <td class="text-right">{% if sort == 'p.quantity' %} <a href="{{ sort_quantity }}" class="{{ order|lower }}">{{ column_quantity }}</a> {% else %} <a href="{{ sort_quantity }}">{{ column_quantity }}</a> {% endif %}</td>
                       <td class="text-left">{% if sort == 'p.status' %} <a href="{{ sort_status }}" class="{{ order|lower }}">{{ column_status }}</a> {% else %} <a href="{{ sort_status }}">{{ column_status }}</a> {% endif %}</td>
+                      <td class="text-center">{{ text_title_featured }}</td>
                       <td class="text-right">{{ column_action }}</td>
                     </tr>
                   </thead>
@@ -173,6 +174,12 @@
                       {% endif %}</td>
                     <td class="text-right">{% if product.quantity <= 0 %} <span class="label label-warning">{{ product.quantity }}</span> {% elseif product.quantity <= 5 %} <span class="label label-danger">{{ product.quantity }}</span> {% else %} <span class="label label-success">{{ product.quantity }}</span> {% endif %}</td>
                     <td class="text-left">{{ product.status }}</td>
+                    <td class="text-center">
+                      {% if (product.featured == 'Yes') %}
+                        <input type="checkbox" id="fcb_{{ product.product_id }}" name="fcb_{{ product.product_id }}" value="Yes" onchange="set_featured({{ product.product_id }});" checked="checked" /> {{ text_featured }} <small><span id="fcb_span_{{ product.product_id }}"></span></small>
+                      {% else %}
+                        <input type="checkbox" id="fcb_{{ product.product_id }}" name="fcb_{{ product.product_id }}" value="Yes" onchange="set_featured({{ product.product_id }});" /> {{ text_featured }} <small><span id="fcb_span_{{ product.product_id }}"></span></small>
+                      {% endif %}
                     <td class="text-right"><a href="{{ product.edit }}" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
                   </tr>
                   {% endfor %}
@@ -278,4 +285,5 @@ $('input[name=\'filter_model\']').autocomplete({
 	}
 });
 //--></script></div>
+<script src="../api/js/featured-functions.js"></script>
 {{ footer }} 

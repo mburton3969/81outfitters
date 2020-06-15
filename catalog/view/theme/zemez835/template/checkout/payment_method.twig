@@ -11,7 +11,11 @@
     {% else %}
     <input type="radio" name="payment_method" value="{{ payment_method.code }}" />
     {% endif %}
-    {{ payment_method.title }}
+    {% if payment_method.title == 'PayPal' %}
+      Credit Card or PayPal
+    {% else %}
+      {{ payment_method.title }}
+    {% endif %}
     {% if payment_method.terms %}
     ({{ payment_method.terms }})
     {% endif %} </label>

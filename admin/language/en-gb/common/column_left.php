@@ -43,6 +43,7 @@ $_['text_order']                = 'Orders';
 $_['text_order_status']         = 'Order Statuses';
 $_['text_online']               = 'Who\'s Online';
 $_['text_product']              = 'Products';
+$_['text_product_price_points'] = 'Product Price Points';//Added by Ignition Innovations MB [5-30-20]...
 $_['text_reports']              = 'Reports';
 $_['text_review']               = 'Reviews';
 $_['text_return']               = 'Returns';

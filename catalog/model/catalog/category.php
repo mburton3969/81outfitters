@@ -29,12 +29,13 @@ class ModelCatalogCategory extends Model {
 			foreach ($filter_group_query->rows as $filter_group) {
 				$filter_data = array();
 
-				$filter_query = $this->db->query("SELECT DISTINCT f.filter_id, fd.name FROM " . DB_PREFIX . "filter f LEFT JOIN " . DB_PREFIX . "filter_description fd ON (f.filter_id = fd.filter_id) WHERE f.filter_id IN (" . implode(',', $implode) . ") AND f.filter_group_id = '" . (int)$filter_group['filter_group_id'] . "' AND fd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY f.sort_order, LCASE(fd.name)");
-
+				$filter_query = $this->db->query("SELECT DISTINCT f.filter_id, fd.name, fd.filter_category FROM " . DB_PREFIX . "filter f LEFT JOIN " . DB_PREFIX . "filter_description fd ON (f.filter_id = fd.filter_id) WHERE f.filter_id IN (" . implode(',', $implode) . ") AND f.filter_group_id = '" . (int)$filter_group['filter_group_id'] . "' AND fd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY f.sort_order, LCASE(fd.name)");
+          //Edits made right above and below this line by Ignition Innovations MB [6-2-20]...
 				foreach ($filter_query->rows as $filter) {
 					$filter_data[] = array(
 						'filter_id' => $filter['filter_id'],
-						'name'      => $filter['name']
+						'name'      => $filter['name'],
+            'filter_cat' => $filter['filter_category']
 					);
 				}
 

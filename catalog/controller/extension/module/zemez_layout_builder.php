@@ -40,6 +40,9 @@ class ControllerExtensionModuleZemezLayoutBuilder extends Controller {
 		$template = $this->config->get('theme_' . $this->config->get('config_theme') . '_directory') . '/template/extension/module/'.$tpl;
 		
 		$this->mdata['template'] = $template;
+    
+    //Custom Indicator...
+    $this->mdata['trigger'] = 'Yes';
 
 		return $this->load->view('extension/module/zemez_layout_builder', $this->mdata);
 	}

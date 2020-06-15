@@ -1,51 +1,130 @@
-[11-Apr-2020 23:01:05 UTC] PHP Parse error:  syntax error, unexpected 'contains' (T_STRING) in /home1/outfitters/beta/admin/controller/catalog/product.php on line 343
-[11-Apr-2020 23:13:13 UTC] PHP Parse error:  syntax error, unexpected ''sort_order'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home1/outfitters/beta/admin/controller/catalog/product.php on line 1091
-[12-May-2020 19:40:37 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
-[12-May-2020 19:40:42 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
-[12-May-2020 19:40:55 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
-[12-May-2020 19:41:05 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
-[12-May-2020 19:41:27 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
-[12-May-2020 19:59:13 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
-[12-May-2020 21:56:52 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 8192 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
-[14-May-2020 13:21:03 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'outfitte_opencart.oc_kb_ebay_profiles' doesn't exist<br />Error No: 1146<br />SELECT COUNT(DISTINCT id_ebay_profiles) AS total FROM oc_kb_ebay_profiles where id_ebay_profiles > 0 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+[12-Jun-2020 16:35:13 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unclosed "(" in "catalog/product_list.twig" at line 178. in /home1/outfitters/beta/system/library/template/Twig/Lexer.php:264
 Stack trace:
-#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT COUNT(DI...')
-#1 /home1/outfitters/beta/admin/model/setting/kbebay.php(206): DB->query('SELECT COUNT(DI...')
-#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelSettingKbebay->getProfileTotal(Array)
-#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
-#4 /home1/outfitters/beta/admin/controller/extension/module/kbebay.php(677): Proxy->__call('getProfileTotal', Array)
-#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleKbebay->profileManagement()
-#6 /home1/outfitters/beta/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
- in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
-[14-May-2020 13:22:21 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'outfitte_opencart.oc_kb_ebay_orders' doesn't exist<br />Error No: 1146<br />SELECT count(id_ebay_orders) as total FROM oc_kb_ebay_orders where store_order_id > 0  GROUP BY store_order_id in /home1/outfitters/beta/system/library/db/mysqli.php:40
+#0 /home1/outfitters/beta/system/library/template/Twig/Lexer.php(205): Twig_Lexer->lexExpression()
+#1 /home1/outfitters/beta/system/library/template/Twig/Lexer.php(111): Twig_Lexer->lexBlock()
+#2 /home1/outfitters/beta/system/library/template/Twig/Environment.php(580): Twig_Lexer->tokenize('{{ header }}{{ ...', 'catalog/product...')
+#3 /home1/outfitters/beta/system/library/template/Twig/Environment.php(670): Twig_Environment->tokenize('{{ header }}{{ ...', 'catalog/product...')
+#4 /home1/outfitters/beta/system/library/template/Twig/Environment.php(395): Twig_Environment->compileSource('{{ header }}{{ ...', 'catalog/product...')
+#5 /home1/outfitters/storage/modification/system/library/template/twig.php(42): Twig_Environment->loadTemplate('catalog/product...')
+#6 /home1/outfitters/beta/system/library/template.php(51): Template\Twig->render('catalo in /home1/outfitters/beta/system/library/template/Twig/Lexer.php on line 264
+[12-Jun-2020 16:35:15 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unclosed "(" in "catalog/product_list.twig" at line 178. in /home1/outfitters/beta/system/library/template/Twig/Lexer.php:264
 Stack trace:
-#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT count(id...')
-#1 /home1/outfitters/beta/admin/model/setting/kbebay.php(876): DB->query('SELECT count(id...')
-#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelSettingKbebay->getTotalOrderListed(Array)
-#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
-#4 /home1/outfitters/beta/admin/controller/extension/module/kbebay.php(2076): Proxy->__call('getTotalOrderLi...', Array)
-#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleKbebay->ebayOrders()
-#6 /home1/outfitters/beta/admin/controller/startup/router.php(26): Action->execute(Object(Registry) in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
-[14-May-2020 13:22:37 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'outfitte_opencart.oc_kb_ebay_profiles' doesn't exist<br />Error No: 1146<br />SELECT COUNT(DISTINCT id_ebay_profiles) AS total FROM oc_kb_ebay_profiles where id_ebay_profiles > 0 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+#0 /home1/outfitters/beta/system/library/template/Twig/Lexer.php(205): Twig_Lexer->lexExpression()
+#1 /home1/outfitters/beta/system/library/template/Twig/Lexer.php(111): Twig_Lexer->lexBlock()
+#2 /home1/outfitters/beta/system/library/template/Twig/Environment.php(580): Twig_Lexer->tokenize('{{ header }}{{ ...', 'catalog/product...')
+#3 /home1/outfitters/beta/system/library/template/Twig/Environment.php(670): Twig_Environment->tokenize('{{ header }}{{ ...', 'catalog/product...')
+#4 /home1/outfitters/beta/system/library/template/Twig/Environment.php(395): Twig_Environment->compileSource('{{ header }}{{ ...', 'catalog/product...')
+#5 /home1/outfitters/storage/modification/system/library/template/twig.php(42): Twig_Environment->loadTemplate('catalog/product...')
+#6 /home1/outfitters/beta/system/library/template.php(51): Template\Twig->render('catalo in /home1/outfitters/beta/system/library/template/Twig/Lexer.php on line 264
+[12-Jun-2020 18:05:48 UTC] PHP Fatal error:  Uncaught Exception: Error: Column 'filter_group_id' in order clause is ambiguous<br />Error No: 1052<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE f.filter_id = '246' AND fd.language_id = '1' ORDER BY CASE WHEN filter_group_id = '4' THEN 1 END, filter_group_id in /home1/outfitters/beta/system/library/db/mysqli.php:40
 Stack trace:
-#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT COUNT(DI...')
-#1 /home1/outfitters/beta/admin/model/setting/kbebay.php(206): DB->query('SELECT COUNT(DI...')
-#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelSettingKbebay->getProfileTotal(Array)
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(119): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilter('246')
 #3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
-#4 /home1/outfitters/beta/admin/controller/extension/module/kbebay.php(677): Proxy->__call('getProfileTotal', Array)
-#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleKbebay->profileManagement()
-#6 /home1/outfitters/beta/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
- in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
-[14-May-2020 13:32:00 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'outfitte_opencart.oc_kb_ebay_sites' doesn't exist<br />Error No: 1146<br />SELECT count(*) as total FROM oc_kb_ebay_sites in /home1/outfitters/beta/system/library/db/mysqli.php:40
+#4 /home1/outfitters/beta/admin/controller/catalog/product.php(916): Proxy->__call('getFilter', Array)
+#5 /home1/ou in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:07:39 UTC] PHP Fatal error:  Uncaught Exception: Error: Column 'filter_group_id' in order clause is ambiguous<br />Error No: 1052<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE f.filter_id = '246' AND fd.language_id = '1' ORDER BY FIELD(filter_group_id, '4') DESC in /home1/outfitters/beta/system/library/db/mysqli.php:40
 Stack trace:
-#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT count(*)...')
-#1 /home1/outfitters/beta/admin/model/setting/kbebay.php(382): DB->query('SELECT count(*)...')
-#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelSettingKbebay->getEbaySitesCount()
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(119): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilter('246')
 #3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
-#4 /home1/outfitters/beta/admin/controller/extension/module/kbebay.php(2820): Proxy->__call('getEbaySitesCou...', Array)
-#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleKbebay->sites()
-#6 /home1/outfitters/beta/admin/controller/startup/router.php(26): Action->execute(Object(Registry), Array)
-#7 /home1/outfitters/storage/modification/system/engine/action.php(7 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
-[20-May-2020 17:59:14 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 24576 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
-[20-May-2020 18:01:42 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 24576 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
-[20-May-2020 18:01:51 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 24576 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+#4 /home1/outfitters/beta/admin/controller/catalog/product.php(916): Proxy->__call('getFilter', Array)
+#5 /home1/outfitters/beta/admin/control in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:09:22 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND fd.name LIKE 'M%' ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') ASC AND fd.name LIKE 'M%' ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/p in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:09:27 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') ASC ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:09:33 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND fd.name LIKE 'M%' ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') ASC AND fd.name LIKE 'M%' ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/p in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:09:34 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND fd.name LIKE 'M%' ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') ASC AND fd.name LIKE 'M%' ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/p in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:09:42 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') ASC ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:09:52 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Arra in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:09:57 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Arra in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:10:27 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Arra in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:10:27 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND fd.name LIKE '1%' ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC AND fd.name LIKE '1%' ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/ in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:10:28 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND fd.name LIKE '18%' ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC AND fd.name LIKE '18%' ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engin in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:10:34 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Arra in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:10:34 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND fd.name LIKE '1%' ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC AND fd.name LIKE '1%' ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/ in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:10:35 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND fd.name LIKE '18%' ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC AND fd.name LIKE '18%' ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engin in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:10:40 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Arra in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:10:45 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Arra in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 18:10:53 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY f.sort_order ASC LIMIT 0,20' at line 1<br />Error No: 1064<br />SELECT *, (SELECT name FROM oc_filter_group_description fgd WHERE f.filter_group_id = fgd.filter_group_id AND fgd.language_id = '1') AS `group` FROM oc_filter f LEFT JOIN oc_filter_description fd ON (f.filter_id = fd.filter_id) WHERE fd.language_id = '1' ORDER BY FIELD(f.filter_group_id, '4') DESC ORDER BY f.sort_order ASC LIMIT 0,20 in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT *, (SELE...')
+#1 /home1/outfitters/beta/admin/model/catalog/filter.php(145): DB->query('SELECT *, (SELE...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogFilter->getFilters(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Arra in /home1/outfitters/beta/system/library/db/mysqli.php on line 40

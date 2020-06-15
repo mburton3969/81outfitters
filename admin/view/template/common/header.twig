@@ -48,6 +48,11 @@
 
     
     <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="javascript:get_user_key();">
+          <i class="fa fa-key fa-2x"></i>
+        </a>
+      </li>
       <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{{ image }}" alt="{{ firstname }} {{ lastname }}" title="{{ username }}" id="user-profile" class="img-circle" />{{ firstname }} {{ lastname }} <i class="fa fa-caret-down fa-fw"></i></a>
         <ul class="dropdown-menu dropdown-menu-right">
           <li><a href="{{ profile }}"><i class="fa fa-user-circle-o fa-fw"></i> {{ text_profile }}</a></li>
@@ -68,3 +73,10 @@
     </ul>
     {% endif %} </div>
 </header>
+<script>
+function get_user_key(){
+  var urlParams = new URLSearchParams(window.location.search);
+  var myParam = urlParams.get('user_token');
+  alert(myParam);
+}
+</script>

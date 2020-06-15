@@ -871,9 +871,10 @@ class ModelEbayFeedCron extends Model {
 
             /* Contine only if profile_product table is having the products for that profile */
             if ($query->num_rows > 0) {
-                $date_start = date("Y-m-d", strtotime($query->row['date_added']));
-                $call_name = 'GetSellerList';
                 $date = date('Y-m-d H:i:s');
+                //$date_start = date("Y-m-d", strtotime($query->row['date_added']));
+                $date_start = date("Y-m-d", strtotime($date . " -365 days"));
+                $call_name = 'GetSellerList';
 
                 $start = strtotime($date_start);
                 $end = strtotime($date);
@@ -901,8 +902,14 @@ class ModelEbayFeedCron extends Model {
                         $end_date = date("Y-m-d H:i:s");
                         $end_date = date("Y-m-d", strtotime($end_date . " +5 day"));
                     }
+                  $date = date('Y-m-d H:i:s');
+                  $start_date = date("Y-m-d", strtotime($date . " -120 days"));
+                  $end_date = date("Y-m-d", strtotime($date . " +0 days"));
+                    echo $start_date . '<br>';
+                    echo $end_date . '<br>';
                     $json_return = $this->getProductsStatusReport($headers, $start_date, $end_date, $token, $sandbox);
                     $array = json_decode($json_return, true);
+                    echo $json_return;
                     if ($array['Ack'] == 'Success' || $array['Ack'] == 'Warnings' || $array['Ack'] == 'Warning') {
                         $request = $call_name;
                         if (isset($array['Errors'])) {

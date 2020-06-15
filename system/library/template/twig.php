@@ -8,7 +8,7 @@ final class Twig {
 		// include and register Twig auto-loader
 		include_once(DIR_SYSTEM . 'library/template/Twig/Autoloader.php');
 		
-		\Composer::register();
+		\Composer::register();//Test Change
 	}
 	
 	public function set($key, $value) {

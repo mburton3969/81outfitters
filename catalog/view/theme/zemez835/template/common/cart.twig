@@ -1,7 +1,7 @@
 <div class="box-cart">
 	<div id="cart" class="cart toggle-wrap">
 		<button type="button" data-loading-text="{{ text_loading }}" class="toggle">
-			<i class="fa fa-shopping-cart"></i> 
+			<i class="fa fa-shopping-cart fa-2x"></i> 
 			<strong>{{ text_shopping_cart }}</strong>
 			<span id="cart-total" class="cart-total">{{ text_items }}</span>
 			{% if (text_items2 is defined) %} 
@@ -54,10 +54,31 @@
 			<li>
 				<table class="table total">
 					{% for total in totals %} 
+            {% if total['title'] == 'Sub-Total' %}
+              {%set tot = total['text']|replace({ ('$'): '' }) %}
+            {% endif %}
 					<tr>
 						<td class="text-left">{{ total['title'] ~' : ' }} <strong>{{ total['text'] }}</strong></td>
 						<td class="text-right"></td>
 					</tr>
+            {% if total['title'] == 'Total' %}
+              {% if tot < 35 and tot > 0 %}
+                  <tr>
+                    <td class="text-left"><b style="color:green;">Spend ${{ 35 - tot|number_format(2) }} More for FREE SHIPPING</b></td>
+                    <td class="text-right"></td>
+                  </tr>
+                {% elseif tot > 35 %}
+                  <tr>
+                    <td class="text-left"><b style="color:green;">Your Order Qualifies for FREE SHIPPING!</b></td>
+                    <td class="text-right"></td>
+                  </tr>
+                {% else %}
+                  <tr>
+                    <td class="text-left"><b style="color:green;">Spend ${{ 35 - tot|number_format(2) }} for FREE SHIPPING</b></td>
+                    <td class="text-right"></td>
+                  </tr>
+                {% endif %}
+            {% endif %}
 					{% endfor %} 
 				</table>
 				<div class="text-left">
@@ -72,4 +93,23 @@
 			{% endif %} 
 		</ul>
 	</div>
+</div>
+<div id="shipping-hint" style="font-size:15px;margin-top:5px;">
+<b>Spend $35 for FREE SHIPPING</b>
+ {# 
+ {% for total in totals %} 
+    {% if total['title'] == 'Sub-Total' %}
+      {%set tot = total['text']|replace({ ('$'): '' }) %}
+        {% if tot < 35 and tot > 0 %}
+          <b>Spend ${{ 35 - tot|number_format }} More for FREE SHIPPING</b>
+        {% elseif tot > 35 %}
+          <b>Your Order Qualifies for FREE SHIPPING!
+        {% else %}
+          <b>Spend ${{ 35 - tot|number_format }} for FREE SHIPPING</b>
+        {% endif %}
+    {% endif %}
+  {% endfor %} 
+  #}
+  
+  
 </div>

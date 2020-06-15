@@ -1,12 +1,19 @@
 var urlParams = new URLSearchParams(window.location.search);
 var path = urlParams.get('path');
 var filters = urlParams.get('filter');
+var fgs = urlParams.get('fgs');
 if((filters) && filters !== ''){
   var stop = 'Y';
 }else{
   var stop = urlParams.get('stop');
 }
-(function navigate_categories(cid){
+
+function navigate_categories(cid){
+  if(cid){
+    var use_path = cid;
+  }else{
+    var use_path = path;
+  }
   console.log('QS Filters: '+filters);
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
@@ -14,10 +21,27 @@ if((filters) && filters !== ''){
         // Typical action to be performed when the document is ready:
         var r = JSON.parse(this.responseText);
         console.log(r);
-        document.getElementById('button-filter-parent').innerHTML = r.cat_name+' <span class="caret"></span>';
+        document.getElementById('button-filter-parent').innerHTML = r.cat_0_name+' <span class="caret"></span>';
         console.log('Res Filters: '+r.filters);
+        if(r.level === '2'){
+          if(document.getElementById('filter-group9')){
+            document.getElementById('filter-group9').style.display = 'none';
+            document.getElementById('filter-link9').style.display = 'none';
+          }
+          if(document.getElementById('filter-group8')){
+            document.getElementById('filter-group8').style.display = 'none';
+            document.getElementById('filter-link8').style.display = 'none';
+          }
+        }
+        if(r.level === '1'){
+          if(document.getElementById('filter-group9')){
+            document.getElementById('filter-group9').style.display = 'none';
+            document.getElementById('filter-link9').style.display = 'none';
+          }
+        }
         if(stop !== 'Y'){
-          window.location = "index.php?route=product/category&path="+r.parent_path+"&filter="+r.filters+"&stop=Y";
+          //window.location = "index.php?route=product/category&path="+r.parent_path+"&filter="+r.filters+"&stop=Y";
+          window.location = "index.php?route=product/category&path="+use_path+"&filter="+r.filters+"&fgs="+r.filter_groups+"&stop=Y";
         }
         //Add Filter Buttons...
         var fa = filters.split(',');
@@ -26,17 +50,22 @@ if((filters) && filters !== ''){
         for(var i = 0; i < fa.length; i++){
           if(fa[i] != null || fa[i] !== ''){
             add_filter_button(fa[i]);
+            sleep(500);
           }
         }
       }
   };
   xhttp.open("GET", "api/get-nav-details.php?path="+path, true);
   xhttp.send();
+}
+
+(function(){
+  navigate_categories();
 })();
 
 
 function setPath(p){
-  window.location = "index.php?route=product/category&path="+p+"&filter="+filters;
+  window.location = "index.php?route=product/category&path="+p+"&filter="+filters+"&fgs="+fgs;
 }
 
 function add_filter_button(fid){
@@ -59,7 +88,7 @@ function add_filter_button(fid){
         btn.setAttribute('id','button-filter');
         btn.setAttribute('class','btn-primary');
         btn.setAttribute('style','margin-right:5px;border-radius:30px;padding:15px !important;font-size:15px;line-height:0px;text-transform:capitalize;');
-        btn.innerHTML = r.filter_name+' <i class="fa fa-times-circle" onclick="remove_filter(\''+r.filter_id+'\');"></i>';
+        btn.innerHTML = r.filter_name+' <i class="fa fa-times-circle" onclick="trigger_preloader();remove_filter(\''+r.filter_id+'\','+(r.cat_level - 1)+');"></i>';
         //Add Button...
         setTimeout(function(){
           document.getElementById('attribute-button-container').appendChild(btn);
@@ -71,7 +100,7 @@ function add_filter_button(fid){
   xhttp.send();
 }
 
-function remove_filter(fid){
+function remove_filter(fid,parent_lvl){
   console.log(fid);
   var f = filters.split(',');
   var index = f.indexOf(fid);
@@ -79,7 +108,37 @@ function remove_filter(fid){
   console.log(index);
   f.splice(index,1);
   console.log(f);
-  window.location = "index.php?route=product/category&path="+path+"&filter="+f+"&stop=Y";
+  if(parent_lvl !== ''){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          // Typical action to be performed when the document is ready:
+          var r = JSON.parse(this.responseText);
+          console.log(r);
+          if(r.response === 'GOOD'){
+            var new_path = r.category_id;
+            window.location = "index.php?route=product/category&path="+new_path+"&filter="+f+"&fgs="+fgs;
+          }else{
+            var new_path = r.category_id;
+            window.location = "index.php?route=product/category&path="+new_path+"&filter="+f+"&fgs="+fgs;
+          }
+
+        }
+    };
+    xhttp.open("GET", "api/get-path-details.php?lvl="+parent_lvl+"&path="+path, true);
+    xhttp.send();
+  }else{
+    window.location = "index.php?route=product/category&path="+path+"&filter="+f+"&fgs="+fgs+"&stop=Y";
+  }
 }
 
-//<button type="button" id="button-filter" class="btn-primary" style="border-radius:30px;">dress <i class="fa fa-times-circle"></i> </button> 
+
+//Delay Function...
+function sleep(milliseconds) {
+  console.warn('Sleeping For '+milliseconds+' milliseconds...');
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}

@@ -27,7 +27,7 @@
 						{% if (images) %} 
 						<div class="row">
 							<div class="col-lg-9 pull-right hidden-xs hidden-sm hidden-md text-center">
-								<img width="{{popup_width}}" height="{{popup_height}}" id="productZoom" src="{{images[0]['thumb']}}" data-zoom-image="{{images[0]['popup']}}"/>
+								<img {#width="{{popup_width}}" height="{{popup_height}}"#} id="productZoom" src="{{images[0]['thumb']}}" data-zoom-image="{{images[0]['popup']}}"/>
 								<div class="cart-button">
 									<button type="button" class="btn-icon" data-toggle="tooltip" title="{{button_compare}}" onclick="compare.add('{{product_id}}');"><i class="fa fa-balance-scale"></i></button>
 									<button type="button" class="btn-icon" data-toggle="tooltip" title="{{button_wishlist}}" onclick="wishlist.add('{{product_id}}');"><i class="fa fa-heart-o"></i></button>
@@ -66,6 +66,12 @@
 				{% endif %} 
 				<div class="{{class}} product_page-right">
 					<div class="general_info product-info">
+          {% if featured == 'Yes' %}
+            <h3 style="margin-bottom:10px;background:#5A723E;color:#FFF;text-align:center;width:50%;line-height:30px;">New Arrival</h3>
+          {% endif %}
+          {% if (special) %}
+            <h3 style="margin-bottom:10px;background:#ffed4c;color:#000;text-align:center;width:40%;line-height:30px;">SALE!</h3>
+          {% endif %}
 						<h2 class="product-title">{{heading_title}}</h2>
 						<!-- Prodyuct rating status -->
 						<ul class="list-unstyled product-section">
@@ -74,6 +80,18 @@
 								<a href="{{manufacturers}}">{{manufacturer}}</a>
 							</li>
 							{% endif %} 
+              {% if (attribute_groups) %}
+                {% for attribute_group in attribute_groups %} 
+                  {% for attribute in attribute_group.attribute %}
+                    {% if attribute.name == 'Size' %}
+                      <li>
+                        <strong>{{ attribute.name }}:</strong>
+                        <span><b>{{ attribute.text }}</b></span>
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              {% endif %}
 							<li>
 								<strong>{{text_model}}</strong>
 								<span>{{model}}</span>
@@ -283,7 +301,7 @@
 							{% if (not special) %}
 								<span class="price-new">{{price}}</span>
 							{% else %} 
-								<span class="price-old">{{price}}</span> <span class="price-new">{{special}}</span> 
+								<span class="price-old">{{price}}</span> <span class="price-new" style="color:red;">{{special}}</span> 
 							{% endif %}							
 							{% if (tax) %} 
 							<span class="tax">{{text_tax}} {{tax}}</span>
@@ -334,10 +352,11 @@
 						{% endif %} 
 						<div class="product-share">
 							<!-- AddThis Button BEGIN -->
-							<div class="addthis_sharing_toolbox"></div>
-							<!-- Go to www.addthis.com/dashboard to customize your tools -->
-							<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55e053ac02ebd38e" async="async"></script>
-							<!-- AddThis Button END -->
+							<!-- Go to www.addthis.com/dashboard to customize your tools --> 
+              <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ede5568a403e664"></script>
+              <!-- Go to www.addthis.com/dashboard to customize your tools --> 
+              <div class="addthis_inline_share_toolbox"></div>
+              <!-- AddThis Button END -->
 						</div>
 						{% if (minimum > 1) %} 
 						<div class="alert alert-info">
@@ -348,7 +367,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="product_tabs">
+			<div class="product_tabs" style="margin-top:75px;">
 				<ul class="nav nav-tabs">
 					<li class="active">
 						<a href="#tab-description" data-toggle="tab">

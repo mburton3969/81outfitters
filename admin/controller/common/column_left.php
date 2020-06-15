@@ -34,6 +34,16 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()		
 				);
 			}
+      
+      //Added by Ignition Innovations MB [5-30-20]...
+      if ($this->user->hasPermission('access', 'extension/module/product_price_list')) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_product_price_points'),
+					'href'     => $this->url->link('extension/module/product_price_list', 'user_token=' . $this->session->data['user_token'], true),
+					'children' => array()		
+				);
+			}
+      //End Addition by Ignition Innovations...
 			
 			if ($this->user->hasPermission('access', 'catalog/recurring')) {
 				$catalog[] = array(

@@ -18,6 +18,7 @@ $_['column_action']     = 'Action';
 // Entry
 $_['entry_group']       = 'Filter Group Name';
 $_['entry_name']        = 'Filter Name';
+$_['entry_category']    = 'Filter Category';
 $_['entry_sort_order']  = 'Sort Order';
 
 // Error

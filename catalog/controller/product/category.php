@@ -36,8 +36,10 @@ class ControllerProductCategory extends Controller {
 		if (isset($this->request->get['limit'])) {
 			$limit = (int)$this->request->get['limit'];
 		} else {
-			$limit = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit');
+			//$limit = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit');
+      $limit = 25;
 		}
+    
 
 		$data['breadcrumbs'] = array();
 
@@ -201,6 +203,13 @@ class ControllerProductCategory extends Controller {
 				} else {
 					$rating = false;
 				}
+        
+        $featuredResults = $this->model_catalog_product->checkFeatured($result['product_id']);
+        if($featuredResults['featured'] == 'Yes'){
+          $featured = 'Yes';
+        }else{
+          $featured = 'No';
+        }
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
@@ -209,6 +218,7 @@ class ControllerProductCategory extends Controller {
 					'description' => utf8_substr(trim(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8'))), 0, $this->config->get('theme_' . $this->config->get('config_theme') . '_product_description_length')) . '..',
 					'price'       => $price,
 					'special'     => $special,
+          'featured'    => $featured,
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
@@ -300,13 +310,18 @@ class ControllerProductCategory extends Controller {
 
 			$data['limits'] = array();
 
-			$limits = array_unique(array($this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit'), 25, 50, 75, 100));
-
+			//$limits = array_unique(array($this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit'), 25, 50, 100, 5000));
+			$limits = array_unique(array(25, 50, 100, 5000));
+      
 			sort($limits);
 
 			foreach($limits as $value) {
+        $val = $value;
+        if($val == '5000'){
+          $val = 'ALL';
+        }
 				$data['limits'][] = array(
-					'text'  => $value,
+					'text'  => $val,
 					'value' => $value,
 					'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&limit=' . $value)
 				);
@@ -328,15 +343,19 @@ class ControllerProductCategory extends Controller {
 
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
-			}
+			}else{
+        $url .= '&limit=25';
+      }
 
 			$pagination = new Pagination();
 			$pagination->total = $product_total;
 			$pagination->page = $page;
 			$pagination->limit = $limit;
 			$pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url . '&page={page}');
-
-			$data['pagination'] = $pagination->render();
+      
+      if($product_total > $limit){
+			  $data['pagination'] = $pagination->render();
+      }
 
 			$data['results'] = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
 
@@ -395,7 +414,9 @@ class ControllerProductCategory extends Controller {
 
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
-			}
+			}else{
+        $url .= '&limit=25';
+      }
 
 			$data['breadcrumbs'][] = array(
 				'text' => $this->language->get('text_error'),

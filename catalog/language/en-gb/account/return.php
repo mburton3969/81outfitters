@@ -6,7 +6,8 @@ $_['heading_title']      = 'Product Returns';
 $_['text_account']       = 'Account';
 $_['text_return']        = 'Return Information';
 $_['text_return_detail'] = 'Return Details';
-$_['text_description']   = 'Please complete the form below to request an RMA number.';
+//$_['text_description']   = 'Please complete the form below to request an RMA number.';//Old Version changed by Ignition Innovations MB [5-29-20]
+$_['text_description']   = 'We want you to be absolutely delighted with your order. If it is not perfect for your "everyday adventure," simply complete our Product Returns Form below. Our customer service team will send you a shipping label and Return Number - which we ask you to include with your return. If the return is due to damaged product, your return shipping is FREE.';
 $_['text_order']         = 'Order Information';
 $_['text_product']       = 'Product Information';
 $_['text_reason']        = 'Reason for Return';
@@ -47,8 +48,10 @@ $_['entry_product']      = 'Product Name';
 $_['entry_model']        = 'Product Code';
 $_['entry_quantity']     = 'Quantity';
 $_['entry_reason']       = 'Reason for Return';
-$_['entry_opened']       = 'Product is opened';
-$_['entry_fault_detail'] = 'Faulty or other details';
+//$_['entry_opened']       = 'Product is opened';//Old Version Changed by Ignition Innovations MB [5-29-20]
+$_['entry_opened']       = 'Can You Send Back Tags?';
+//$_['entry_fault_detail'] = 'Faulty or other details';//Old Version changed by Ignition Innovations MB [5-29-20]
+$_['entry_fault_detail'] = 'Additional Comments';
 
 // Error
 $_['text_error']         = 'The returns you requested could not be found!';

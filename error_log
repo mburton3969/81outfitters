@@ -1,0 +1,274 @@
+[27-May-2020 19:57:08 UTC] PHP Fatal error:  Allowed memory size of 67108864 bytes exhausted (tried to allocate 24576 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[27-May-2020 19:57:12 UTC] PHP Fatal error:  Allowed memory size of 67108864 bytes exhausted (tried to allocate 24576 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[27-May-2020 19:57:39 UTC] PHP Fatal error:  Allowed memory size of 67108864 bytes exhausted (tried to allocate 24576 bytes) in /home1/outfitters/beta/system/library/image.php on line 47
+[01-Jun-2020 20:58:09 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unexpected "switch" tag (expecting closing tag for the "if" tag defined near line 22) in "zemez835/template/extension/module/zemez_megamenu.twig" at line 22. in /home1/outfitters/beta/system/library/template/Twig/Parser.php:172
+Stack trace:
+#0 /home1/outfitters/beta/system/library/template/Twig/TokenParser/If.php(49): Twig_Parser->subparse(Array)
+#1 /home1/outfitters/beta/system/library/template/Twig/Parser.php(187): Twig_TokenParser_If->parse(Object(Twig_Token))
+#2 /home1/outfitters/beta/system/library/template/Twig/TokenParser/For.php(40): Twig_Parser->subparse(Array)
+#3 /home1/outfitters/beta/system/library/template/Twig/Parser.php(187): Twig_TokenParser_For->parse(Object(Twig_Token))
+#4 /home1/outfitters/beta/system/library/template/Twig/TokenParser/If.php(34): Twig_Parser->subparse(Array)
+#5 /home1/outfitters/beta/system/library/template/Twig/Parser.php(187): Twig_TokenParser_If->parse(Object(Twig_Token))
+#6 /home1/outfitters/beta/system/library/template/Twig/Parser.php(100):  in /home1/outfitters/beta/system/library/template/Twig/Parser.php on line 172
+[03-Jun-2020 04:00:44 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unexpected token "punctuation" of value "|" ("name" expected) in "zemez835/template/extension/module/filter.twig" at line 48. in /home1/outfitters/beta/system/library/template/Twig/TokenStream.php:87
+Stack trace:
+#0 /home1/outfitters/beta/system/library/template/Twig/ExpressionParser.php(449): Twig_TokenStream->expect(5)
+#1 /home1/outfitters/beta/system/library/template/Twig/ExpressionParser.php(443): Twig_ExpressionParser->parseFilterExpressionRaw(Object(Twig_Node_Expression_Constant))
+#2 /home1/outfitters/beta/system/library/template/Twig/ExpressionParser.php(302): Twig_ExpressionParser->parseFilterExpression(Object(Twig_Node_Expression_Constant))
+#3 /home1/outfitters/beta/system/library/template/Twig/ExpressionParser.php(194): Twig_ExpressionParser->parsePostfixExpression(Object(Twig_Node_Expression_Constant))
+#4 /home1/outfitters/beta/system/library/template/Twig/ExpressionParser.php(84): Twig_ExpressionParser->parsePrimaryExpression()
+#5 /home1/outfitters/beta/system/library/t in /home1/outfitters/beta/system/library/template/Twig/TokenStream.php on line 87
+[03-Jun-2020 05:09:46 UTC] PHP Parse error:  syntax error, unexpected ')' in /home1/outfitters/storage/modification/catalog/controller/product/category.php on line 408
+[05-Jun-2020 20:32:55 UTC] PHP Parse error:  syntax error, unexpected 's' (T_STRING) in /home1/outfitters/beta/catalog/language/en-gb/account/return.php on line 10
+[10-Jun-2020 17:17:46 UTC] PHP Fatal error:  Uncaught Error: Class 'Controllerproductfeatured' not found in /home1/outfitters/storage/modification/system/engine/action.php:71
+Stack trace:
+#0 /home1/outfitters/beta/catalog/controller/startup/router.php(25): Action->execute(Object(Registry))
+#1 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerStartupRouter->index()
+#2 /home1/outfitters/beta/system/engine/router.php(67): Action->execute(Object(Registry))
+#3 /home1/outfitters/beta/system/engine/router.php(56): Router->execute(Object(Action))
+#4 /home1/outfitters/beta/system/framework.php(168): Router->dispatch(Object(Action), Object(Action))
+#5 /home1/outfitters/beta/system/startup.php(104): require_once('/home1/outfitte...')
+#6 /home1/outfitters/beta/index.php(19): start('catalog')
+#7 {main}
+  thrown in /home1/outfitters/storage/modification/system/engine/action.php on line 71
+[12-Jun-2020 20:36:17 UTC] PHP Parse error:  syntax error, unexpected ';', expecting ')' in /home1/outfitters/beta/catalog/controller/extension/module/filter.php on line 55
+[12-Jun-2020 20:36:41 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method Request::get() in /home1/outfitters/beta/catalog/controller/extension/module/filter.php:55
+Stack trace:
+#0 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleFilter->index(Array)
+#1 /home1/outfitters/storage/modification/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#2 /home1/outfitters/beta/catalog/controller/common/column_left.php(52): Loader->controller('extension/modul...')
+#3 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerCommonColumnLeft->index(Array)
+#4 /home1/outfitters/storage/modification/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#5 /home1/outfitters/storage/modification/catalog/controller/product/category.php(486): Loader->controller('common/column_l...')
+#6 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerProductCategory->index()
+#7 /home1/outfitters/beta/catalog/controller/startup/router.php(25): Act in /home1/outfitters/beta/catalog/controller/extension/module/filter.php on line 55
+[12-Jun-2020 20:54:57 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'p.filter_group_id' in 'where clause'<br />Error No: 1054<br />SELECT COUNT(DISTINCT p.product_id) AS total FROM oc_product_to_category p2c LEFT JOIN oc_product_filter pf ON (p2c.product_id = pf.product_id) LEFT JOIN oc_product p ON (pf.product_id = p.product_id) LEFT JOIN oc_product_description pd ON (p.product_id = pd.product_id) LEFT JOIN oc_product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '1' AND p.status = '1' AND p.quantity > 0 AND p.date_available <= NOW() AND p2s.store_id = '0' AND p2c.category_id = '315' AND pf.filter_id IN (929) AND p.product_id IN(3206,3210,3211,3212,3213,3215,3216,3217,3218,3219,3220,3221,3222,3223,3224,3225,3226,3227,3228,3229,3230,3231,3232,3233,3234,3243,3244,3254,3255,3256,3257,3258,3259,3260,3261,3263,3264,3265,3266,3267,3268,3269,3270,3271,3272,3273,3274,3275,3276,3277,3278,3279,3280,3281,3282,3283,3284,3285,3286,3287,3288,3289,3290,3291,3292,3293,3294,3295,3296,3297,3298,3299,3300,3301,3302,3303,3304,33 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 20:56:05 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'pf.filter_group_id' in 'where clause'<br />Error No: 1054<br />SELECT COUNT(DISTINCT p.product_id) AS total FROM oc_product_to_category p2c LEFT JOIN oc_product_filter pf ON (p2c.product_id = pf.product_id) LEFT JOIN oc_product p ON (pf.product_id = p.product_id) LEFT JOIN oc_product_description pd ON (p.product_id = pd.product_id) LEFT JOIN oc_product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '1' AND p.status = '1' AND p.quantity > 0 AND p.date_available <= NOW() AND p2s.store_id = '0' AND p2c.category_id = '315' AND pf.filter_id IN (929) AND p.product_id IN(3206,3210,3211,3212,3213,3215,3216,3217,3218,3219,3220,3221,3222,3223,3224,3225,3226,3227,3228,3229,3230,3231,3232,3233,3234,3243,3244,3254,3255,3256,3257,3258,3259,3260,3261,3263,3264,3265,3266,3267,3268,3269,3270,3271,3272,3273,3274,3275,3276,3277,3278,3279,3280,3281,3282,3283,3284,3285,3286,3287,3288,3289,3290,3291,3292,3293,3294,3295,3296,3297,3298,3299,3300,3301,3302,3303,3304,3 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 20:59:13 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'pf.filter_group_id' in 'where clause'<br />Error No: 1054<br />SELECT COUNT(DISTINCT p.product_id) AS total FROM oc_product_to_category p2c LEFT JOIN oc_product_filter pf ON (p2c.product_id = pf.product_id) LEFT JOIN oc_product p ON (pf.product_id = p.product_id) LEFT JOIN oc_product_description pd ON (p.product_id = pd.product_id) LEFT JOIN oc_product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '1' AND p.status = '1' AND p.quantity > 0 AND p.date_available <= NOW() AND p2s.store_id = '0' AND p2c.category_id = '315' AND pf.filter_id IN (929) AND p.product_id IN(3206,3210,3211,3212,3213,3215,3216,3217,3218,3219,3220,3221,3222,3223,3224,3225,3226,3227,3228,3229,3230,3231,3232,3233,3234,3243,3244,3254,3255,3256,3257,3258,3259,3260,3261,3263,3264,3265,3266,3267,3268,3269,3270,3271,3272,3273,3274,3275,3276,3277,3278,3279,3280,3281,3282,3283,3284,3285,3286,3287,3288,3289,3290,3291,3292,3293,3294,3295,3296,3297,3298,3299,3300,3301,3302,3303,3304,3 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 20:59:22 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'pf.filter_group_id' in 'where clause'<br />Error No: 1054<br />SELECT COUNT(DISTINCT p.product_id) AS total FROM oc_product_to_category p2c LEFT JOIN oc_product_filter pf ON (p2c.product_id = pf.product_id) LEFT JOIN oc_product p ON (pf.product_id = p.product_id) LEFT JOIN oc_product_description pd ON (p.product_id = pd.product_id) LEFT JOIN oc_product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '1' AND p.status = '1' AND p.quantity > 0 AND p.date_available <= NOW() AND p2s.store_id = '0' AND p2c.category_id = '315' AND pf.filter_id IN (929) AND p.product_id IN(3206,3210,3211,3212,3213,3215,3216,3217,3218,3219,3220,3221,3222,3223,3224,3225,3226,3227,3228,3229,3230,3231,3232,3233,3234,3243,3244,3254,3255,3256,3257,3258,3259,3260,3261,3263,3264,3265,3266,3267,3268,3269,3270,3271,3272,3273,3274,3275,3276,3277,3278,3279,3280,3281,3282,3283,3284,3285,3286,3287,3288,3289,3290,3291,3292,3293,3294,3295,3296,3297,3298,3299,3300,3301,3302,3303,3304,3 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:04:40 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'pf.filter_group_id' in 'where clause'<br />Error No: 1054<br />SELECT COUNT(DISTINCT p.product_id) AS total FROM oc_product_to_category p2c LEFT JOIN oc_product_filter pf ON (p2c.product_id = pf.product_id) LEFT JOIN oc_product p ON (pf.product_id = p.product_id) LEFT JOIN oc_product_description pd ON (p.product_id = pd.product_id) LEFT JOIN oc_product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '1' AND p.status = '1' AND p.quantity > 0 AND p.date_available <= NOW() AND p2s.store_id = '0' AND p2c.category_id = '315' AND pf.filter_id IN (929) AND p.product_id IN(3206,3210,3211,3212,3213,3215,3216,3217,3218,3219,3220,3221,3222,3223,3224,3225,3226,3227,3228,3229,3230,3231,3232,3233,3234,3243,3244,3254,3255,3256,3257,3258,3259,3260,3261,3263,3264,3265,3266,3267,3268,3269,3270,3271,3272,3273,3274,3275,3276,3277,3278,3279,3280,3281,3282,3283,3284,3285,3286,3287,3288,3289,3290,3291,3292,3293,3294,3295,3296,3297,3298,3299,3300,3301,3302,3303,3304,3 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:04:44 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'pf.filter_group_id' in 'where clause'<br />Error No: 1054<br />SELECT COUNT(DISTINCT p.product_id) AS total FROM oc_product_to_category p2c LEFT JOIN oc_product_filter pf ON (p2c.product_id = pf.product_id) LEFT JOIN oc_product p ON (pf.product_id = p.product_id) LEFT JOIN oc_product_description pd ON (p.product_id = pd.product_id) LEFT JOIN oc_product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '1' AND p.status = '1' AND p.quantity > 0 AND p.date_available <= NOW() AND p2s.store_id = '0' AND p2c.category_id = '315' AND pf.filter_id IN (929) AND p.product_id IN(3206,3210,3211,3212,3213,3215,3216,3217,3218,3219,3220,3221,3222,3223,3224,3225,3226,3227,3228,3229,3230,3231,3232,3233,3234,3243,3244,3254,3255,3256,3257,3258,3259,3260,3261,3263,3264,3265,3266,3267,3268,3269,3270,3271,3272,3273,3274,3275,3276,3277,3278,3279,3280,3281,3282,3283,3284,3285,3286,3287,3288,3289,3290,3291,3292,3293,3294,3295,3296,3297,3298,3299,3300,3301,3302,3303,3304,3 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:04:47 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'pf.filter_group_id' in 'where clause'<br />Error No: 1054<br />SELECT COUNT(DISTINCT p.product_id) AS total FROM oc_product_to_category p2c LEFT JOIN oc_product_filter pf ON (p2c.product_id = pf.product_id) LEFT JOIN oc_product p ON (pf.product_id = p.product_id) LEFT JOIN oc_product_description pd ON (p.product_id = pd.product_id) LEFT JOIN oc_product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '1' AND p.status = '1' AND p.quantity > 0 AND p.date_available <= NOW() AND p2s.store_id = '0' AND p2c.category_id = '315' AND pf.filter_id IN (929) AND p.product_id IN(3206,3210,3211,3212,3213,3215,3216,3217,3218,3219,3220,3221,3222,3223,3224,3225,3226,3227,3228,3229,3230,3231,3232,3233,3234,3243,3244,3254,3255,3256,3257,3258,3259,3260,3261,3263,3264,3265,3266,3267,3268,3269,3270,3271,3272,3273,3274,3275,3276,3277,3278,3279,3280,3281,3282,3283,3284,3285,3286,3287,3288,3289,3290,3291,3292,3293,3294,3295,3296,3297,3298,3299,3300,3301,3302,3303,3304,3 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:28:14 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COUNT(DISTINCT p.product_id) AS total 
+            FROM oc_product p 
+          ' at line 1<br />Error No: 1064<br />COUNT(DISTINCT p.product_id) AS total 
+            FROM oc_product p 
+            LEFT JOIN oc_product_to_category p2c 
+            ON p.product_id = p2c.product_id 
+            LEFT JOIN oc_product_filter pf
+            ON p.product_id = pf.product_id 
+            WHERE p2c.category_id = '315' AND pf.filter_id IN (0) in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('COUNT(DISTINCT ...')
+#1 /home1/outfitters/storage/modification/catalog/model/catalog/product.php(60): DB->query('COUNT(DISTINCT ...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogProduct->getCustomTotal(Array)
+#3 /home1/outfitters/beta/system/ in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:28:48 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'COUNT(DISTINCT p.product_id) AS total 
+            FROM oc_product p 
+          ' at line 1<br />Error No: 1064<br />COUNT(DISTINCT p.product_id) AS total 
+            FROM oc_product p 
+            LEFT JOIN oc_product_to_category p2c 
+            ON p.product_id = p2c.product_id 
+            LEFT JOIN oc_product_filter pf
+            ON p.product_id = pf.product_id 
+            WHERE p2c.category_id = '315' AND pf.filter_id IN (929) in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('COUNT(DISTINCT ...')
+#1 /home1/outfitters/storage/modification/catalog/model/catalog/product.php(60): DB->query('COUNT(DISTINCT ...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogProduct->getCustomTotal(Array)
+#3 /home1/outfitters/beta/syste in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:39:23 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 7<br />Error No: 1064<br />SELECT COUNT(DISTINCT p.product_id) AS total 
+            FROM oc_product p 
+            LEFT JOIN oc_product_to_category p2c 
+            ON p.product_id = p2c.product_id 
+            LEFT JOIN oc_product_filter pf
+            ON p.product_id = pf.product_id 
+            WHERE p2c.category_id = '315' AND pf.filter_id IN (929,) in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT COUNT(DI...')
+#1 /home1/outfitters/storage/modification/catalog/model/catalog/product.php(36): DB->query('SELECT COUNT(DI...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogProduct->getCustomTotal(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home1/outfi in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:58:12 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(di' at line 10<br />Error No: 1064<br />
+SELECT id.product_id FROM(SELECT 
+    product_id, count(i.product_id) as t, c.filter_group as b
+FROM
+    (SELECT 
+        f.filter_id, f.product_id, p.filter_group_id
+    FROM
+        oc_product_filter f
+    left join oc_filter p ON p.filter_id = f.filter_id
+    where
+        p.filter_id IN ()
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(distinct filter_group_id) as filter_group
+    from
+        oc_filter_description f_b
+    WHERE f_b.filter_id in ()) as c
+GROUP BY product_id
+HAVING t = b) as id in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('\nSELECT id.prod...')
+#1 /home1/outfitters/storage/modification/catal in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:58:39 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(di' at line 10<br />Error No: 1064<br />
+SELECT id.product_id FROM(SELECT 
+    product_id, count(i.product_id) as t, c.filter_group as b
+FROM
+    (SELECT 
+        f.filter_id, f.product_id, p.filter_group_id
+    FROM
+        oc_product_filter f
+    left join oc_filter p ON p.filter_id = f.filter_id
+    where
+        p.filter_id IN ()
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(distinct filter_group_id) as filter_group
+    from
+        oc_filter_description f_b
+    WHERE f_b.filter_id in ()) as c
+GROUP BY product_id
+HAVING t = b) as id in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('\nSELECT id.prod...')
+#1 /home1/outfitters/storage/modification/catal in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:58:42 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(di' at line 10<br />Error No: 1064<br />
+SELECT id.product_id FROM(SELECT 
+    product_id, count(i.product_id) as t, c.filter_group as b
+FROM
+    (SELECT 
+        f.filter_id, f.product_id, p.filter_group_id
+    FROM
+        oc_product_filter f
+    left join oc_filter p ON p.filter_id = f.filter_id
+    where
+        p.filter_id IN ()
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(distinct filter_group_id) as filter_group
+    from
+        oc_filter_description f_b
+    WHERE f_b.filter_id in ()) as c
+GROUP BY product_id
+HAVING t = b) as id in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('\nSELECT id.prod...')
+#1 /home1/outfitters/storage/modification/catal in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 21:59:32 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(di' at line 10<br />Error No: 1064<br />
+SELECT id.product_id FROM(SELECT 
+    product_id, count(i.product_id) as t, c.filter_group as b
+FROM
+    (SELECT 
+        f.filter_id, f.product_id, p.filter_group_id
+    FROM
+        oc_product_filter f
+    left join oc_filter p ON p.filter_id = f.filter_id
+    where
+        p.filter_id IN ()
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(distinct filter_group_id) as filter_group
+    from
+        oc_filter_description f_b
+    WHERE f_b.filter_id in ()) as c
+GROUP BY product_id
+HAVING t = b) as id in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('\nSELECT id.prod...')
+#1 /home1/outfitters/storage/modification/catal in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 22:00:42 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(di' at line 10<br />Error No: 1064<br />
+SELECT id.product_id FROM(SELECT 
+    product_id, count(i.product_id) as t, c.filter_group as b
+FROM
+    (SELECT 
+        f.filter_id, f.product_id, p.filter_group_id
+    FROM
+        oc_product_filter f
+    left join oc_filter p ON p.filter_id = f.filter_id
+    where
+        p.filter_id IN ()
+    GROUP BY product_id , filter_group_id) as i,
+    (select 
+        count(distinct filter_group_id) as filter_group
+    from
+        oc_filter_description f_b
+    WHERE f_b.filter_id in ()) as c
+GROUP BY product_id
+HAVING t = b) as id in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('\nSELECT id.prod...')
+#1 /home1/outfitters/storage/modification/catal in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 22:03:11 UTC] PHP Parse error:  syntax error, unexpected '*' in /home1/outfitters/storage/modification/catalog/model/catalog/product.php on line 34
+[12-Jun-2020 22:04:21 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== '929' AND pf.filter_id == '0' AND pf.filter_id == '929' AND pf.filter_id == '' at line 7<br />Error No: 1064<br />SELECT COUNT(DISTINCT p.product_id) AS total 
+            FROM oc_product p 
+            LEFT JOIN oc_product_to_category p2c 
+            ON p.product_id = p2c.product_id 
+            LEFT JOIN oc_product_filter pf
+            ON p.product_id = pf.product_id 
+            WHERE p2c.category_id = '373' AND pf.filter_id == '929' AND pf.filter_id == '0' AND pf.filter_id == '929' AND pf.filter_id == '1024' in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT COUNT(DI...')
+#1 /home1/outfitters/storage/modification/catalog/model/catalog/product.php(32): DB->query('SELECT COUNT(DI...')
+#2 /home1/outfitters/storage/modification/system/engine/loader. in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 22:20:00 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 7<br />Error No: 1064<br />SELECT COUNT(DISTINCT p.product_id) AS total 
+            FROM oc_product p 
+            LEFT JOIN oc_product_to_category p2c 
+            ON p.product_id = p2c.product_id 
+            LEFT JOIN oc_product_filter pf
+            ON p.product_id = pf.product_id 
+            WHERE p2c.category_id = '373' AND pf.filter_id = '929' AND (pf.filter_id = '929' AND (pf.filter_id = '1024') in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT COUNT(DI...')
+#1 /home1/outfitters/storage/modification/catalog/model/catalog/product.php(41): DB->query('SELECT COUNT(DI...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogProduct->getCustomTotal(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(4 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 22:20:40 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 7<br />Error No: 1064<br />SELECT COUNT(DISTINCT p.product_id) AS total 
+            FROM oc_product p 
+            LEFT JOIN oc_product_to_category p2c 
+            ON p.product_id = p2c.product_id 
+            LEFT JOIN oc_product_filter pf
+            ON p.product_id = pf.product_id 
+            WHERE p2c.category_id = '373' AND pf.filter_id = '929' AND (pf.filter_id = '929' AND (pf.filter_id = '1024') in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT COUNT(DI...')
+#1 /home1/outfitters/storage/modification/catalog/model/catalog/product.php(41): DB->query('SELECT COUNT(DI...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogProduct->getCustomTotal(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(4 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 22:20:45 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 7<br />Error No: 1064<br />SELECT COUNT(DISTINCT p.product_id) AS total 
+            FROM oc_product p 
+            LEFT JOIN oc_product_to_category p2c 
+            ON p.product_id = p2c.product_id 
+            LEFT JOIN oc_product_filter pf
+            ON p.product_id = pf.product_id 
+            WHERE p2c.category_id = '373' AND pf.filter_id = '929' AND (pf.filter_id = '929' AND (pf.filter_id = '1024') in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT COUNT(DI...')
+#1 /home1/outfitters/storage/modification/catalog/model/catalog/product.php(41): DB->query('SELECT COUNT(DI...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogProduct->getCustomTotal(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(4 in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[12-Jun-2020 23:35:43 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'outfitte_opencart.oc_products' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_products p LEFT JOIN oc_product_to_category p2c ON p.product_id = p2c.product_id WHERE p2c.category_id = '252' in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home1/outfitters/storage/modification/catalog/model/catalog/product.php(17): DB->query('SELECT * FROM o...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogProduct->getCustomTotal(Array)
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home1/outfitters/beta/catalog/controller/extension/module/filter.php(67): Proxy->__call('getCustomTotal', Array)
+#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleFilter->index(Array)
+#6 /home1/outfitters/storage/modification/system/engine/loader.php(48): Action in /home1/outfitters/beta/system/library/db/mysqli.php on line 40

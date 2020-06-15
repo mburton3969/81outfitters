@@ -382,7 +382,8 @@ class ControllerCatalogFilter extends Controller {
 			$filter_data = array(
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
-				'limit'       => 5
+				//'limit'       => 5
+				'limit'       => 25
 			);
 
 			$filters = $this->model_catalog_filter->getFilters($filter_data);
@@ -401,7 +402,7 @@ class ControllerCatalogFilter extends Controller {
 			$sort_order[$key] = $value['name'];
 		}
 
-		array_multisort($sort_order, SORT_ASC, $json);
+		//array_multisort($sort_order, SORT_ASC, $json);
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));

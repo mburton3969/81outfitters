@@ -27,7 +27,7 @@
 		</div>
 	{% endif %}
 	{% if (categories) %}
-		<h3>{{ text_refine }}</h3>
+		{#<h3>{{ text_refine }}</h3>
 		<div class="row">
 			<ul class="box-subcat">
 				{% for category in categories %}
@@ -47,7 +47,7 @@
 					</li>
 				{% endfor %}
 			</ul>
-		</div>
+		</div>#}
 	{% endif %}
 	</div>
 	<div class="row">
@@ -68,11 +68,11 @@
 			<button id="button-filter-parent" class="btn-primary btn-drop dropdown-toggle" type="button" data-toggle="dropdown" style="margin-right:5px;border-radius: 30px;padding:15px !important;font-size: 15px;line-height: 0px;text-transform: capitalize;">Womens
 				<span class="caret"></span></button>
 					<ul class="dropdown-menu">
-						<li><a href="Javascript: setPath('371');">Womens</a></li>
-						<li><a href="Javascript: setPath('370');">Mens</a></li>
-						<li><a href="Javascript: setPath('372');">Girls</a></li>
-						<li><a href="Javascript: setPath('378');">Boys</a></li>
-						<li><a href="Javascript: setPath('388');">Infants/Toddlers</a></li>
+						<li><a href="Javascript: trigger_preloader();setPath('371');">Womens</a></li>
+						<li><a href="Javascript: trigger_preloader();setPath('370');">Mens</a></li>
+						<li><a href="Javascript: trigger_preloader();setPath('372');">Girls</a></li>
+						<li><a href="Javascript: trigger_preloader();setPath('378');">Boys</a></li>
+						<li><a href="Javascript: trigger_preloader();setPath('388');">Infants/Toddlers</a></li>
 					</ul>
 		</div>
     </div>
@@ -134,9 +134,10 @@
 					</div>
 				</div>
 				<div class="row product-block">
+          {%set i = 1 %}
 					{%set option_index = 5000 %}
 					{% for product in products %}
-						<div class="product-layout product-list">
+						<div class="product-layout product-list" style="height:520px;">
 							<div class="product-thumb transition {% if product.options and product.options|length <= 3 %} {{ 'options' }} {% endif %}">
 								{% if product.options and product.options|length <= 3 %}
 									<div class="product-option-wrap">
@@ -329,13 +330,17 @@
 											{% endif %}
 											{% if (label_discount) %}
 												<div class="discount">
-													<span>{{ product.label_discount }}</span>
+													{#<span>{{ product.label_discount }}</span>#}
+                          <span>Sale!</span>
 												</div>
 											{% endif %}
 										{% endif %}
 									{% endif %}
 									{% if (product.label_new) %}
 										<div class="new-pr"><span>{{ text_new }}</span></div>
+									{% endif %}
+                  {% if (product.featured == 'Yes') %}
+										<div class="discount" style="background:#5A723E;color:#FFF;"><span>New Arrival</span></div>
 									{% endif %}
 
 									<div class="cart-button hidden-xs">
@@ -352,7 +357,7 @@
 											{% if not product.special %}
 												<span>{{ product.price }}</span>
 											{% else %}											
-												<span class="price-old">{{ product.price }}</span> <span class="price-new">{{ product.special }}</span> 
+												<span class="price-old">{{ product.price }}</span> <span class="price-new" style="color:red;">{{ product.special }}</span> 
 											{% endif %}
 											{% if product.tax %}
 												<span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
@@ -398,6 +403,10 @@
 							</div>
 							<div class="clear"></div>
 						</div>
+            {#{% if i % 3 == 0 %}
+            <br>
+            {% endif %}#}
+            {%set i = i + 1 %}
 						{%set option_index = option_index + 1 %}
 					{% endfor %}
 				</div>

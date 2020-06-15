@@ -3568,7 +3568,10 @@ input[type="radio"] + label:after {
 }
 
 input[type="radio"]:checked + label:after {
-  background: #ffed4c;
+  /*background: #ffed4c;*/
+  background: url("../image/checkmark.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .radio-inline {
@@ -3661,7 +3664,7 @@ input[type="checkbox"][name="agree"] + label:before, input[type="checkbox"][name
   color: #333;
   margin-bottom: 0;
   display: inline-block;
-  font: 500 12px/17px "Montserrat", sans-serif;
+  /*font: 500 12px/17px "Montserrat", sans-serif;*/
   letter-spacing: .09em;
   text-transform: uppercase;
 }
@@ -3781,7 +3784,7 @@ header .megamenu .box-heading {
   list-style-type: none;
   text-align: left;
   top: 40px;
-  right: 0;
+  /*right: 0;*//*Edited by Ignition Innovations MB [6-9-20]...*/
   font: 400 12px/14px "Montserrat", sans-serif;
   text-transform: none;
   letter-spacing: 0;

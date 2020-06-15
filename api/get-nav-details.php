@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json');
 error_reporting(0);
 include 'connection.php';
 $conn = $s_conn;//Make the DB Connection the normal variable...
@@ -13,6 +14,7 @@ $lr = mysqli_fetch_array($lg);
 $ilevel = $lr['level'];
 //Set Filters Variable...
 $x->filters = '0';
+$x->filter_groups = '0';
 switch($ilevel){
   case 0:
     $x->level = '0';
@@ -20,10 +22,11 @@ switch($ilevel){
     $plq = "SELECT * FROM `oc_category_description` WHERE `category_id` = '" . $path . "'";
     $plg = mysqli_query($conn, $plq) or die($conn->error);
     $plr = mysqli_fetch_array($plg);
-    $x->cat_name = $plr['name'];
+    $x->cat_0_name = $plr['name'];
     $x->parent_path = $plr['category_id'];
     //Set Filters...
     $x->filters = '';
+    $x->filter_groups = '';
     break;
   case 1:
     $x->level = '1';
@@ -37,7 +40,7 @@ switch($ilevel){
     $plq = "SELECT * FROM `oc_category_description` WHERE `category_id` = '" . $cat0 . "'";
     $plg = mysqli_query($conn, $plq) or die($conn->error);
     $plr = mysqli_fetch_array($plg);
-    $x->cat_name = $plr['name'];
+    $x->cat_0_name = $plr['name'];
     //Get Category Name...
     $cnq = "SELECT * FROM `oc_category_description` WHERE `category_id` = '" . $path . "'";
     $cng = mysqli_query($conn, $cnq) or die($conn->error);
@@ -57,6 +60,7 @@ switch($ilevel){
     $fid = $car['filter_id'];
     //Add Filters...
     $x->filters .= ',' . $fid;
+    $x->filter_groups .= ',' . $car['filter_group_id'];
     break;
   case 2:
     $x->level = '2';
@@ -97,6 +101,7 @@ switch($ilevel){
     $fid = $car['filter_id'];
     //Add Filters...
     $x->filters .= ',' . $fid;
+    $x->filter_groups .= ',' . $car['filter_group_id'];
     //Get Category 2 Name...
     $cnq = "SELECT * FROM `oc_category_description` WHERE `category_id` = '" . $path . "'";
     $cng = mysqli_query($conn, $cnq) or die($conn->error);
@@ -116,11 +121,12 @@ switch($ilevel){
     $fid = $car['filter_id'];
     //Add Filters...
     $x->filters .= ',' . $fid;
+    $x->filter_groups .= ',' . $car['filter_group_id'];
     break;
   default:
     $x->level = 'Error';
 }
 
-$res = json_encode($x);
+$res = json_encode($x, JSON_PRETTY_PRINT);
 echo $res;
   

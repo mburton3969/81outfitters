@@ -448,7 +448,7 @@ class ControllerCatalogManufacturer extends Controller {
 			$filter_data = array(
 				'filter_name' => $this->request->get['filter_name'],
 				'start'       => 0,
-				'limit'       => 5
+				'limit'       => 20
 			);
 
 			$results = $this->model_catalog_manufacturer->getManufacturers($filter_data);

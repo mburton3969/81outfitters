@@ -47,7 +47,7 @@ class ModelCatalogFilter extends Model {
 				$filter_id = $this->db->getLastId();
 
 				foreach ($filter['filter_description'] as $language_id => $filter_description) {
-					$this->db->query("INSERT INTO " . DB_PREFIX . "filter_description SET filter_id = '" . (int)$filter_id . "', language_id = '" . (int)$language_id . "', filter_group_id = '" . (int)$filter_group_id . "', name = '" . $this->db->escape($filter_description['name']) . "'");
+					$this->db->query("INSERT INTO " . DB_PREFIX . "filter_description SET filter_id = '" . (int)$filter_id . "', language_id = '" . (int)$language_id . "', filter_group_id = '" . (int)$filter_group_id . "', name = '" . $this->db->escape($filter_description['name']) . "', filter_category = '" . $this->db->escape($filter['filter_category']) . "'");
 				}
 			}
 		}
@@ -128,7 +128,8 @@ class ModelCatalogFilter extends Model {
 			$sql .= " AND fd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
 		}
 
-		$sql .= " ORDER BY f.sort_order ASC";
+		$sql .= " ORDER BY FIELD(f.filter_group_id, '4') DESC, f.sort_order ASC, fd.name ASC";
+		//$sql .= " ORDER BY FIELD(f.filter_group_id, '4') DESC";
 
 		if (isset($data['start']) || isset($data['limit'])) {
 			if ($data['start'] < 0) {
@@ -159,11 +160,13 @@ class ModelCatalogFilter extends Model {
 
 			foreach ($filter_description_query->rows as $filter_description) {
 				$filter_description_data[$filter_description['language_id']] = array('name' => $filter_description['name']);
+        $filter_category = $filter_description['filter_category'];
 			}
 
 			$filter_data[] = array(
 				'filter_id'          => $filter['filter_id'],
 				'filter_description' => $filter_description_data,
+        'filter_category'    => $filter_category,
 				'sort_order'         => $filter['sort_order']
 			);
 		}

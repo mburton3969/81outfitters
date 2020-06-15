@@ -1,24 +1,193 @@
+<style>
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  /*background-color: #eee;
+  color: #444;*/
+  cursor: pointer;
+  /*padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;*/
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.collapsible:hover {
+  background-color: #ccc;
+}
+.active{
+  background: none !Important;
+  color: #000 !Important;
+  border-color: #DDD !Important;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  /*background-color: #f1f1f1;*/
+}
+</style>
+
 <div class="panel panel-default">
   <div class="panel-heading">{{ heading_title }}</div>
-  <div class="list-group"> {% for filter_group in filter_groups %} <a class="list-group-item">{{ filter_group.name }}</a>
-    <div class="list-group-item">
-      <div id="filter-group{{ filter_group.filter_group_id }}">{% for filter in filter_group.filter %}
+  <div class="list-group" style="overflow:hidden;"> 
+  {% for filter_group in filter_groups if filter_group.filter_group_id != '5' %} 
+  {% if filter_group.filter_group_id != '4' %}
+  
+  <a id="filter-link{{ filter_group.filter_group_id }}" class="list-group-item collapsible active">{{ filter_group.name }} <i class="material-design-drop25"></i></a>
+    <div class="list-group-item content" style="display:block;overflow:auto;max-height:200px;">
+      <div id="filter-group{{ filter_group.filter_group_id }}">
+      {% for filter in filter_group.filter %}
+        {% if ' (0)' not in filter.name %}
         <div class="checkbox">
-          <label>{% if filter.filter_id in filter_category %}
-            <input onclick="submit_filter(this);" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" checked="checked" />
+          <label>
+          {% if filter.filter_id in filter_category %}
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Remove');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" checked="checked" />
             {{ filter.name }}
             {% else %}
-            <input onclick="submit_filter(this);" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" />
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Add');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" />
             {{ filter.name }}
             {% endif %}</label>
         </div>
-        {% endfor %}</div>
+        {% endif %}
+      {% endfor %}
+      </div>
     </div>
-    {% endfor %}</div>
+    
+    {% else %}
+    
+    {% set junior_cat = false %}
+    {% set regular_cat = false %}
+    {% set plus_cat = false %}
+    {% set petite_cat = false %}
+    {% for x in filter_group.filter %}
+      {% if x.filter_cat == 'Junior' and ' (0)' not in x.name %}
+        {% set junior_cat = true %}
+      {% elseif x.filter_cat == 'Regular' and ' (0)' not in x.name %}
+        {% set regular_cat = true %}
+      {% elseif x.filter_cat == 'Plus' and ' (0)' not in x.name %}
+        {% set plus_cat = true %}
+      {% elseif x.filter_cat == 'Petite' and ' (0)' not in x.name %}
+        {% set petite_cat = true %}
+      {% endif %}
+    {% endfor %}
+    {# Size Box #}
+    <a id="filter-link{{ filter_group.filter_group_id }}" class="list-group-item collapsible active">Sizes <i class="material-design-drop25"></i></a>
+    <div class="list-group-item content" style="display:block; max-height:200px;overflow:auto;">
+      <div id="filter-group{{ filter_group.filter_group_id }}">
+      
+      {% if regular_cat == true %}
+      {# Regular Sizes #}
+        {#<div class="checkbox collapsible"><u><small>Regular <i class="material-design-drop25"></i></small></u></div>#}
+        <div class="">
+      {% for filter in filter_group.filter if filter.filter_cat == 'Regular' %}
+        {% if ' (0)' not in filter.name %}
+        <div class="checkbox">
+          <label>
+          {% if filter.filter_id in filter_category %}
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Remove');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" checked="checked" />
+            {{ filter.name }}
+            {% else %}
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Add');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" />
+            {{ filter.name }}
+            {% endif %}</label>
+        </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+      {% endif %}
+      
+      {# Junior Sizes #}
+      {% if junior_cat == true %}
+      <div class="checkbox collapsible"><u><small>Juniors <i class="material-design-drop25"></i></small></u></div>
+        <div class="content">
+      {% for filter in filter_group.filter if filter.filter_cat == 'Junior' %}
+        <div class="checkbox ">
+          <label>
+          {% if filter.filter_id in filter_category %}
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Remove');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" checked="checked" />
+            {{ filter.name }}
+            {% else %}
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Add');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" />
+            {{ filter.name }}
+            {% endif %}</label>
+        </div>
+      {% endfor %}
+      </div>
+      {% endif %}
+      
+      {% if plus_cat == true %}
+      {# Plus Sizes #}
+        <div class="checkbox collapsible"><u><small>Plus <i class="material-design-drop25"></i></small></u></div>
+        <div class="content">
+      {% for filter in filter_group.filter if filter.filter_cat == 'Plus' %}
+        {% if ' (0)' not in filter.name %}
+        <div class="checkbox">
+          <label>
+          {% if filter.filter_id in filter_category %}
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Remove');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" checked="checked" />
+            {{ filter.name }}
+            {% else %}
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Add');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" />
+            {{ filter.name }}
+            {% endif %}</label>
+        </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+      {% endif %}
+      
+      {% if petite_cat == true %}
+      {# Petite Sizes #}
+        <div class="checkbox collapsible"><u><small>Petite <i class="material-design-drop25"></i></small></u></div>
+        <div class="content">
+      {% for filter in filter_group.filter if filter.filter_cat == 'Petite' %}
+        {% if ' (0)' not in filter.name %}
+        <div class="checkbox">
+          <label>
+          {% if filter.filter_id in filter_category %}
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Remove');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" checked="checked" />
+            {{ filter.name }}
+            {% else %}
+            <input onclick="trigger_preloader();submit_filter(this,{{ filter_group.filter_group_id }},'Add');" type="checkbox" name="filter[]" value="{{ filter.filter_id }}" />
+            {{ filter.name }}
+            {% endif %}</label>
+        </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+      {% endif %}
+      
+      </div>
+    </div>
+    
+    {% endif %}{# Main if end #}
+    {% endfor %}
+    </div>
   <div class="panel-footer text-center">
     <button type="button" id="button-filter" class="btn-primary">{{ button_filter }}</button>
   </div>
 </div>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+
 <script type="text/javascript"><!--
 $('#button-filter').on('click', function() {
 	filter = [];
@@ -31,13 +200,25 @@ $('#button-filter').on('click', function() {
 });
 
 
-function submit_filter(elem){
+function submit_filter(elem,fg,mode){
 	filter = [];
 
 	$('input[name^=\'filter\']:checked').each(function(element) {
 		filter.push(this.value);
 	});
+  
+  if(mode === 'Add'){
+    if(fgs.includes(fg)){
 
-	location = '{{ action }}&filter=' + filter.join(',');
+    }else{
+      fgs += ','+fg;
+    }
+  }else{
+    fgs = fgs.replace(','+fg,'');
+  }
+  //alert(filter.join(','));
+  
+	//location = '{{ action }}&fgs='+fgs+'&filter=' + filters + ',' + filter.join(',');
+	location = '{{ action }}&fgs='+fgs+'&filter=' + filter.join(',');
 }
 //--></script> 

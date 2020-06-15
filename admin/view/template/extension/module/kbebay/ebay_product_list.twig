@@ -6,7 +6,9 @@
                 <a form="form-product" formaction="{{ enable_action }}" data-toggle="tooltip" title="{{ button_enable_products }}" class="btn btn-primary formaction"><i style="padding: 0 2px" class="fa fa-step-forward"></i></a>
                 <a form="form-product" formaction="{{ disable_action }}" data-toggle="tooltip" title="{{ button_disable_products }}" class="btn btn-primary formaction"><i class="fa fa-ban"></i></a>
                 <a href="{{ local_sync_link }}" title="{{ text_local_sync }}" data-toggle="tooltip" target="_blank" title="" class="btn btn-warning"><i class="fa fa-refresh"></i></a>
+                <!--
                 <a href="{{ feed_sync_link }}" title="{{ text_feed_sync }}" data-toggle="tooltip" target="_blank" title="" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+                -->
                 <a href="{{ sync_product_status_link }}" title="{{ text_product_status_sync }}" data-toggle="tooltip" target="_blank" title="" class="btn btn-primary"><i class="fa fa-cog"></i></a>
                 <!--
                 <a data-target="#update_profile_model" data-toggle="modal" data-toggle="tooltip" title="{{ button_swtich_profile }}" class="btn btn-primary"><i class="fa fa-wrench"></i></a>
@@ -199,7 +201,9 @@
                                                     {% endif %} 
                                                         
                                                     {% if (listed['status'] == 'Updated') %} 
+                                                        <!--
                                                         <a href='{{ listed["url_sync_update"] }}' target="_blank" data-toggle="tooltip" title="{{ text_sync_product }}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+                                                        -->
                                                     {% endif %} 
 
                                                     {% if (listed["message"] != "") %} 

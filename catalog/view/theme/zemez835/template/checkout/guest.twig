@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-6">
     <fieldset id="account">
-      <legend>{{ text_your_details }}</legend>
+      {#<legend>{{ text_your_details }}</legend>#}
       <div class="form-group" style="display: {% if customer_groups|length > 1 %} block {% else %} none {% endif %};">
         <label class="control-label">{{ entry_customer_group }}</label>
         {% for customer_group in customer_groups %}
@@ -31,10 +31,10 @@
         <label class="control-label" for="input-payment-email">{{ entry_email }}</label>
         <input type="text" name="email" value="{{ email }}" placeholder="{{ entry_email }}" id="input-payment-email" class="form-control" />
       </div>
-      <div class="form-group required">
+      {#<div class="form-group required">
         <label class="control-label" for="input-payment-telephone">{{ entry_telephone }}</label>
         <input type="text" name="telephone" value="{{ telephone }}" placeholder="{{ entry_telephone }}" id="input-payment-telephone" class="form-control" />
-      </div>
+      </div>#}
       {% for custom_field in custom_fields %}
       {% if custom_field.location == 'account' %}
       {% if custom_field.type == 'select' %}
@@ -150,11 +150,11 @@
   </div>
   <div class="col-sm-6">
     <fieldset id="address">
-      <legend>{{ text_your_address }}</legend>
+      {#<legend>{{ text_your_address }}</legend>
       <div class="form-group">
         <label class="control-label" for="input-payment-company">{{ entry_company }}</label>
         <input type="text" name="company" value="{{ company }}" placeholder="{{ entry_company }}" id="input-payment-company" class="form-control" />
-      </div>
+      </div>#}
       <div class="form-group required">
         <label class="control-label" for="input-payment-address-1">{{ entry_address_1 }}</label>
         <input type="text" name="address_1" value="{{ address_1 }}" placeholder="{{ entry_address_1 }}" id="input-payment-address-1" class="form-control" />
@@ -168,10 +168,16 @@
         <input type="text" name="city" value="{{ city }}" placeholder="{{ entry_city }}" id="input-payment-city" class="form-control" />
       </div>
       <div class="form-group required">
+        <label class="control-label" for="input-payment-zone">{{ entry_zone }}</label>
+        <select name="zone_id" id="input-payment-zone" class="form-control">
+        </select>
+      </div>
+      <div class="form-group required">
         <label class="control-label" for="input-payment-postcode">{{ entry_postcode }}</label>
         <input type="text" name="postcode" value="{{ postcode }}" placeholder="{{ entry_postcode }}" id="input-payment-postcode" class="form-control" />
       </div>
-      <div class="form-group required">
+      <b>We don't currently ship outside the U.S.</b>
+      <div class="form-group required" style="display:none;">
         <label class="control-label" for="input-payment-country">{{ entry_country }}</label>
         <select name="country_id" id="input-payment-country" class="form-control">
           <option value="">{{ text_select }}</option>
@@ -194,11 +200,6 @@
           {% endfor %}
         
         
-        </select>
-      </div>
-      <div class="form-group required">
-        <label class="control-label" for="input-payment-zone">{{ entry_zone }}</label>
-        <select name="zone_id" id="input-payment-zone" class="form-control">
         </select>
       </div>
       {% for custom_field in custom_fields %}

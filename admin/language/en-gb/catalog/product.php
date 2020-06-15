@@ -16,6 +16,8 @@ $_['text_option_value']      = 'Option Value';
 $_['text_percent']           = 'Percentage';
 $_['text_amount']            = 'Fixed Amount';
 $_['text_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.';
+$_['text_featured']          = 'New Arrival';
+$_['text_title_featured']    = 'New Arrival?';
 
 // Column
 $_['column_name']            = 'Product Name';

@@ -53,3 +53,11 @@
 	{% if ( level == 1 ) %}
 	</div>
 {% endif %}
+<script>
+  if(document.getElementById('html-module0')){
+    document.getElementById('html-module0').parentElement.parentElement.setAttribute('class','col-lg-12 col-md-12 col-sm-12 col-xs-12');
+    console.log('Class Updated');
+  }else{
+    console.warn('Class Element Not Found...');
+  }
+</script>

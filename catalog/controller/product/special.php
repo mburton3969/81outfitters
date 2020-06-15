@@ -256,6 +256,7 @@ class ControllerProductSpecial extends Controller {
 		$data['order'] = $order;
 		$data['limit'] = $limit;
 
+    $data['text_empty_special'] = 'There are no special offer products to list.';
 		$data['continue'] = $this->url->link('common/home');
 
 		$data['column_left'] = $this->load->controller('common/column_left');
