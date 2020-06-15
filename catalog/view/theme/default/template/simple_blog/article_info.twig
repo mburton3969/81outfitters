@@ -1,0 +1,296 @@
+{{ header }}
+<div class="container">
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			<li>
+				<a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="form-group">
+		{{ column_left }}
+		{% if column_left and column_right %}
+			{% set class = 'col-sm-6' %}
+			{% elseif column_left or column_right %}
+				{% set class = 'col-sm-9'
+				%}
+			{% else %}
+				{% set class = 'col-sm-12'
+				%}
+			{% endif %}
+			<div id="content" class="{{ class }}">
+				{{ content_top }}
+				<div class="form-group">
+					{% if article_info_found %}
+						<article class="article-info">
+							<div class="article-title">
+								<h1>{{ article_info.article_title }}</h1>
+							</div>
+							<div class="article-sub-title">
+								<span class="article-date material-design-clock100">{{ article_date_modified }}</span>
+								{% if article_info.allow_comment %}
+									<span class="article-comments material-design-add183">{{ total_comment }}</span>
+								{% endif %}
+								<span class="article-author material-design-user157">{{ text_posted_by }}
+									<a href="{{ author_url }}">{{ article_info.author_name }}</a>
+								</span>
+							</div>
+							{% if image %}
+								{% if featured_found %}
+									<div class="article-image">
+										<img src="{{ image }}" alt="{{ article_info.article_title }}"/>
+									</div>
+								{% else %}
+									<div class="article-thumbnail-image">
+										<img src="{{ image }}" alt="{{ article_info.article_title }}" height="100" width="100"/>
+										<span class="article-description">
+											{{ article_info.description }}
+										</span>
+									</div>
+								{% endif %}
+							{% endif %}
+							{% if featured_found %}
+								<div class="article-description">
+									{{ article_info.description }}
+								</div>
+							{% else %}
+								<div class="article-description">
+									{{ article_info.description }}
+								</div>
+							{% endif %}
+							{% if article_additional_description %}
+								{% for description in article_additional_description %}
+									<div class="article-description">
+										{{ description.additional_description }}
+									</div>
+								{% endfor %}
+							{% endif %}
+							{% if simple_blog_share_social_site and simple_blog_share_social_site %}
+								<span class="article-share">
+									<div class="addthis_sharing_toolbox"></div>
+									<!-- Go to www.addthis.com/dashboard to customize your tools -->
+									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55e053ac02ebd38e" async="async"></script>
+								</span>
+							{% endif %}
+							{% if products or simple_blog_related_articles and related_articles or simple_blog_author_information or article_info.allow_comment %}
+								<div class="product_tabs">
+									<ul class="nav nav-tabs">
+										{% if products %}
+											<li>
+												<a href="#tab-products" data-toggle="tab">{{ text_related_product}}</a>
+											</li>
+										{% endif %}
+										{% if simple_blog_related_articles and related_articles %}
+											<li>
+												<a href="#tab-articles" data-toggle="tab">{{ text_related_article}}</a>
+											</li>
+										{% endif %}
+										{% if simple_blog_author_information %}
+											<li>
+												<a href="#tab-author" data-toggle="tab">{{ text_author_information}}</a>
+											</li>
+										{% endif %}
+										{% if article_info.allow_comment %}
+											<li>
+												<a href="#tab-comments" data-toggle="tab">{{ text_related_comment }}</a>
+											</li>
+										{% endif %}
+									</ul>
+									<div class="tab-content">
+										{% if products %}
+											<div id="tab-products" class="tab-pane">
+												<div class="row">
+													{% for product in products %}
+														<div class="product-layout col-md-4 col-sm-6 col-xs-12">
+															<div class="product-thumb simple-blog-product">
+																{% if product.thumb %}
+																	<div class="image">
+																		<a href="{{ product.href }}">
+																			<img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive"/>
+																		</a>
+																	</div>
+																{% endif %}
+																<div class="caption text-center">
+																	<div class="name">
+																		<a href="{{ product.href }}">{{ product.name }}</a>
+																	</div>
+																</div>
+															</div>
+														</div>
+													{% endfor %}
+												</div>
+											</div>
+										{% endif %}
+										{% if simple_blog_related_articles and related_articles %}
+											<div id="tab-articles" class="tab-pane related-article">
+												{% for related_article in related_articles %}
+													<div class="row">
+														<div class="box col-sm-12 col-md-6">
+															<div class="image text-center">
+																<a href="{{ related_article.article_href }}">
+																	<img src="{{ related_article.image }}" alt="{{ related_article.article_title }}" title="{{ related_article.article_title }}" class="img-responsive img-thumbnail"/>
+																</a>
+															</div>
+														</div>
+														<div class="box col-sm-12 col-md-6">
+															<h4>
+																<a href="{{ related_article.article_href }}">{{ related_article.article_title }}</a>
+															</h4>
+															<div class="article-sub-title">
+																<span class="article-date material-design-clock100">{{ related_article.date_added }}</span>
+																<span class="article-comments material-design-add183">
+																	<a href='{{ related_article.article_href }}#comment-section'>{{ related_article.total_comment ~ text_comment_on_article }}</a>
+																</span>
+																<span class="article-author material-design-user157">
+																	<a href="{{ related_article.author_href }}">{{ related_article.author_name }}</a>
+																</span>
+															</div>
+															<div>
+																{{ related_article.description }}
+															</div>
+															<div class="related-article-button">
+																<a href="{{ related_article.article_href}}" class="btn">{{ button_continue_reading}}</a>
+															</div>
+														</div>
+													</div>
+												{% endfor %}
+											</div>
+										{% endif %}
+										{% if simple_blog_author_information %}
+											<div id="tab-author" class="tab-pane author-info">
+												{% if author_image %}
+													<div class="image">
+														<img src="{{ author_image}}" alt="{{ article_info.article_title}}"/>
+													</div>
+												{% endif %}
+												<h3>{{ author_name }}</h3>
+												{{ author_description}}
+											</div>
+										{% endif %}
+										{% if article_info.allow_comment %}
+											<div id="tab-comments" class="tab-pane">
+												<h2>{{ text_related_comment}}</h2>
+												<div class="form-group">
+													<div id="comments" class="blog-comment-info">
+														<div id="comment-list"></div>
+														<div id="comment-section"></div>
+														<h2 id="review-title">
+															<span>{{ text_write_comment }}</span>
+															<div class="reply-cancel">
+																<span id="reply-remove" style="display:none; cursor: pointer;" onclick="removeCommentId();">
+																	{{ text_cancel_reply }}
+																</span>
+															</div>
+														</h2>
+														<input type="hidden" name="blog_article_reply_id" value="0" id="blog-reply-id"/>
+														<div class="comment-left">
+															<div class="form-group">
+																<label for="comment-name">
+																	<strong>{{ entry_name }}</strong>
+																</label>
+																<input type="text" name="name" value="" id="comment-name" class="form-control"/>
+															</div>
+															<div class="form-group">
+																<label for="comment-text">
+																	<strong>{{ entry_review }}</strong>
+																</label>
+																<textarea name="text" class="form-control" id="comment-text"></textarea>
+																<span style="font-size: 11px;">{{ text_note }}</span>
+															</div>
+															{% if site_key %}
+																<div class="form-group">
+																	<div class="col-sm-12">
+																		<div class="g-recaptcha" data-sitekey="{{ site_key }}"></div>
+																	</div>
+																</div>
+															{% endif %}
+														</div>
+														<br/>
+														<div class="text-right">
+															<a id="button-comment" class="btn btn-info">
+																<span>{{ button_submit }}</span>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										{% endif %}
+									</div>
+								</div>
+							{% endif %}
+						</article>
+					{% else %}
+						<h3 class="text-center">{{ text_no_found }}</h3>
+					{% endif %}
+				</div>
+				{{ content_bottom }}
+			</div>
+			{{ column_right }}
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function removeCommentId() {
+			$("#blog-reply-id").val(0);
+			$("#reply-remove").css('display', 'none');
+		}
+	</script>
+
+	<script type="text/javascript">
+		$('#comment-list').delegate('.pagination a', 'click', function (e) {
+			e.preventDefault();
+
+			$('#comment-list').fadeOut('slow');
+
+			$('#comment-list').load(this.href);
+
+			$('#comment-list').fadeIn('slow');
+		});
+
+		$('#comment-list').load('index.php?route=simple_blog/article/comment&simple_blog_article_id={{ simple_blog_article_id }}');
+
+		$('.product_tabs li:first-child a').tab('show');
+
+	</script>
+
+	<script type="text/javascript">
+		$('#button-comment').bind('click', function () {
+			$.ajax({
+				type: 'POST',
+				url: 'index.php?route=simple_blog/article/writeComment&simple_blog_article_id={{ simple_blog_article_id }}',
+				dataType: 'json',
+				data: 'name=' + encodeURIComponent($('input[name=\'name\']').val()) + '&text=' + encodeURIComponent($('textarea[name=\'text\']').val()) + '&captcha=' + encodeURIComponent($('input[name=\'captcha\']').val()) + '&reply_id=' + encodeURIComponent($('input[name=\'blog_article_reply_id\']').val()),
+				beforeSend: function () {
+					$('.success, .warning').remove();
+					$('#button-comment').attr('disabled', true);
+				},
+				complete: function () {
+					$('#button-comment').attr('disabled', false);
+					$('.attention').remove();
+				},
+				success: function (data) {
+
+					$('.alert').remove();
+
+					if (data['error']) {
+						$('#review-title').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + data['error'] + '</div>');
+					}
+
+					if (data['success']) {
+						$('#review-title').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + data['success'] + '</div>');
+
+						$('input[name=\'name\']').val('');
+						$('textarea[name=\'text\']').val('');
+						$('input[name=\'captcha\']').val('');
+						$("#blog-reply-id").val(0);
+						$("#reply-remove").css('display', 'none');
+
+						$('#comment-list').load('index.php?route=simple_blog/article/comment&simple_blog_article_id={{ simple_blog_article_id }}');
+					}
+				}
+			});
+		});
+	</script>
+
+
+	<?php echo $footer; ?>

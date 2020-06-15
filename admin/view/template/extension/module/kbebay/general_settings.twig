@@ -1,0 +1,131 @@
+{{ header }}{{ column_left }} 
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="submit" form="ebay-general-settings" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+            </div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if (error['error_warning'] is defined) %} 
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error['error_warning'] }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        
+        {% if (success is defined and success != '') %} 
+            <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit_general }}</h3>
+            </div>
+            <div class="panel-body">
+                {{ tab_common }} 
+                <form action="{{ action }}" method="post" enctype="multipart/form-data" id="ebay-general-settings" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">{{ text_general_enable }}</label>
+                        <div class="col-sm-10">
+                            <select name="ebay[general][enable]" id="input-status" class="form-control">
+                                {% if (ebay['general']['enable'] is defined) %} 
+                                    <option value="1" selected="selected">{{ text_enabled }}</option>
+                                    <option value="0">{{ text_disabled }}</option>
+                                {% else %} 
+                                    <option value="1">{{ text_enabled }}</option>
+                                    <option value="0" selected="selected">{{ text_disabled }}</option>
+                                {% endif %} 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-status">{{ text_general_account_type }}</label>
+                        <div class="col-sm-10">
+                            <select name="ebay[general][account_type]" id="input-status" class="form-control">
+                                {% if (ebay['general']['account_type'] is defined and ebay['general']['account_type'] == 1) %} 
+                                    <option value="0">{{ text_sandbox }}</option>
+                                    <option value="1" selected="selected">{{ text_live }}</option>
+                                {% else %} 
+                                    <option value="0" selected="selected">{{ text_sandbox }}</option>
+                                    <option value="1" >{{ text_live }}</option>
+                                {% endif %} 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="ebay_dev_id">{{ text_ebay_dev_id }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="ebay[general][dev_id]" value="{% if (ebay['general']['dev_id'] is defined) %}{{ ebay['general']['dev_id'] }}{% endif %}" placeholder="" id="ebay_dev_id" class="form-control"/>
+                            {% if (error_ebay_dev_id) %} 
+                                <div class="text-danger">{{ error_ebay_dev_id }}</div>
+                            {% endif %} 
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="ebay_app_id">{{ text_ebay_app_id }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="ebay[general][app_id]" value="{% if (ebay['general']['app_id'] is defined) %}{{ ebay['general']['app_id'] }}{% endif %}" placeholder="" id="ebay_app_id" class="form-control"/>
+                            {% if (error_ebay_app_id) %} 
+                                <div class="text-danger">{{ error_ebay_app_id }}</div>
+                            {% endif %} 
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="ebay_cert_id">{{ text_ebay_cert_id }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="ebay[general][cert_id]" value="{% if (ebay['general']['cert_id'] is defined) %}{{ ebay['general']['cert_id'] }}{% endif %}" placeholder="" id="ebay_cert_id" class="form-control"/>
+                            {% if (error_ebay_cert_id) %} 
+                                <div class="text-danger">{{ error_ebay_cert_id }}</div>
+                            {% endif %} 
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="ebay_ru_name">{{ text_ebay_ru_name }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="ebay[general][ru_name]" value="{% if (ebay['general']['ru_name'] is defined) %}{{ ebay['general']['ru_name'] }}{% endif %}" placeholder="" id="ebay_ru_name" class="form-control"/>
+                            {% if (error_ebay_ru_name) %} 
+                                <div class="text-danger">{{ error_ebay_ru_name }}</div>
+                            {% endif %} 
+                        </div>
+                    </div>
+                    <div class="form-group required" style="display: none">
+                        <label class="col-sm-2 control-label" for="ebay_token">{{ text_ebay_token }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="ebay[general][token]" value="{% if (ebay['general']['token'] is defined) %}{{ ebay['general']['token'] }}{% endif %}" placeholder="" id="ebay_token" class="form-control"/>
+                            {% if (error_ebay_token) %} 
+                                <div class="text-danger">{{ error_ebay_token }}</div>
+                            {% endif %} 
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label class="col-sm-2 control-label" for="ebay_paypal_email">{{ text_ebay_paypal_email }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="ebay[general][paypal_email]" value="{% if (ebay['general']['paypal_email'] is defined) %}{{ ebay['general']['paypal_email'] }}{% endif %}" placeholder="" id="ebay_paypal_email" class="form-control"/>
+                            {% if (error_paypal_email) %} 
+                                <div class="text-danger">{{ error_paypal_email }}</div>
+                            {% endif %} 
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="token_listing_link">{{ text_listing_link }}</label>
+                        <div class="col-sm-10">
+                            <div style="padding:1%">
+                                <a href="index.php?route={{ module_path }}/kbebay/sites&{{ session_token_key }}={{ token }}">{{ text_token_add_link }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ footer }}

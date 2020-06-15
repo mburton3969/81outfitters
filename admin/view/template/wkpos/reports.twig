@@ -1,0 +1,479 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_data %}
+    <div class="alert alert-warning">
+      {{ error_data }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ heading_title }}</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="nav nav-tabs">
+          <li class="active"><a id="product-reports" href="#tab-product" data-toggle="tab">{{ title_product_report }}</a></li>
+          <li><a id="sales-reports" href="#tab-sale" data-toggle="tab">{{ title_sale_report }}</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab-product">
+            <div class="well well-sm">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="input-outlet">{{ column_outlet }}</label>
+                    <select class="form-control" id="input-outlet">
+                      <option value=""></option>
+                      {% for outlet in outlets %}
+                        <option value="{{ outlet['outlet_id'] }}">{{ outlet['name'] }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="input-supplier">{{ column_supplier }}</label>
+                    <select class="form-control" id="input-supplier">
+                      <option value=""></option>
+                      {% for supplier in suppliers %}
+                        <option value="{{ supplier['supplier_id'] }}">{{ supplier['firstname'] }} {{ supplier['lastname'] }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- Filter Ended -->
+            <div class="table-bordered">
+              <table class="table table-striped table-hover" id="product-report">
+                <thead>
+                  <tr>
+                    <th>{{ column_number }}</th>
+                    <th>{{ column_product }}</th>
+                    <th>{{ column_outlet }}</th>
+                    <th>{{ column_model }}</th>
+                    <th>{{ column_quantity }}</th>
+                    <th>{{ column_sold }}</th>
+                    <th>{{ column_remaining }}</th>
+                    <th>{{ column_supplier }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="8" id="product-footer" class="alert-info text-center"><span class="one"></span><span class="two" style="display:none;cursor:pointer;">{{ column_show_next }}</span></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            </div>
+            <div class="tab-pane" id="tab-sale">
+              <div class="well well-sm">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="input-soutlet">{{ column_outlet }}</label>
+                      <select class="form-control" id="input-soutlet">
+                        <option value=""></option>
+                        {% for outlet in outlets %}
+                          <option value="{{ outlet['outlet_id'] }}">{{ outlet['name'] }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="input-payment">{{ column_payment }}</label>
+                      <select class="form-control" id="input-payment">
+                        <option value=""></option>
+                        {% for payment in payments %}
+                          <option value="{{ payment['code'] }}">{{ payment['text'] }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="input-user">{{ column_user }}</label>
+                      <select class="form-control" id="input-user">
+                        <option value=""></option>
+                        {% for user in users %}
+                          <option value="{{ user['user_id'] }}">{{ user['firstname'] }} {{ user['lastname'] }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>{{ column_date_between }}</label>
+                      <div class="col-sm-12" style="padding:0;">
+                        <div class="input-group">
+                          <div class="date">
+                            <input type="text" class="form-control radius-0" id="date-from" placeholder="{{ column_date_from }}" readonly>
+                            <span class="input-group-btn"><button type="button" name="button" class="btn btn-info from radius-0"><i class="fa fa-calendar"></i></button></span>
+                          </div>
+                          <div class="date" style="margin-left: 4%;">
+                            <input type="text" class="form-control radius-0" id="date-to" readonly placeholder="{{ column_date_to }}">
+                            <span class="input-group-btn"><button type="button" name="button" class="btn btn-info to radius-0"><i class="fa fa-calendar"></i></button></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="input-customer">{{ column_customer }}</label>
+                      <input type="text" id="customer-autocomplete" class="form-control" placeholder="{{ filter_customer }}">
+                      <input type="hidden" id="input-customer">
+                    </div>
+                    <div class="form-group">
+                      <label for="input-mode">{{ column_mode }}</label>
+                      <select class="form-control" id="input-mode">
+                        <option value=""></option>
+                        <option value="online">{{ text_online }}</option>
+                        <option value="offline">{{ text_offline }}</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                       <button type="button" class="btn btn-primary" id="button-filter"> <i class="fa fa-filter"></i> {{ button_filter }}</button>
+                       <button type="button" class="btn btn-warning" id="button-clear"> <i class="fa fa-refresh"></i> {{ button_clear }}</button>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- Filter Ended -->
+              <div class="table-bordered">
+                <table class="table table-striped table-hover col-sm-12" id="sale-report">
+                  <thead>
+                    <tr>
+                      <th>{{ column_order_id }}</th>
+                      <th>{{ column_outlet }}</th>
+                      <th>{{ column_customer }}</th>
+                      <th>{{ column_total }}</th>
+                      <th>{{ column_date }}</th>
+                      <th>{{ column_payment }}</th>
+                      <th>{{ column_status }}</th>
+                      <th>{{ column_user }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="8" id="sale-footer" class="text-center alert alert-info"><span class="one"></span><span class="two" style="display:none;cursor:pointer;">{{ column_show_next }}</span></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  // Product Reports
+  var product_url = '';
+  var page = 1;
+  var product_total = 0;
+  var limit = {{ limit }};
+  var text_product_listed = '{{ text_listed }}';
+  var product_listed = 0;
+  var user_token = '{{ user_token }}';
+
+  $(document).on('change','#input-outlet, #input-supplier', function(){
+    $('#product-report tbody').html('');
+    product_listed = 0;
+    page = 1;
+    productReport();
+  });
+  $(document).on('click','#product-footer .two', function(){
+    if (product_listed < product_total) {
+      page = page + 1;
+      productReport();
+    }
+  });
+  productReport();
+  function productReport() {
+    product_url = 'index.php?route=wkpos/reports/productReport&user_token=' + user_token;
+    var outlet = $('#input-outlet').val();
+    var supplier = $('#input-supplier').val();
+    if (outlet != '') {
+      product_url += '&filter_outlet=' + encodeURIComponent(outlet);
+    }
+    if (supplier != '') {
+      product_url += '&filter_supplier=' + encodeURIComponent(supplier);
+    }
+    product_url += '&page=' + encodeURIComponent(page);
+    $.ajax({
+      url: product_url,
+      type: 'post',
+      dataType: 'json',
+      beforeSend: function(){
+        $('#product-footer').prepend('<i class="fa fa-spin fa-spinner"></i>');
+      },
+      success: function(json) {
+        if (json['success']) {
+          var product = '';
+          if (json['products']) {
+            product_total = json['total'];
+            for (var i = 0; i < json['products'].length; i++) {
+              var supplier = '{{ text_no_supplier }}';
+              if (json['products'][i]['supplier'] != null) {
+                supplier = json['products'][i]['supplier'];
+              }
+              product += '<tr style="display:none" class="last-row">';
+              product += '<td>' + (Number(product_listed) + 1) + '.</td>';
+              product += '<td>' + json['products'][i]['name'] + '</td>';
+              product += '<td>' + json['products'][i]['outlet'] + '</td>';
+              product += '<td>' + json['products'][i]['model'] + '</td>';
+              product += '<td>' + json['products'][i]['quantity'] + '</td>';
+              product += '<td>' + json['products'][i]['sold'] + '</td>';
+              product += '<td>' + json['products'][i]['remaining'] + '</td>';
+              product += '<td>' + supplier + '</td>';
+              product += '</tr>';
+              if (product_listed < product_total) {
+                product_listed += 1;
+              }
+            }
+            $('#product-report tbody').append($(product));
+            $('#product-report .last-row').slideDown(2000);
+            $('#product-footer .one').text((text_product_listed.replace('_listed',product_listed)).replace('_total', json['total']));
+          }
+        }
+      },
+      complete: function() {
+        $('#product-footer').find('i').remove();
+      }
+    });
+  }
+  $(document).on('ready', function(){
+    $('#product-footer').mouseover(function(){
+      if (product_listed < product_total) {
+      $(this).find('.one').hide();
+      $(this).find('.two').show();
+    } else if (product_listed == product_total ) {
+      $(this).find('.one').show();
+      $(this).find('.two').hide();
+    }
+    });
+    $('#product-footer').mouseout(function(){
+      if (product_listed < product_total) {
+        $(this).find('.two').hide();
+        $(this).find('.one').show();
+      } else if (product_listed == product_total ) {
+        $(this).find('.one').show();
+        $(this).find('.two').hide();
+      }
+    });
+  });
+
+  // Sale reports
+var sale_page = 1;
+var text_sale_listed = '{{ text_listed }}';
+var sale_listed = 0;
+var sale_total = 0;
+var sale_url = '';
+$(document).on('click', '#sale-footer', function(){
+  if (sale_listed < sale_total) {
+    sale_page = sale_page + 1;
+    salesReport();
+  }
+});
+salesReport();
+function salesReport() {
+  sale_url = 'index.php?route=wkpos/reports/salesReport&user_token=' + user_token + '&page=' + sale_page;
+  var filter_user = $('#input-user').val();
+  var filter_outlet = $('#input-soutlet').val();
+  var filter_customer = $('#input-customer').val();
+  var filter_payment = $('#input-payment').val();
+  var filter_mode = $('#input-mode').val();
+  var filter_date_from = $('#date-from').val();
+  var filter_date_to = $('#date-to').val();
+  var filter_year = $('#year').val();
+  var filter_month = $('#month').val();
+
+  if (filter_user) {
+    sale_url +='&filter_user=' + encodeURIComponent(filter_user);
+  }
+  if (filter_outlet) {
+    sale_url +='&filter_outlet=' + encodeURIComponent(filter_outlet);
+  }
+  if (filter_payment) {
+    sale_url +='&filter_payment=' + encodeURIComponent(filter_payment);
+  }
+  if (filter_mode) {
+    sale_url +='&filter_mode=' + encodeURIComponent(filter_mode);
+  }
+  if (filter_date_from) {
+    sale_url +='&filter_date_from=' + encodeURIComponent(filter_date_from);
+  }
+  if (filter_date_to) {
+    sale_url +='&filter_date_to=' + encodeURIComponent(filter_date_to);
+  }
+  if (filter_customer) {
+    sale_url +='&filter_customer=' + encodeURIComponent(filter_customer);
+  }
+  if (filter_year) {
+    sale_url +='&filter_year=' + encodeURIComponent(filter_year);
+  }
+  if (filter_month) {
+    sale_url +='&filter_month=' + encodeURIComponent(filter_month);
+  }
+
+  $.ajax({
+    url: sale_url,
+    type: 'post',
+    datType: 'json',
+    beforeSend: function() {
+      $('#sale-footer').prepend('<i class="fa fa-spin fa-spinner"></i>');
+    },
+    success: function(json) {
+      if (json['sales']) {
+        var sale = '';
+        sale_total = json['total'];
+        for (var i = 0; i < json['sales'].length; i++) {
+          sale += '<tr style="display:none" class="last-row">';
+          sale += '<td>' + json['sales'][i]['order_id'] + '</td>';
+          sale += '<td>' + json['sales'][i]['outlet'] + '</td>';
+          sale += '<td>' + json['sales'][i]['customer'] + '<br />(' + json['sales'][i]['email'] +')</td>';
+          sale += '<td>' + json['sales'][i]['total'] + '</td>';
+          sale += '<td>' + json['sales'][i]['date_added'] + '</td>';
+          sale += '<td>' + json['sales'][i]['payment_method'] + '</td>';
+          sale += '<td>' + json['sales'][i]['order_status'] + '</td>';
+          sale += '<td>' + json['sales'][i]['user_name'] + '</td>';
+          sale += '</tr>';
+          if (sale_listed < sale_total) {
+            sale_listed += 1;
+          }
+        }
+        $('#sale-report tbody').append($(sale));
+        $('#sale-report .last-row').slideDown(2000);
+        $('#sale-footer .one').text((text_sale_listed.replace('_listed',sale_listed)).replace('_total', json['total']));
+      }
+    },
+    complete: function() {
+      $('#sale-footer').find('i').remove();
+    }
+  });
+}
+
+$(document).on('ready', function(){
+  $('#sale-footer').mouseover(function(){
+    if (sale_listed < sale_total) {
+    $(this).find('.one').hide();
+    $(this).find('.two').show();
+  } else if (sale_listed == sale_total ) {
+    $(this).find('.one').show();
+    $(this).find('.two').hide();
+  }
+  });
+  $('#sale-footer').mouseout(function(){
+    if (sale_listed < sale_total) {
+      $(this).find('.two').hide();
+      $(this).find('.one').show();
+    } else if (sale_listed == sale_total ) {
+      $(this).find('.one').show();
+      $(this).find('.two').hide();
+    }
+  });
+});
+
+$('.date').datetimepicker({
+  pickTime: false,
+  format: 'YYYY-MM-DD',
+  autoclose: true,
+  keepOpen: false
+});
+
+$(document).on('click', '.btn-info.from', function(){
+  $('#date-from').trigger('click');
+});
+$(document).on('click', '.btn-info.to', function(){
+  $('#date-to').trigger('click');
+});
+$('#customer-autocomplete').autocomplete({
+  'source': function(request, response) {
+    $.ajax({
+      url: 'index.php?route=wkpos/reports/customerAutocomplete&user_token=' + encodeURIComponent(user_token) +'&filter_customer=' + encodeURIComponent(request),
+      dataType: 'json',
+      success: function(json) {
+        response($.map(json, function(item) {
+					return {
+						label: item['name'] + ' (' + item['email'] + ')',
+						value: item['customer_id'],
+            name: item['name']
+					}
+				}));
+      }
+    });
+  },
+  'select': function(item) {
+    $('#customer-autocomplete').val(item['name']);
+    $('#input-customer').val(item['value']);
+  }
+});
+$(document).on('click', '#button-filter', function(){
+  sale_listed = 0;
+  sale_page = 1;
+  $('#sale-report tbody').html('');
+  salesReport();
+});
+$(document).on('click', '#button-clear', function(){
+  sale_listed = 0;
+  sale_page = 1;
+  $('#sale-report tbody').html('');
+  $('#input-soutlet option:first').prop('selected', true);
+  $('#input-payment option:first').prop('selected', true);
+  $('#input-user option:first').prop('selected', true);
+  $('#input-mode option:first').prop('selected', true);
+  $('#customer-autocomplete').val('');
+  $('#input-customer').val('');
+  $('.radius-0').val('');
+  $('#range li').removeAttr('class');
+  salesReport();
+});
+$(document).on('click', 'ul.nav.nav-tabs li a', function(){
+  localStorage.report_tab = $(this).attr('id');
+});
+$(document).on('ready', function(){
+  if (typeof localStorage.report_tab !='undefined') {
+    $('#'+localStorage.report_tab).trigger('click');
+  }
+});
+</script>
+<style>
+.radius-0 {
+  border-radius: 0;
+}
+.padding-0 {
+  padding: 0;
+}
+.padding-1 {
+  padding: 0 0 0 2%;
+}
+.padding-0 .input-group, .padding-1 .input-group {
+  width: 100% !important;
+}
+.date {
+  width: 48%;
+  float: left;
+}
+#date-to, #date-from {
+  width: 75%;
+}
+.date .input-group-btn {
+  float: left;
+  width: 22%;
+}
+
+</style>
+{{ footer }}

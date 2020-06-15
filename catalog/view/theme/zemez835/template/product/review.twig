@@ -1,0 +1,21 @@
+{% if (reviews) %} 
+{% for review in reviews %} 
+<div class="review-item">
+		<div class="review-score">
+			{% for i in 1..5 %}
+			{% if (review['rating'] < i) %} 
+			<span class="fa-stack"><i class="material-design-mark1 fa-stack-1x"></i></span>
+			{% else %} 
+			<span class="fa-stack"><i class="material-design-mark1 star fa-stack-1x"></i></span>
+			{% endif %} 
+			{% endfor %} 
+		</div>		
+		<div class="review-date">{{ review['date_added'] }}</div>
+		<p>{{ review['text'] }}</p>
+		<div class="review-author"><i class="material-design-user157"></i>{{ review['author'] }}</div>		
+</div>
+{% endfor %} 
+<div class="text-right">{{ pagination }}</div>
+{% else %} 
+<p>{{ text_no_reviews }}</p>
+{% endif %}

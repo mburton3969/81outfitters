@@ -1,0 +1,10 @@
+<h2 class="box-heading"><span>{{ text_contact }}</span></h2>
+<div class="box-content footer_box">
+	<address>
+		<p>
+      <i class="fa fa-envelope"></i> <a class="footer-link" href="mailto:{{ email }} ">{{ email }}</a><br>
+			<i class="fa fa-phone"></i> <a class="footer-link" href="callto:{{telephone|replace({' ': '', ")" : '', '(' : '', "+" : '', '-' : ''})}}">{{ telephone }}</a>{{ ', ' }}<a class="footer-link" href="callto:{{fax|replace({' ': '', ")" : '', '(' : '', "+" : '', '-' : ''})}}">{{ fax }}</a><br>
+			<i class="fa fa-map-marker"></i> <a class="footer-link" href="//www.google.com/maps/{{ geocode ? '?q=' ~ geocode|replace({' ' : '+'}) : null }}" target="_blank">{{ address }}</a>
+		</p>
+	</address>
+</div>

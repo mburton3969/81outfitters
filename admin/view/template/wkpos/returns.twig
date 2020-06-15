@@ -1,0 +1,327 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ heading_title }}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="well well-sm row">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="filter-return-id">{{ column_return_id }}</label>
+              <input type="text" class="form-control" id="filter-return-id" placeholder="{{ column_return_id }}">
+            </div>
+            <div class="form-group">
+              <label for="filter-order-id">{{ column_order_id }}</label>
+              <input type="text" class="form-control" id="filter-order-id" placeholder="{{ column_order_id }}">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="filter-product">{{ column_product }}</label>
+              <input type="text" class="form-control" name="filter_product" id="filter-product" placeholder="{{ column_product }}">
+            </div>
+            <div class="form-group">
+              <label for="filter-customer">{{ column_customer }}</label>
+              <input type="text" class="form-control" name="filter_customer" id="filter-customer" placeholder="{{ column_customer }}">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="filter-model">{{ column_model }}</label>
+              <input type="text" class="form-control" name="filter_model" id="filter-model" placeholder="{{ column_model }}">
+            </div>
+            <div class="form-group">
+              <label for="filter-status">{{ column_status }}</label>
+              <select id="filter-status" class="form-control">
+                <option value="0"></option>
+                {% for status in return_statuses %}
+                    <option value="{{ status['return_status_id'] }}">{{ status['name'] }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="date-added-picker">{{ column_date_added }}</label>
+              <div class="input-group date">
+                <input type="text" class="form-control" id="filter-date-added" placeholder="{{ column_date_added }}">
+                <span class="input-group-btn"><button id="date-added-picker" class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="date-modified-picker">{{ column_date_modified }}</label>
+              <div class="input-group date">
+                <input type="text" class="form-control" id="filter-date-modified" placeholder="{{ column_date_modified }}">
+                <span class="input-group-btn"><button id="date-modified-picker" class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button></span>
+              </div>
+              <div class="btn-section pull-right">
+                <button type="button" class="btn btn-warning" id="button-clear" name="button"><i class="fa fa-remove"></i> {{ button_clear }}</button>
+                <button type="button" class="btn btn-primary" id="button-filter" name="button"><i class="fa fa-filter"></i> {{ button_filter }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <td class="text-right"><a href="r.return_id" class="filter-sort selected desc">{{ column_return_id }}</a></td>
+                <td class="text-right"><a href="r.order_id" class="filter-sort">{{ column_order_id }}</a> </td>
+                <td class="text-left"><a href="customer" class="filter-sort">{{ column_customer }}</a></td>
+                <td class="text-left"><a href="r.product" class="filter-sort">{{ column_product }}</a></td>
+                <td class="text-left"><a href="r.model" class="filter-sort">{{ column_model }}</a></td>
+                <td class="text-left"><a href="status" class="filter-sort">{{ column_status }}</a></td>
+                <td class="text-left"><a href="r.date_added" class="filter-sort">{{ column_date_added }}</a></td>
+                <td class="text-left"><a href="r.date_modified" class="filter-sort">{{ column_date_modified }}</a></td>
+                <td class="text-right">{{ column_action }}</td>
+              </tr>
+            </thead>
+            <tbody id="return-list">
+
+            </tbody>
+            <tfoot>
+              <tr>
+                <td class="text-center alert-info" colspan="9" id="return-footer"><span id="filter-span"></span><span id="id-span" class="hide">{{ text_more }}</span></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+var counter_true = true;
+var filter_start = 0;
+var filter_sort = 'r.return_id';
+var filter_order = 'DESC';
+var filter_url = 'index.php?route=wkpos/returns/loadReturns&user_token={{ user_token }}';
+var result_text = '{{ text_result }}';
+var total_return = 0;
+$(document).on('click', '#button-filter', function(){
+  filter_start = 0;
+  filter_sort = 'r.return_id';
+  filter_order = 'DESC';
+  filter_url = 'index.php?route=wkpos/returns/loadReturns&user_token={{ user_token }}';
+  $('#return-list').html('');
+  loadReturns();
+});
+$(document).on('click', '#button-clear', function(){
+  filter_start = 0;
+  filter_sort = 'r.return_id';
+  filter_order = 'DESC';
+  filter_url = 'index.php?route=wkpos/returns/loadReturns&user_token={{ user_token }}';
+  $("#filter-return-id").val('');
+  $("#filter-order-id").val('');
+  $("#filter-product").val('');
+  $("#filter-model").val('');
+  $("#filter-customer").val('');
+  $("#filter-date-added").val('');
+  $("#filter-date-modified").val('');
+  $("#filter-status option:first").prop('selected', 'selected');
+  $('.filter-sort:first').addClass('selected').addClass('desc');
+  $('#return-list').html('');
+  loadReturns();
+});
+$(document).on('ready', function(){
+  loadReturns();
+});
+$(document).on('click', '.filter-sort', function(e){
+	e.preventDefault();
+  filter_start = 0;
+  filter_sort = $(this).attr('href');
+	if ($(this).hasClass('selected')) {
+    if ($(this).hasClass('desc')) {
+      $(this).removeClass('desc')
+      filter_order = 'ASC';
+      $(this).addClass('asc')
+    } else {
+      filter_order = 'DESC';
+      $(this).addClass('desc')
+      $(this).removeClass('asc')
+    }
+	} else {
+    $('.filter-sort').removeClass('asc');
+    $('.filter-sort').removeClass('desc');
+    $('.filter-sort').removeClass('selected');
+    $(this).addClass('asc');
+    filter_order = 'ASC';
+    $(this).addClass('selected');
+  }
+  $('#return-list').html('');
+  loadReturns();
+});
+
+function loadReturns(){
+  var filter_return_id = $("#filter-return-id").val();
+  var filter_order_id = $("#filter-order-id").val();
+  var filter_product = $("#filter-product").val();
+  var filter_model = $("#filter-model").val();
+  var filter_customer = $("#filter-customer").val();
+  var filter_date_added = $("#filter-date-added").val();
+  var filter_date_modified = $("#filter-date-modified").val();
+  var filter_status = $("#filter-status").val();
+
+  filter_url += '&sort=' + encodeURIComponent(filter_sort) + '&order=' + encodeURIComponent(filter_order);
+
+  if (filter_return_id) {
+    filter_url += '&filter_return_id=' + encodeURIComponent(filter_return_id);
+  }
+  if (filter_return_id) {
+    filter_url += '&filter_return_id=' + encodeURIComponent(filter_return_id);
+  }
+  if (filter_order_id) {
+    filter_url += '&filter_order_id=' + encodeURIComponent(filter_order_id);
+  }
+  if (filter_product) {
+    filter_url += '&filter_product=' + encodeURIComponent(filter_product);
+  }
+  if (filter_model) {
+    filter_url += '&filter_model=' + encodeURIComponent(filter_model);
+  }
+  if (filter_customer) {
+    filter_url += '&filter_customer=' + encodeURIComponent(filter_customer);
+  }
+  if (filter_date_added) {
+    filter_url += '&filter_date_added=' + encodeURIComponent(filter_date_added);
+  }
+  if (filter_date_modified) {
+    filter_url += '&filter_date_modified=' + encodeURIComponent(filter_date_modified);
+  }
+  if (filter_status) {
+    filter_url += '&filter_status=' + encodeURIComponent(filter_status);
+  }
+  $.ajax({
+    url: filter_url,
+    type: 'post',
+    dataType: 'json',
+    data: {filter_start: filter_start},
+    success: function(response) {
+      filter_start = filter_start + response['count'];
+      if (response['returns'] && response['returns'].length) {
+        return_html = '';
+        total_return = response['total']
+        for (var i in response['returns']) {
+          return_html += '<tr>';
+          return_html += '<td class="text-right">' + response['returns'][i]['return_id'] + '</td>';
+          return_html += '<td class="text-right">' + response['returns'][i]['order_id'] + '</td>';
+          return_html += '<td>' + response['returns'][i]['customer'] + '</td>';
+          return_html += '<td>' + response['returns'][i]['product'] + '</td>';
+          return_html += '<td>' + response['returns'][i]['model'] + '</td>';
+          return_html += '<td>' + response['returns'][i]['return_status'] + '</td>';
+          return_html += '<td>' + response['returns'][i]['date_added'] + '</td>';
+          return_html += '<td>' + response['returns'][i]['date_modified'] + '</td>';
+          return_html += '<td class="text-right"><a href="' + response['returns'][i]['edit'] + '" target="_blank" class="btn btn-primary" data-toggle="tooltip" title="{{ button_edit }}"><i class="fa fa-pencil"></i></a></td>';
+          return_html += '</tr>';
+        }
+        $('#return-list').append(return_html);
+        $('#return-footer span:first').text((result_text.replace('start',filter_start).replace('total', response['total'])));
+      } else if ($('#return-list').is(':empty')){
+        total_return = 0;
+        $('#filter-span').text('{{ text_no_results }}');
+      }
+    }
+  })
+}
+$(document).on('mouseover', '#return-footer', function(){
+  if (filter_start < total_return) {
+    $(this).css('cursor', 'pointer');
+    $('#id-span').removeClass('hide');
+    $('#filter-span').addClass('hide');
+  } else {
+    $(this).removeAttr('style');
+  }
+});
+$(document).on('mouseleave', '#return-footer', function(){
+  $('#id-span').addClass('hide');
+  $('#filter-span').removeClass('hide');
+});
+$(document).on('click', '#return-footer', function(){
+  loadReturns();
+});
+$('.date').datetimepicker({
+  pickTime: false,
+  format: 'YYYY-M-D'
+});
+$('input[name=\'filter_customer\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=customer/customer/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['customer_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'filter_customer\']').val(item['label']);
+	}
+});
+
+$('input[name=\'filter_product\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'filter_product\']').val(item['label']);
+	}
+});
+
+$('input[name=\'filter_model\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=catalog/product/autocomplete&user_token={{ user_token }}&filter_model=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['model'],
+						value: item['product_id']
+					}
+				}));
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'filter_model\']').val(item['label']);
+	}
+});
+</script>
+<style media="screen">
+  .well-sm .form-group {
+    padding-top:0 !important;
+    padding-bottom: 10px !important;
+  }
+  .btn-section {
+    margin-top: 10px;
+  }
+</style>
+{{ footer }}

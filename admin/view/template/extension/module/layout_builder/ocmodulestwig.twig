@@ -1,0 +1,35 @@
+{{ header }}
+<div id="content" class="list-btn-mods">
+	<div class="row">
+		{% for ocmod in ocmodules %}
+			<div class="col-sm-4 ">
+				<div class="btn-addmod">
+					<strong>
+						{{ ocmod.name }}
+					</strong>
+					<a href="{{ ocmod.install }}" class="btn btn-danger btn-xs pull-right btn-install {% if not ocmod.installed %} active {% else %} hide {% endif %}">
+						<i class="fa fa-plus-circle"></i>
+					</a>
+					<a href="{{ ocmod.edit }}" title="Add New Module" class="btn btn-primary btn-edit btn-xs pull-right btn-edit {% if not ocmod.installed %}  hide {% endif %} ">
+						<i class="fa fa-pencil"></i>
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+<script type="text/javascript">
+	$(".btn-addmod").each( function(){
+		var $btn = $(this);
+		$(".btn-install",$btn).click( function (){
+			$.ajax({
+				url: $(".btn-install",$btn).attr('href')
+			}).done(function() {
+				$(".btn-install",$btn).remove();
+				$(".btn-edit",$btn).removeClass("hide");
+			});
+			return false;
+		});
+	});
+</script>
+{{ footer }}

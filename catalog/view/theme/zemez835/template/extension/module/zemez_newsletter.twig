@@ -1,0 +1,65 @@
+<div id="zemez-newsletter" class="box newsletter">	
+	<div class="box-content">		
+		<form class="clearfix" method="post" enctype="multipart/form-data" id="zemez-newsletter-form">
+			<h5 class="box-heading">{{ heading_newsletter_title }}</h5>
+			{% if (description) %}<p class="newsletter-description">{{ description }}</p>{% endif %}
+			<div class="zemez-login-form">
+				<label class="control-label" for="input-zemez-newsletter-email"></label>
+				<input type="text" name="zemez_newsletter_email" value="" placeholder="{{ entry_mail }}"
+				id="input-zemez-newsletter-email" class="form-control"/>
+			</div>
+			<button type="submit" id="zemez-newsletter-button" class="btn">{{ button_subscribe }}</button>
+			<span id="zemez-newsletter_error" class="newsletter-error"></span>
+			<span id="zemez-newsletter_success" class="newsletter-success"></span>
+		</form>
+	</div>
+</div>
+<script>
+	$(document).ready(function () {
+		$('#zemez-newsletter').submit(function(e) {
+			e.preventDefault();
+			$.ajax({
+				url: 'index.php?route=extension/module/zemez_newsletter/addNewsletter',
+				type: 'POST',
+				dataType: 'json',
+				data: $('#zemez-newsletter').find('input[type=\'text\']'),
+				success: function(json) {
+					if (json['success']) {
+						$('#zemez-newsletter_error').html('');
+						$('#zemez-newsletter_success').stop(true, true).html(json['success']).fadeIn(300).delay(4000).fadeOut(300);
+					} else {
+						$('#zemez-newsletter_success').html('');
+						$('#zemez-newsletter_error').stop(true, true).html(json['error']).fadeIn(300).delay(4000).fadeOut(300);
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		});
+	});
+</script>
+
+
+<!-- MODAL CODE FOR SIGNUP BUTTON - Edited by Ignition Innovations | Brooke Tweddell -->
+<div id="newslettermodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-center">Thank you for Signing Up!</h4>
+      </div>
+      <div class="modal-body">
+        <p><i>Here is a token of our gratitude</i></p>
+        <br>
+        <h2><b>15% OFF</b></h2>
+        <h3><b>YOUR NEXT PURCHASE</b></h3>
+        <br>
+        <p>USE CODE: <b>THANKU15</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <p>Footer Test</p>
+      </div>
+    </div>
+  </div>
+</div>

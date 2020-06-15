@@ -1,0 +1,89 @@
+<div class="lookbook lookbook--collection">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+			<div class="lookbook__img">
+				<img src="{{ thumb }}" alt="" usemap="{{ '#' ~ module ~ '_map' }}">
+				{% for product in products %}
+					{% if (module ~ '_' ~ product['product_id'] in product_map) %}
+						<div data-marker="{{ module ~ '_' ~ product['product_id'] }}">
+							<i class="fa"></i>
+							<div class="marker__cnt" data-marker-cnt="{{ module ~ '_' ~ product['product_id'] }}">
+								<i class="fa fa-times close-btn"></i>
+								{% if (product['special']) %}
+									{% if (label_sale) %}
+										<div class="sale">
+											<span>{{ text_sale }}</span>
+										</div>
+									{% endif %}
+									{% if (label_discount) %}
+										<div class="discount">
+											<span>{{ product['label_discount'] }}</span>
+										</div>
+									{% endif %}
+								{% endif %}
+								{% if (product['label_new']) %}
+									<div class="new-pr"><span>{{ text_new }}</span></div>
+								{% endif %}
+								<img width="{{ product['img-width'] }}" height="{{ product['img-height'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" class="" src="{{ product['thumb'] }}"/>
+								<div class="name">
+									<a href="{{ product['href'] }}">{{ product['name'] }}</a>
+								</div>
+								{% if (product['price']) %}
+									<div class="price">
+										{% if (not product['special']) %}
+											{{ product['price'] }} 
+										{% else %}
+											<span class="price-old">{{ product['price'] }}</span> <span class="price-new">{{ product['special'] }}</span>
+										{% endif %}
+										{% if (product['tax']) %}
+											<span class="price-tax">{{ text_tax }} {{ product['tax'] }}</span>
+										{% endif %}
+									</div>
+								{% endif %}
+							</div>
+						</div>
+					{% endif %}
+				{% endfor %}
+				{{ product_map }} 
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
+			<div class="lookbook__aside lookbook__aside--fixed">
+			{% for product in products %}
+				<div class="row">
+					<div data-mapid="{{ module ~ '_' ~ product['product_id'] }}">
+						<div class="col-xs-12 col-sm-6">
+							<div class="img-block"><img width="{{ product['img-width'] }}" height="{{ product['img-height'] }}" alt="{{ product['name'] }}" title="{{ product['name'] }}" class="" src="{{ product['thumb'] }}"/></div>
+						</div>
+						<div class="caption col-xs-12 col-sm-6">
+							<div class="name">
+								<a href="{{ product['href'] }}">{{ product['name'] }}</a>
+							</div>
+							{% if (product['price']) %} 
+								<div class="price">
+									{% if (not product['special']) %} 
+									{{ product['price'] }} 
+									{% else %} 
+									<span class="price-old">{{ product['price'] }}</span> <span class="price-new">{{ product['special'] }}</span>
+									{% endif %} 
+									{% if (product['tax']) %} 
+									<span class="price-tax">{{ text_tax }} {{ product['tax'] }}</span>
+									{% endif %} 
+								</div>							
+							{% endif %}
+							<div class="cart-button">
+								<button class="btn" type="button" onclick="cart.add('{{ product['product_id'] }}');" >{{ button_cart }}</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				</div>
+			</div>
+			{% if (_GET['route'] is defined and _GET['route'] != 'product/lookbook/collection') %}
+				<div class="col-xs-12">
+					<a href="{{ collections }}" class="btn">{{ button_collections }}</a>
+				</div>
+			{% endif %}
+		</div>
+	</div>

@@ -1,0 +1,55 @@
+{%set rowsBefore = constant('false') %}{%set rowFlag = constant('false') %}
+
+{% if ( rows is not defined ) %}
+	<div {{ id ? 'id="' ~ id ~ '"' : '' }} class="homebuilder clearfix {{ class }}">
+		{% if (rowsBefore == constant('true')) %}
+			{%set level = 1 %}
+		{% else %}
+			{%set rows = layouts %}
+			{%set level = 1 %}
+		{% endif %}
+	{% endif %}
+	{% for lkey, row in rows %}
+		{# {%set row.level = level %} #}
+		{% if ( row.level > 1 and row.fullwidth == '1' ) %}
+			{# {%set row.level = 1 %} #}
+			{%set level = 1 %}
+			{%set rowsBefore = constant('true') %}
+			{%set rows = row %}
+		{% endif %}
+		{% if ( rowsBefore == constant('true') and rowFlag == constant('false') ) %}
+			{{ "</div></div>" }}
+			{%set rowFlag = constant('true') %}
+		{% endif %}
+		{% if ( row.level == 1 ) %}
+			<div class="zemez-container {% if (row.fullwidth == '0') %}{{ "container" }} {% endif %}" {{ row.attrs }}>
+				<div class="zemez-inner">
+				{% endif %} 
+				<div class="row row-level-{{ row.level }} {{ row.sfxcls }}">
+					<div class="row-inner {{ row.cls }} clearfix">
+						{% for col in row.cols %}
+							<div class="col-lg-{{ col.lgcol }} col-md-{{ col.mdcol }} col-sm-{{ col.smcol }} col-xs-{{ col.xscol }} {{ col.sfxcls }}">
+								<div class="col-inner {{ col.cls }}">
+									{% for widget in col.widgets %}
+										{% if ( widget.content is defined ) %}
+											{{ widget.content }}
+										{% endif %}
+									{% endfor %}
+									{% if ( col.rows is defined and col.rows ) %}
+										{%set rows = col.rows %}
+										{%set level = level + 1 %}
+										{% include DIR_TEMPLATE ~ template %}
+									{% endif %}
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				{% if ( row.level == 1 ) %}
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+	{% if ( level == 1 ) %}
+	</div>
+{% endif %}

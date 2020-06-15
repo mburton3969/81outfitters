@@ -1,0 +1,892 @@
+{{ header }}
+{{ column_left }}
+<div id="content">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="pull-right">
+				<button type="submit" form="form-tm_slideshow" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary">
+					<i class="fa fa-save"></i>
+				</button>
+				<a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default">
+					<i class="fa fa-reply"></i>
+				</a>
+			</div>
+			<h1>{{ heading_title }}</h1>
+			<ul class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+					<li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		{% if (error_warning) %}
+			<div class="alert alert-danger">
+				<i class="fa fa-exclamation-circle"></i>
+				{{ error_warning }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-pencil"></i>
+					{{ text_edit }}
+				</h3>
+			</div>
+			<div class="panel-body">
+				<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-tm_slideshow" class="form-horizontal">
+					<div class="panel-group" id="general-accordion">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#general-accordion" href="#collapse">
+										{{ text_general_settings }}
+									</a>
+								</h4>
+							</div>
+							<div id="collapse" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="input-name">{{ entry_name }}</label>
+										<div class="col-sm-10">
+											<input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+											{% if (error_name) %}
+												<div class="text-danger">{{ error_name }}</div>
+											{% endif %}
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+										<div class="col-sm-10">
+											<select name="status" id="input-status" class="form-control">
+												{% if (status) %}
+													<option value="1" selected="selected">{{ text_enabled }}</option>
+													<option value="0">{{ text_disabled }}</option>
+												{% else %}
+													<option value="1">{{ text_enabled }}</option>
+													<option value="0" selected="selected">{{ text_disabled }}</option>
+												{% endif %}
+											</select>
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-width">{{ entry_width }}</label>
+										<div class="col-sm-10">
+											<input type="text" name="width" value="{{ width }}" placeholder="{{ entry_width }}" id="input-width" class="form-control" />
+											{% if (error_width) %}
+												<div class="text-danger">{{ error_width }}</div>
+											{% endif %}
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-height">{{ entry_height }}</label>
+										<div class="col-sm-10">
+											<input type="text" name="height" value="{{ height }}" placeholder="{{ entry_height }}" id="input-height" class="form-control" />
+											{% if (error_height) %}
+												<div class="text-danger">{{ error_height }}</div>
+											{% endif %}
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-min_height">{{ entry_min_height }}</label>
+										<div class="col-sm-10">
+											<input type="text" name="min_height" value="{{ min_height }}" placeholder="{{ entry_min_height }}" id="input-min_height" class="form-control" />
+											{% if (error_min_height) %}
+												<div class="text-danger">{{ error_min_height }}</div>
+											{% endif %}
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="input-effect">
+											{{ entry_effect }}
+										</label>
+										<div class="col-sm-10">
+											<select name="effect" id="input-effect" class="form-control">
+												<option value="0" {% if (effect == "0") %}selected="selected" {% endif %}>{{ text_slide }}</option>
+												<option value="1" {% if (effect == "1") %}selected="selected" {% endif %}>{{ text_fade }}</option>
+												<option value="2" {% if (effect == "2") %}selected="selected" {% endif %}>{{ text_cube }}</option>
+												<option value="3" {% if (effect == "3") %}selected="selected" {% endif %}>{{ text_coverflow }}</option>
+												<option value="4" {% if (effect == "4") %}selected="selected" {% endif %}>{{ text_flip }}</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group required">
+										<label class="col-sm-2 control-label" for="input-speed">{{ entry_speed }}</label>
+										<div class="col-sm-10">
+											<input type="text" name="speed" value="{{ speed }}" placeholder="{{ entry_speed }}" id="input-speed" class="form-control" />
+											{% if (error_speed) %}
+												<div class="text-danger">{{ error_speed }}</div>
+											{% endif %}
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											{{ entry_autoplay }}
+										</label>
+										<div class="col-sm-10">
+											{% if (autoplay) %}
+												<label class="radio-inline">
+													<input type="radio" name="autoplay" value="1" checked="checked" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="autoplay" value="0" />
+													{{ text_no }}
+												</label>
+											{% else %}
+												<label class="radio-inline">
+													<input type="radio" name="autoplay" value="1" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="autoplay" value="0" checked="checked" />
+													{{ text_no }}
+												</label>
+											{% endif %}
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											{{ entry_keyboard_control }}
+										</label>
+										<div class="col-sm-10">
+											{% if (keyboard_control) %}
+												<label class="radio-inline">
+													<input type="radio" name="keyboard_control" value="1" checked="checked" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="keyboard_control" value="0" />
+													{{ text_no }}
+												</label>
+											{% else %}
+												<label class="radio-inline">
+													<input type="radio" name="keyboard_control" value="1" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="keyboard_control" value="0" checked="checked" />
+													{{ text_no }}
+												</label>
+											{% endif %}
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">
+											{{ entry_mousewheel_control }}
+										</label>
+										<div class="col-sm-10">
+											{% if (mousewheel_control) %}
+												<label class="radio-inline">
+													<input type="radio" name="mousewheel_control" value="1" checked="checked" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="mousewheel_control" value="0" />
+													{{ text_no }}
+												</label>
+											{% else %}
+												<label class="radio-inline">
+													<input type="radio" name="mousewheel_control" value="1" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="mousewheel_control" value="0" checked="checked" />
+													{{ text_no }}
+												</label>
+											{% endif %}
+										</div>
+									</div>
+									<div class="form-group mousewheel-options {{ mousewheel_control ? '' : 'hidden' }}">
+										<label class="col-sm-2 control-label">
+											{{ entry_mousewheel_release_on_edges }}
+										</label>
+										<div class="col-sm-10">
+											{% if (mousewheel_release_on_edges) %}
+												<label class="radio-inline">
+													<input type="radio" name="mousewheel_release_on_edges" value="1" checked="checked" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="mousewheel_release_on_edges" value="0" />
+													{{ text_no }}
+												</label>
+											{% else %}
+												<label class="radio-inline">
+													<input type="radio" name="mousewheel_release_on_edges" value="1" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="mousewheel_release_on_edges" value="0" checked="checked" />
+													{{ text_no }}
+												</label>
+											{% endif %}
+										</div>
+									</div>
+									<fieldset>
+										<legend>{{ entry_navigation }}</legend>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">
+												{{ entry_next_button }}
+											</label>
+											<div class="col-sm-10">
+												{% if (next_button) %}
+													<label class="radio-inline">
+														<input type="radio" name="next_button" value="1" checked="checked" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="next_button" value="0" />
+														{{ text_no }}
+													</label>
+												{% else %}
+													<label class="radio-inline">
+														<input type="radio" name="next_button" value="1" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="next_button" value="0" checked="checked" />
+														{{ text_no }}
+													</label>
+												{% endif %}
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">
+												{{ entry_prev_button }}
+											</label>
+											<div class="col-sm-10">
+												{% if (prev_button) %}
+													<label class="radio-inline">
+														<input type="radio" name="prev_button" value="1" checked="checked" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="prev_button" value="0" />
+														{{ text_no }}
+													</label>
+												{% else %}
+													<label class="radio-inline">
+														<input type="radio" name="prev_button" value="1" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="prev_button" value="0" checked="checked" />
+														{{ text_no }}
+													</label>
+												{% endif %}
+											</div>
+										</div>
+									</fieldset>
+									<fieldset>
+										<legend>{{ entry_pagination }}</legend>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">
+												{{ entry_pagination }}
+											</label>
+											<div class="col-sm-10">
+												{% if (pagination) %}
+													<label class="radio-inline">
+														<input type="radio" name="pagination" value="1" checked="checked" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="pagination" value="0" />
+														{{ text_no }}
+													</label>
+												{% else %}
+													<label class="radio-inline">
+														<input type="radio" name="pagination" value="1" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="pagination" value="0" checked="checked" />
+														{{ text_no }}
+													</label>
+												{% endif %}
+											</div>
+										</div>
+										<div class="form-group pagination-option {{ pagination ? '' : 'hidden' }}">
+											<label class="col-sm-2 control-label">
+												{{ entry_pagination_clickable }}
+											</label>
+											<div class="col-sm-10">
+												{% if (pagination_clickable) %}
+													<label class="radio-inline">
+														<input type="radio" name="pagination_clickable" value="1" checked="checked" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="pagination_clickable" value="0" />
+														{{ text_no }}
+													</label>
+												{% else %}
+													<label class="radio-inline">
+														<input type="radio" name="pagination_clickable" value="1" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="pagination_clickable" value="0" checked="checked" />
+														{{ text_no }}
+													</label>
+												{% endif %}
+											</div>
+										</div>
+										<div class="form-group pagination-option {{ pagination ? '' : 'hidden' }}">
+											<label class="col-sm-2 control-label">
+												{{ entry_pagination_bullet_render }}
+											</label>
+											<div class="col-sm-10">
+												{% if (pagination_bullet_render) %}
+													<label class="radio-inline">
+														<input type="radio" name="pagination_bullet_render" value="1" checked="checked" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="pagination_bullet_render" value="0" />
+														{{ text_no }}
+													</label>
+												{% else %}
+													<label class="radio-inline">
+														<input type="radio" name="pagination_bullet_render" value="1" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="pagination_bullet_render" value="0" checked="checked" />
+														{{ text_no }}
+													</label>
+												{% endif %}
+											</div>
+										</div>
+									</fieldset>
+									<fieldset>
+										<legend>{{ entry_scrollbar }}</legend>
+										<div class="form-group">
+											<label class="col-sm-2 control-label">
+												{{ entry_scrollbar }}
+											</label>
+											<div class="col-sm-10">
+												{% if (scrollbar) %}
+													<label class="radio-inline">
+														<input type="radio" name="scrollbar" value="1" checked="checked" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="scrollbar" value="0" />
+														{{ text_no }}
+													</label>
+												{% else %}
+													<label class="radio-inline">
+														<input type="radio" name="scrollbar" value="1" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="scrollbar" value="0" checked="checked" />
+														{{ text_no }}
+													</label>
+												{% endif %}
+											</div>
+										</div>
+										<div class="form-group scrollbar-option {{ scrollbar ? '' : 'hidden' }}">
+											<label class="col-sm-2 control-label">
+												{{ entry_scrollbar_draggable }}
+											</label>
+											<div class="col-sm-10">
+												{% if (scrollbar_draggable) %}
+													<label class="radio-inline">
+														<input type="radio" name="scrollbar_draggable" value="1" checked="checked" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="scrollbar_draggable" value="0" />
+														{{ text_no }}
+													</label>
+												{% else %}
+													<label class="radio-inline">
+														<input type="radio" name="scrollbar_draggable" value="1" />
+														{{ text_yes }}
+													</label>
+													<label class="radio-inline">
+														<input type="radio" name="scrollbar_draggable" value="0" checked="checked" />
+														{{ text_no }}
+													</label>
+												{% endif %}
+											</div>
+										</div>
+									</fieldset>
+									<div class="form-group">
+										<hr>
+										<label class="col-sm-2 control-label">
+											{{ entry_loop }}
+										</label>
+										<div class="col-sm-10">
+											{% if (loop) %}
+												<label class="radio-inline">
+													<input type="radio" name="loop" value="1" checked="checked" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="loop" value="0" />
+													{{ text_no }}
+												</label>
+											{% else %}
+												<label class="radio-inline">
+													<input type="radio" name="loop" value="1" />
+													{{ text_yes }}
+												</label>
+												<label class="radio-inline">
+													<input type="radio" name="loop" value="0" checked="checked" />
+													{{ text_no }}
+												</label>
+											{% endif %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<fieldset>
+						<legend>{{ text_slides_settings }}</legend>
+						<div class="panel-group" id="slide-accordion">
+							{% if (slides is defined and slides) %}
+								{% for s, slide in slides %}
+									<div id="slide-{{ s }}" class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse" data-parent="#slide-accordion" href="#collapse-{{ s }}">
+													{{ entry_slide ~ ' ' ~ (s + 1) }}
+												</a>
+											</h4>
+										</div>
+										<div id="collapse-{{ s }}" class="panel-collapse collapse">
+											<div class="panel-body">
+												<div class="form-group">
+													<label class="col-sm-2 control-label">
+														{{ entry_slide_type }}
+													</label>
+													<div class="col-sm-10">
+														{% if (slides[s]['slide_type']) %}
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][slide_type]" value="1" checked="checked" />
+																{{ text_video }}
+															</label>
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][slide_type]" value="0" />
+																{{ text_image }}
+															</label>
+														{% else %}
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][slide_type]" value="1" />
+																{{ text_video }}
+															</label>
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][slide_type]" value="0" checked="checked" />
+																{{ text_image }}
+															</label>
+														{% endif %}
+													</div>
+												</div>
+												<div class="form-group video-options {{ slides[s]['slide_type'] ? '' : 'hidden' }}">
+													<label class="col-sm-2 control-label">
+														{{ entry_video_loop }}
+													</label>
+													<div class="col-sm-10">
+														{% if (slides[s]['video_loop']) %}
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_loop]" value="1" checked="checked" />
+																{{ text_yes }}
+															</label>
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_loop]" value="0" />
+																{{ text_no }}
+															</label>
+														{% else %}
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_loop]" value="1" />
+																{{ text_yes }}
+															</label>
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_loop]" value="0" checked="checked" />
+																{{ text_no }}
+															</label>
+														{% endif %}
+													</div>
+												</div>
+												<div class="form-group video-options {{ slides[s]['slide_type'] ? '' : 'hidden' }}">
+													<label class="col-sm-2 control-label">
+														{{ entry_video_autoplay }}
+													</label>
+													<div class="col-sm-10">
+														{% if (slides[s]['video_autoplay']) %}
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_autoplay]" value="1" checked="checked" />
+																{{ text_yes }}
+															</label>
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_autoplay]" value="0" />
+																{{ text_no }}
+															</label>
+														{% else %}
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_autoplay]" value="1" />
+																{{ text_yes }}
+															</label>
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_autoplay]" value="0" checked="checked" />
+																{{ text_no }}
+															</label>
+														{% endif %}
+													</div>
+												</div>
+												<div class="form-group required video-options {{ slides[s]['slide_type'] ? '' : 'hidden' }}">
+													<label class="col-sm-2 control-label" for="input-video_playback_rate-{{ s }}">
+														{{ entry_video_playback_rate }}
+													</label>
+													<div class="col-sm-10">
+														<input type="text" name="slides[{{ s }}][video_playback_rate]" value="{{ slides[s]['video_playback_rate'] }}" placeholder="{{ entry_video_playback_rate }}" id="input-video_playback_rate-{{ s }}" class="form-control" />
+														{% if (error_video_playback_rate[s] is defined) %}
+															<div class="text-danger">{{ error_video_playback_rate[s] }}</div>
+														{% endif %}
+													</div>
+												</div>
+												<div class="form-group video-options {{ slides[s]['slide_type'] ? '' : 'hidden' }}">
+													<label class="col-sm-2 control-label">
+														{{ entry_video_muted }}
+													</label>
+													<div class="col-sm-10">
+														{% if (slides[s]['video_muted']) %}
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_muted]" value="1" checked="checked" />
+																{{ text_yes }}
+															</label>
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_muted]" value="0" />
+																{{ text_no }}
+															</label>
+														{% else %}
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_muted]" value="1" />
+																{{ text_yes }}
+															</label>
+															<label class="radio-inline">
+																<input type="radio" name="slides[{{ s }}][video_muted]" value="0" checked="checked" />
+																{{ text_no }}
+															</label>
+														{% endif %}
+													</div>
+												</div>
+												<div class="form-group required volume-options {{ slides[s]['video_muted'] ? 'hidden' : '' }}">
+													<label class="col-sm-2 control-label" for="input-video_volume-{{ s }}">
+														{{ entry_video_volume }}
+													</label>
+													<div class="col-sm-10">
+														<input type="text" name="slides[{{ s }}][video_volume]" value="{{ slides[s]['video_volume'] }}" placeholder="{{ entry_video_volume }}" id="input-video_volume-{{ s }}" class="form-control" />
+														{% if (error_video_volume[s] is defined) %}
+															<div class="text-danger">{{ error_video_volume[s] }}</div>
+														{% endif %}
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="input-image-{{ s }}">
+														{{ entry_image }}
+													</label>
+													<div class="col-sm-10">
+														<a href="" id="thumb-image-{{ s }}" data-toggle="image" class="img-thumbnail">
+															<img src="{{ slides[s]['thumb'] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+														</a>
+														<input type="hidden" name="slides[{{ s }}][image]" value="{{ slides[s]['image'] }}" id="input-image-{{ s }}" />
+													</div>
+												</div>
+												<div class="tab-pane">
+													<div class="row">
+														<div class="col-sm-10 col-sm-offset-2">
+															<ul class="nav nav-tabs" id="language-{{ s }}">
+																{% for language in languages %}
+																	<li>
+																		<a href="#language-{{ s ~ '-' ~ language['language_id'] }}" data-toggle="tab">
+																			<img src="language/{{ language['code'] }}/{{ language['code'] }}.png" title="{{ language['name'] }}" />
+																			{{ language['name'] }}
+																		</a>
+																	</li>
+																{% endfor %}
+															</ul>
+														</div>
+													</div>
+													<div class="tab-content">
+														{% for language in languages %}
+															<div class="tab-pane" id="language-{{ s ~ '-' ~ language['language_id'] }}">
+																<div class="form-group">
+																	<label class="col-sm-2 control-label" for="input-title-{{ s ~ '-' ~ language['language_id'] }}">
+																		{{ entry_title }}
+																	</label>
+																	<div class="col-sm-10">
+																		<input type="text" name="slides[{{ s }}][title][{{ language['language_id'] }}]" value="{{ slides[s]['title'][language['language_id']] }}" placeholder="{{ entry_title }}" id="input-title-{{ s ~ '-' ~ language['language_id'] }}" class="form-control" />
+																	</div>
+																</div>
+																<div class="form-group">
+																	<label class="col-sm-2 control-label" for="input-description-{{ s ~ '-' ~ language['language_id'] }}">
+																		{{ entry_description }}
+																	</label>
+																	<div class="col-sm-10">
+																		<textarea name="slides[{{ s }}][description][{{ language['language_id'] }}]" placeholder="{{ entry_description }}" id="input-description-{{ s ~ '-' ~ language['language_id'] }}" class="form-control">
+																			{{ slides[s]['description'][language['language_id']] is defined ? slides[s]['description'][language['language_id']] : '' }}
+																		</textarea>
+																	</div>
+																</div>
+															</div>
+														{% endfor %}
+													</div>
+												</div>
+												<div class="form-group">
+													<label class="col-sm-2 control-label" for="input-link-{{ s }}">{{ entry_link }}</label>
+													<div class="col-sm-10">
+														<input type="text" name="slides[{{ s }}][link]" value="{{ slides[s]['link'] }}" placeholder="{{ entry_link }}" id="input-link-{{ s }}" class="form-control" />
+													</div>
+												</div>
+											</div>
+											<div class="panel-footer text-right">
+												<button type="button" onclick="removeSlide($(this));" data-toggle="tooltip" title="{{ text_remove_slide }}" class="btn btn-danger">
+													<i class="fa fa-minus-circle"></i>
+												</button>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</fieldset>
+					<div class="form-group">
+						<div class="col-sm-12 text-right">
+							<button type="button" onclick="addSlide();" data-toggle="tooltip" title="{{ text_add_slide }}" class="btn btn-primary">
+								<i class="fa fa-plus-circle"></i>
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<link href="view/javascript/codemirror/lib/codemirror.css" rel="stylesheet" />
+<link href="view/javascript/codemirror/theme/monokai.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/codemirror/lib/codemirror.js"></script> 
+<script type="text/javascript" src="view/javascript/codemirror/lib/xml.js"></script> 
+<script type="text/javascript" src="view/javascript/codemirror/lib/formatting.js"></script> 
+
+<script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script>
+<script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
+{{ footer }}
+<script type="text/javascript">
+
+	var slides_count;
+
+	$(document).ready(function(){
+
+		$('[name=\'pagination\']').on('click', function(){
+			toggle($(this), "1", $('.pagination-option'));
+		});
+		$('[name=\'scrollbar\']').on('click', function(){
+			toggle($(this), "1", $('.scrollbar-option'));
+		});
+		$('[name=\'mousewheel_control\']').on('click', function(){
+			toggle($(this), "1", $('.mousewheel-options'));
+		});
+		$('#slide-accordion').delegate('[name*=slide_type]', 'click', function(){
+			toggle($(this), "1", $(this).closest('.panel-body').find('.video-options'));
+		});
+		$('#slide-accordion').delegate('[name*=video_muted]', 'click', function(){
+			toggle($(this), "0", $(this).closest('.panel-body').find('.volume-options'));
+		});
+		UpdateDescription();
+	});
+
+	function addSlide() {
+		if ($('#slide-accordion').find('[id^="slide-"]').length) {
+			slides_count = $('#slide-accordion').find('[id^="slide-"]:last').attr('id').split("-")[1];
+			slides_count++;
+		}
+		else {
+			slides_count = 0;
+		}
+		html =  '<div id="slide-' + slides_count + '" class="panel panel-default">';
+		html += '	<div class="panel-heading">';
+		html += '		<h4 class="panel-title">';
+		html += '			<a data-toggle="collapse" data-parent="#slide-accordion" href="#collapse-' + slides_count + '">';
+		html += '				{{ entry_slide }}' + (slides_count + 1) + '';
+		html += '			</a>';
+		html += '		</h4>';
+		html += '	</div>';
+		html += '	<div id="collapse-' + slides_count + '" class="panel-collapse collapse">';
+		html += '		<div class="panel-body">';
+		html += '			<div class="form-group">';
+		html += '				<label class="col-sm-2 control-label">';
+		html += '					{{ entry_slide_type }}';
+		html += '				</label>';
+		html += '				<div class="col-sm-10">';
+		html += '					<label class="radio-inline">';
+		html += '						<input type="radio" name="slides[' + slides_count + '][slide_type]" value="1" />';
+		html += '						{{ text_video }}';
+		html += '					</label>';
+		html += '					<label class="radio-inline">';
+		html += '						<input type="radio" name="slides[' + slides_count + '][slide_type]" value="0" checked="checked"/>';
+		html += '						{{ text_image }}';
+		html += '					</label>';
+		html += '				</div>';
+		html += '			</div>';
+		html += '			<div class="form-group video-options hidden">';
+		html += '				<label class="col-sm-2 control-label">';
+		html += '					{{ entry_video_loop }}';
+		html += '				</label>';
+		html += '				<div class="col-sm-10">';
+		html += '					<label class="radio-inline">';
+		html += '						<input type="radio" name="slides[' + slides_count + '][video_loop]" value="1" />';
+		html += '						{{ text_yes }}';
+		html += '					</label>';
+		html += '					<label class="radio-inline">';
+		html += '						<input type="radio" name="slides[' + slides_count + '][video_loop]" value="0" checked="checked" />';
+		html += '						{{ text_no }}';
+		html += '					</label>';
+		html += '				</div>';
+		html += '			</div>';
+		html += '			<div class="form-group video-options hidden">';
+		html += '				<label class="col-sm-2 control-label">';
+		html += '					{{ entry_video_autoplay }}';
+		html += '				</label>';
+		html += '				<div class="col-sm-10">';
+		html += '					<label class="radio-inline">';
+		html += '						<input type="radio" name="slides[' + slides_count + '][video_autoplay]" value="1" />';
+		html += '						{{ text_yes }}';
+		html += '					</label>';
+		html += '					<label class="radio-inline">';
+		html += '						<input type="radio" name="slides[' + slides_count + '][video_autoplay]" value="0" checked="checked" />';
+		html += '						{{ text_no }}';
+		html += '					</label>';
+		html += '				</div>';
+		html += '			</div>';
+		html += '			<div class="form-group required video-options hidden">';
+		html += '				<label class="col-sm-2 control-label" for="input-video_playback_rate-' + slides_count + '">';
+		html += '					{{ entry_video_playback_rate }}';
+		html += '				</label>';
+		html += '				<div class="col-sm-10">';
+		html += '					<input type="text" name="slides[' + slides_count + '][video_playback_rate]" value="" placeholder="{{ entry_video_playback_rate }}" id="input-video_playback_rate-' + slides_count + '" class="form-control" />';
+		html += '				</div>';
+		html += '			</div>';
+		html += '			<div class="form-group video-options hidden">';
+		html += '				<label class="col-sm-2 control-label">';
+		html += '					{{ entry_video_muted }}';
+		html += '				</label>';
+		html += '				<div class="col-sm-10">';
+		html += '					<label class="radio-inline">';
+		html += '						<input type="radio" name="slides[' + slides_count + '][video_muted]" value="1" checked="checked" />';
+		html += '						{{ text_yes }}';
+		html += '					</label>';
+		html += '					<label class="radio-inline">';
+		html += '						<input type="radio" name="slides[' + slides_count + '][video_muted]" value="0" />';
+		html += '						{{ text_no }}';
+		html += '					</label>';
+		html += '				</div>';
+		html += '			</div>';
+		html += '			<div class="form-group required volume-options hidden">';
+		html += '				<label class="col-sm-2 control-label" for="input-video_volume-' + slides_count + '">';
+		html += '					{{ entry_video_volume }}';
+		html += '				</label>';
+		html += '				<div class="col-sm-10">';
+		html += '					<input type="text" name="slides[' + slides_count + '][video_volume]" value="" placeholder="{{ entry_video_volume }}" id="input-video_volume-' + slides_count + '" class="form-control" />';
+		html += '				</div>';
+		html += '			</div>';
+		html += '			<div class="form-group">';
+		html += '				<label class="col-sm-2 control-label" for="input-image-' + slides_count + '">';
+		html += '					{{ entry_image }}';
+		html += '				</label>';
+		html += '				<div class="col-sm-10">';
+		html += '					<a href="" id="thumb-image-' + slides_count + '" data-toggle="image" class="img-thumbnail">';
+		html += '						<img src="{{ placeholder }}" alt="" title="" placeholder="{{ placeholder }}" />';
+		html += '					</a>';
+		html += '					<input type="hidden" name="slides[' + slides_count + '][image]" value="" id="input-image-' + slides_count + '" />';
+		html += '				</div>';
+		html += '			</div>';
+		html += '			<div class="tab-pane">';
+		html += '				<div class="row">';
+		html += '					<div class="col-sm-10 col-sm-offset-2">';
+		html += '						<ul class="nav nav-tabs" id="language-' + slides_count + '">';
+		html += '							{% for language in languages %}';
+		html += '							<li>';
+		html += '								<a href="#language-' + slides_count + '-' + '{{ language['language_id'] }}" data-toggle="tab">';
+		html += '									<img src="language/{{ language['code'] }}/{{ language['code'] }}.png" title="{{ language['name'] }}" />';
+		html += '									{{ language['name'] }}';
+		html += '								</a>';
+		html += '							</li>';
+		html += '							{% endfor %}';
+		html += '						</ul>';
+		html += '					</div>';
+		html += '				</div>';
+		html += '				<div class="tab-content">';
+		html += '					{% for language in languages %}';
+		html += '					<div class="tab-pane" id="language-' + slides_count + '-' + '{{ language['language_id'] }}">';
+		html += '						<div class="form-group">';
+		html += '							<label class="col-sm-2 control-label" for="input-title-' + slides_count + '-' + '{{ language['language_id'] }}">';
+		html += '								{{ entry_title }}';
+		html += '							</label>';
+		html += '							<div class="col-sm-10">';
+		html += '								<input type="text" name="slides[' + slides_count + '][title][{{ language['language_id'] }}]" value="" placeholder="{{ entry_title }}" id="input-title-' + slides_count + '-' + '{{ language['language_id'] }}" class="form-control" />';
+		html += '							</div>';
+		html += '						</div>';
+		html += '						<div class="form-group">';
+		html += '							<label class="col-sm-2 control-label" for="input-description-' + slides_count + '-' + '{{ language['language_id'] }}">';
+		html += '								{{ entry_description }}';
+		html += '							</label>';
+		html += '							<div class="col-sm-10">';
+		html += '								<textarea name="slides[' + slides_count + '][description][{{ language['language_id'] }}]" placeholder="{{ entry_description }}" id="input-description-' + slides_count + '-' + '{{ language['language_id'] }}" class="form-control">';
+		html += '								</textarea>';
+		html += '							</div>';
+		html += '						</div>';
+		html += '					</div>';
+		html += '					{% endfor %}';
+		html += '				</div>';
+		html += '			</div>';
+		html += '			<div class="form-group">';
+		html += '				<label class="col-sm-2 control-label" for="input-link-' + slides_count + '">{{ entry_link }}</label>';
+		html += '				<div class="col-sm-10">';
+		html += '					<input type="text" name="slides[' + slides_count + '][link]" value="" placeholder="{{ entry_link }}" id="input-link-' + slides_count + '" class="form-control" />';
+		html += '				</div>';
+		html += '			</div>';
+		html += '		</div>';
+		html += '		<div class="panel-footer text-right">';
+		html += '			<button type="button" onclick="removeSlide($(this));" data-toggle="tooltip" title="{{ text_remove_slide }}" class="btn btn-danger">';
+		html += '				<i class="fa fa-minus-circle"></i>';
+		html += '			</button>';
+		html += '		</div>';
+		html += '	</div>';
+		html += '</div>';
+		$('#slide-accordion').append(html);
+		UpdateDescription();
+	}
+
+	function removeSlide(e) {
+		e.closest('[id*="slide-"]').remove();
+	}
+
+	function UpdateDescription() {
+		if (!$('#slide-accordion').find('.nav').hasClass('active')) {
+			$('#slide-accordion').find('.nav').find('a:first').tab('show');
+		}
+		$('#slide-accordion').find('.tab-content').find('[id^="input-description"]').each(function(){
+			if (!$(this).attr('style')) {
+				$(this).summernote({height: 300});
+			}
+		});
+	}
+
+	function toggle(e1, v, e2){
+		if (e1.val() == v) {
+			e2.removeClass('hidden');
+		} else {
+			e2.addClass('hidden');
+		}
+	}
+</script>

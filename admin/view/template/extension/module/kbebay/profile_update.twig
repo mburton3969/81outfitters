@@ -1,0 +1,926 @@
+{{ header }}{{ column_left }} 
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                {% if ebay_sites|length > 1 %} 
+                    <button type="submit" id="submit_general_profile_form" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                    <button style="display: none" type="submit" id="ebay-profile-specifics" form="ebay-profile-specifics" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+                {% endif %} 
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+            </div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if (error['error_warning'] is defined) %} 
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error['error_warning'] }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        {% if (success is defined and success != '') %} 
+            <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit_profile_add }}</h3>
+            </div>
+            <div class="panel-body">
+                {{ tab_common }} 
+                {% if ebay_sites|length > 1 %} 
+                <form action="" method="post" enctype="multipart/form-data" id="ebay-profile-add" class="form-horizontal">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab-general" data-toggle="tab" id='link_tab_general'>{{ text_data_tab }}</a></li>
+                        <li><a href="#tab-specifics" data-toggle="tab" id='link_tab_specifics'>{{ text_specifics }}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab-general">
+                            <input type="hidden" name="ebay[profile][id_ebay_cat_final]" value="{% if (ebay['profile']['id_ebay_cat_final'] is defined) %}{{ ebay['profile']['id_ebay_cat_final'] }}{% endif %}" placeholder="" id="id_ebay_cat_final" class="form-control"/>
+                            <input type="hidden" name="ebay[profile][id_ebay_profiles]" value="{% if (ebay['profile']['id_ebay_profiles'] is defined) %}{{ ebay['profile']['id_ebay_profiles'] }}{% endif %}" placeholder="" id="id_ebay_profiles" class="form-control"/>
+                            <input type="hidden" name="ebay[profile][ebay_cat_text]" value="{% if (ebay['profile']['ebay_cat_text'] is defined) %}{{ ebay['profile']['ebay_cat_text'] }}{% endif %}" placeholder="" id="ebay_cat_text" class="form-control"/>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay_profile_title">{{ text_profile_title }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="ebay[profile][profile_title]" value="{% if (ebay['profile']['profile_name'] is defined) %}{{ ebay['profile']['profile_name'] }}{% endif %}" placeholder="" id="ebay_profile_title" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay-sites">{{ text_ebay_sites }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][ebay-sites]" id="ebay-stores" class="form-control" {% if (id_ebay_profiles is defined) %} {{ 'disabled="disabled"' }} {% endif %}>
+                                      {% for sites in ebay_sites %} 
+                                          {% if (sites['id_ebay_countries'] == ebay_select_sites) %} 
+                                              <option value="{{ sites['id_ebay_countries'] }}" selected="selected">{{ sites['description'] }}</option>
+                                          {% else %} 
+                                              <option value="{{ sites['id_ebay_countries'] }}">{{ sites['description'] }}</option>
+                                          {% endif %} 
+                                      {% endfor %} 
+                                    </select>
+                                    {% if (id_ebay_profiles is defined) %} 
+                                    <input type="hidden" name="ebay[profile][ebay-sites]" value="{{ ebay_select_sites }}" class="form-control"/>
+                                    {% endif %} 
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay_profile_currency">{{ text_select_currency }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][currency]" id="ebay_currency" class="form-control">
+                                        {% for key,currecny in label_select_currency %} 
+                                            {% if (key == ebay_currency) %} 
+                                            <option value="{{ key }}" selected="selected">{{ currecny }}</option>
+                                            {% else %} 
+                                            <option value="{{ key }}">{{ currecny }}</option>
+                                            {% endif %} 
+                                        {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay_shipping_profile">{{ text_shipping_profile }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][ebay_shipping_profile]" id="ebay_shipping_profile" class="form-control">
+                                        {% for key,shipping_profile in shipping_profiles %} 
+                                            {% if (key == selected_shipping_profile) %} 
+                                            <option value="{{ key }}" selected="selected">{{ shipping_profile }}</option>
+                                            {% else %} 
+                                            <option value="{{ key }}">{{ shipping_profile }}</option>
+                                            {% endif %} 
+                                        {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay_profile_langauge">{{ text_select_language }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][languages]" id="ebay_languages" class="form-control">
+                                    {% for language in languages %} 
+                                        {% if (language['language_id'] == ebay_language) %} 
+                                            <option value="{{ language['language_id'] }}" selected="selected">{{ language['name'] }}</option>
+                                        {% else %} 
+                                            <option value="{{ language['language_id'] }}">{{ language['name'] }}</option>
+                                        {% endif %} 
+                                    {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay-category">{{ text_ebay_category }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][ebay_category]" id="ebay-category" class="form-control ebay_root">
+                                        <option value="0" selected="selected">{{ text_ebay_category_select }}</option>
+                                    </select>
+                                </div>
+                            </div>    
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-category">{{ text_store_category }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="category" value="" placeholder="{{ text_store_category }}" id="input-category" class="form-control" />
+                                    <div id="product-category" class="well well-sm" style="height: 150px; overflow: auto; margin-bottom: 0px">
+                                        {% for product_category in product_categories %} 
+                                        <div id="product-category{{ product_category['category_id'] }}"><i class="fa fa-minus-circle"></i> {{ product_category['name'] }} 
+                                            <input type="hidden" name="product_category[]" value="{{ product_category['category_id'] }}" />
+                                        </div>
+                                    {% endfor %} 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="store-category">{{ text_ebay_store_category }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][ebay_store_category]" id="store-category" class="form-control">
+                                        <option value="">{{ text_select_ebay_store_category }}</option>
+                                        {% for ebay_store_category in ebay_store_categories %} 
+                                            {% if (ebay_store_category['ebay_store_category_id'] == store_category) %} 
+                                                <option value="{{ ebay_store_category['ebay_store_category_id'] }}" selected="selected">{{ ebay_store_category['category_name'] }}</option>
+                                            {% else %} 
+                                                <option value="{{ ebay_store_category['ebay_store_category_id'] }}">{{ ebay_store_category['category_name'] }}</option>
+                                            {% endif %} 
+                                        {% endfor %} 
+                                    </select>
+                                    <div id="store_category_sync_url_div" style="font-size: 11px; font-style: italic; {% if (id_ebay_profiles is not defined) %} {{ 'display:none' }} {% endif %}">{{ sync_store_category }}</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="store-category">{{ product_description_template }}</label>
+                                <div class="col-sm-10">
+                                    <textarea name="ebay[profile][html_template]" placeholder="" data-toggle="summernote" id="html_template" class="form-control summernote">{{ html_template }}</textarea>
+                                    {{ text_html_template_hint }} {product_description} {product_id} {product_title} {sku} {model} {upc} {ean} {meta_title} {meta_description} {meta_keyword}
+                                </div>
+                            </div>
+
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="payment_methods">{{ text_payment_method }}</span></label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][payment_methods][]" id="ebay_paymenet_methods" class="form-control" multiple="" size="5">
+                                    {% for avaliablePaymentMethood in avaliablePaymentMethoods %} 
+                                        {% if avaliablePaymentMethood in ebay_payment_method %} 
+                                            <option value="{{ avaliablePaymentMethood }}" selected="selected">{{ avaliablePaymentMethood }}</option>
+                                        {% else %} 
+                                            <option value="{{ avaliablePaymentMethood }}">{{ avaliablePaymentMethood }}</option>
+                                        {% endif %} 
+                                    {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay_duration"><span data-toggle="tooltip" title="{{ text_duration_hint }}">{{ text_duration }}</span></label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][ebay_duration]" id="ebay_duration" class="form-control">
+                                    {% for duration in ebay_duration %} 
+                                        {% if (duration['id_type'] == ebay_select_duration) %} 
+                                            <option value="{{ duration['id_type'] }}" selected="selected">{{ duration['name'] }}</option>
+                                        {% else %} 
+                                            <option value="{{ duration['id_type'] }}">{{ duration['name'] }}</option>
+                                        {% endif %} 
+                                    {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay_product_condition">{{ text_product_condition }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][ebay_product_condition]" id="ebay_product_condition" class="form-control">
+                                      {% for condition in product_condition %} 
+                                          {% if (condition['id_type'] == ebay_select_condition) %} 
+                                              <option value="{{ condition['id_type'] }}" selected="selected">{{ condition['name'] }}</option>
+                                          {% else %} 
+                                              <option value="{{ condition['id_type'] }}">{{ condition['name'] }}</option>
+                                          {% endif %} 
+                                      {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" id="vat_percentage_div" style="{% if (vatenabled != 'yes') %} {{ 'display: none' }} {% endif %}">
+                                <label class="col-sm-2 control-label" for="ebay_vat_percentage">
+                                    <span data-toggle="tooltip" title="{{ text_vat_percentage_hint }}">{{ text_vat_percentage }}</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][ebay_vat_percentage]" id="ebay_vat_percentage" class="form-control">
+                                        <option value="">{{ text_select }}</option>
+                                        {% set i = 1 %}{% for i in i..100 %} 
+                                            {% if (i == ebay_vat_percentage) %} 
+                                                <option value="{{ i }}" selected="selected">{{ i }}</option>
+                                            {% else %} 
+                                                <option value="{{ i }}">{{ i }}</option>
+                                            {% endif %} 
+                                        {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="ebay_product_quantity">
+                                    <span data-toggle="tooltip" title="{{ text_quantity_hint }}">{{ text_alter_quantity }}</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="ebay[profile][product_quantity]" value="{% if (ebay['profile']['product_quantity'] is defined) %}{{ ebay['profile']['product_quantity'] }}{% endif %}" placeholder="" id="ebay_product_quantity" class="form-control"/>
+                                    {% if (error_ebay_product_quantity) %} 
+                                        <div class="text-danger">{{ error_ebay_product_quantity }}</div>
+                                    {% endif %} 
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay_product_dispatch_time">{{ text_product_dispatch_time }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][product_dispatch_time]" id="ebay_product_dispatch_time" class="form-control">
+                                        
+ {% set dispatch_days = "" %}
+ {% if (ebay['profile']['dispatch_days'] is defined) %}
+ {% set dispatch_days = ebay['profile']['dispatch_days'] %}
+ {% endif %}
+ {% for key,dispatch_time in ebay_dispatch_time %} 
+                                        {% if (key == dispatch_days) %} 
+                                            <option value="{{ key }}" selected="selected">{{ dispatch_time['name'] }}</option>
+                                        {% else %} 
+                                            <option value="{{ key }}">{{ dispatch_time['name'] }}</option>
+                                        {% endif %} 
+                                    {% endfor %}  
+                                    </select>
+                                  {% if (error_ebay_product_dispatch_time) %} 
+                                  <div class="text-danger">{{ error_ebay_product_dispatch_time }}</div>
+                                  {% endif %} 
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="profile_return">{{ text_profile_return }}</label>
+                                <div class="col-sm-10">
+                                  <select name="ebay[profile][return]" id="profile_return" class="form-control">
+                                    {% if (ebay['profile']['return_enable']) %} 
+                                    <option value="1" selected="selected">{{ text_yes }}</option>
+                                    <option value="0">{{ text_no }}</option>
+                                    {% else %} 
+                                    <option value="1">{{ text_yes }}</option>
+                                    <option value="0" selected="selected">{{ text_no }}</option>
+                                    {% endif %} 
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="form-group" {% if (ebay['profile']['return_enable'] is defined and ebay['profile']['return_enable'] == 0) %} {{ "style = 'display:none;'" }}{% endif %}>
+                                <label class="col-sm-2 control-label" for="ebay_return_description">{{ text_return_description }}</label>
+                                <div class="col-sm-10">
+                                    <textarea name="ebay[profile][return_description]" id="ebay_return_description" class="form-control">{{ ebay_return_description }}</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group required" {% if (ebay['profile']['return_enable'] is defined and ebay['profile']['return_enable'] == 0) %} {{ "style = 'display:none;'" }}{% endif %}>
+                            <label class="col-sm-2 control-label" for="ebay_return_time">{{ text_return_time }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][return_time]" id="ebay_return_time" class="form-control">
+                                      {% for time in return_time %} 
+                                          {% if (time['id'] == ebay_return_time) %} 
+                                              <option value="{{ time['id'] }}" selected="selected">{{ time['name'] }}</option>
+                                          {% else %} 
+                                              <option value="{{ time['id'] }}">{{ time['name'] }}</option>
+                                          {% endif %} 
+                                      {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group required" {% if (ebay['profile']['return_enable'] is defined and ebay['profile']['return_enable'] == 0) %} {{ "style = 'display:none;'" }}{% endif %}>
+                                <label class="col-sm-2 control-label" for="ebay_return_type">{{ text_return_type }}</label>
+                                <div class="col-sm-10">
+                                  <select name="ebay[profile][return_type]" id="ebay_return_type" class="form-control">
+                                    {% for type in return_type %} 
+                                        {% if (type['id'] == ebay_return_type) %} 
+                                            <option value="{{ type['id'] }}" selected="selected">{{ type['name'] }}</option>
+                                        {% else %} 
+                                            <option value="{{ type['id'] }}">{{ type['name'] }}</option>
+                                        {% endif %} 
+                                    {% endfor %} 
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="form-group required" {% if (ebay['profile']['return_enable'] is defined and ebay['profile']['return_enable'] == 0) %} {{ "style = 'display:none;'" }}{% endif %}>
+                                <label class="col-sm-2 control-label" for="ebay_return_shipping">{{ text_return_shipping }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][return_shipping]" id="ebay_return_shipping" class="form-control">
+                                        {% for shipping in return_shipping %} 
+                                            {% if (shipping['id'] == ebay_return_shipping) %} 
+                                                <option value="{{ shipping['id'] }}" selected="selected">{{ shipping['name'] }}</option>
+                                            {% else %} 
+                                                <option value="{{ shipping['id'] }}">{{ shipping['name'] }}</option>
+                                            {% endif %} 
+                                        {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="ebay_price_management">{{ text_price_management }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][price_management]" id="ebay_price_management" class="form-control">
+                                        {% if (ebay['profile']['price_management']) %} 
+                                        <option value="1" selected="selected">{{ text_yes }}</option>
+                                        <option value="0">{{ text_no }}</option>
+                                        {% else %} 
+                                        <option value="1">{{ text_yes }}</option>
+                                        <option value="0" selected="selected">{{ text_no }}</option>
+                                        {% endif %} 
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group required" {% if (ebay['profile']['price_management'] is defined and ebay['profile']['price_management'] == 0) %} {{ "style = 'display:none;'" }}{% endif %}>
+                                <label class="col-sm-2 control-label" for="ebay_price_management">{{ text_increase_decrese_price }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][increase_decrease]" id="ebay_increase_decrease" class="form-control">
+                                        {% if (ebay['profile']['increase_decrease']) %} 
+                                        <option value="1" selected="selected">{{ text_increase_price }}</option>
+                                        <option value="0">{{ text_decrease_price }}</option>
+                                        {% else %} 
+                                        <option value="1">{{ text_increase_price }}</option>
+                                        <option value="0" selected="selected">{{ text_decrease_price }}</option>
+                                        {% endif %} 
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group required" {% if (ebay['profile']['price_management'] is defined and ebay['profile']['price_management'] == 0) %} {{ "style = 'display:none;'" }}{% endif %}>
+                                <label class="col-sm-2 control-label" for="ebay_price_management">{{ text_price_value }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="ebay[profile][product_price]" value="{% if (ebay['profile']['product_price'] is defined) %}{{ ebay['profile']['product_price'] }}{% endif %}" placeholder="" id="ebay_product_price" class="form-control"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group required" {% if (ebay['profile']['price_management'] is defined and ebay['profile']['price_management'] == 0) %} {{ "style = 'display:none;'" }}{% endif %}>
+                                <label class="col-sm-2 control-label" for="ebay_price_management">{{ text_price_percentage_fixed }}</label>
+                                <div class="col-sm-10">
+                                    <select name="ebay[profile][percentage_fixed]" id="ebay_percentage_fixed" class="form-control">
+                                        {% if (ebay['profile']['percentage_fixed']) %} 
+                                        <option value="1" selected="selected">{{ text_price_percentage }}</option>
+                                        <option value="0">{{ text_price_fixed }}</option>
+                                        {% else %} 
+                                        <option value="1">{{ text_price_percentage }}</option>
+                                        <option value="0" selected="selected">{{ text_price_fixed }}</option>
+                                        {% endif %} 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group required" {% if (ebay['profile']['price_management'] is defined and ebay['profile']['price_management'] == 0) %} {{ "style = 'display:none;'" }}{% endif %}>
+                                <label class="col-sm-2 control-label" for="ebay_price_threshold_management">
+                                    <span data-toggle="tooltip" title="{{ product_threshold_price_hint }}">{{ product_threshold_price }}</span>
+                                </label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="ebay[profile][product_threshold_price]" value="{% if (ebay['profile']['product_threshold_price'] is defined) %}{{ ebay['profile']['product_threshold_price'] }}{% endif %}" placeholder="" id="ebay_product_threshold_price" class="form-control"/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane" id="tab-specifics">
+                            
+                        </div>
+                    </div>
+                </form>
+            {% else %} 
+            {{ site_add_text }} 
+            {% endif %} 
+      </div>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+    .image-loader-temp{
+        position: relative;
+        top: 30px;
+        right: -1150px;
+    }
+</style>
+<script type="text/javascript">
+    var category_select = "{{ text_ebay_category_select }}";
+    var label_select_currency = "{{ text_label_select_currency }}";
+    var text_shipping_select_profile = "{{ text_shipping_select_profile }}";
+    velovalidation.setErrorLanguage({
+        empty_field: '{{ text_field_empty_error }}',
+        number_field: '{{ error_ebay_product_quantity_int }}'
+
+    });
+    
+    $('input[name=\'category\']').autocomplete({
+        source: function(request, response) {
+            $.ajax({
+                url: 'index.php?route=catalog/category/autocomplete&{{ session_token_key }}={{ token }}&filter_name=' +  encodeURIComponent(request),
+                dataType: 'json',
+                success: function(json) {
+                    response($.map(json, function(item) {
+                        return {
+                            label: item['name'],
+                            value: item['category_id']
+                        }
+                    }));
+                }
+            });
+        },
+        select: function(item) {
+            $('input[name=\'category\']').val('');
+            $('#product-category' + item['value']).remove();
+            $('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>');
+        }
+    });
+
+    $('#product-category').delegate('.fa-minus-circle', 'click', function() {
+        $(this).parent().remove();
+    });
+
+    $('#ebay-stores').change(function() {
+        var store_id = $(this).val();
+        $('.text-danger').remove();
+        $('#ebay_cat_text').val("");
+        $('#id_ebay_cat_final').val("");
+        $('#change_cat').remove();
+        $('#cat_text').remove();
+        $('#ebay-category').css("display", "block");
+        $count = 0;
+        
+        /* Update Store Category Sync URL according to site ID */
+        var store_category_sync_url = '{{ sync_store_category_url }}' + store_id;
+        
+        $('#store_category_sync_url').attr('href',store_category_sync_url);
+        $('#store_category_sync_url_div').show();
+        
+        $('#ebay-category').parent().parent().find(".col-sm-2").each(function() {
+            if($count != 0) {
+                $(this).remove();
+            }
+            $count++;
+        });
+        $count = 0;
+        $('#ebay-category').parent().parent().find(".col-sm-10").each(function() {
+            if($count != 0) {
+                $(this).remove();
+            }
+            $count++;
+        });
+
+
+        if(store_id != 'select') {
+            $.ajax({
+                url: 'index.php?route={{ module_path }}/kbebay/ajaxProcessGetCategories&{{ session_token_key }}={{ token }}&store_id=' + store_id,
+                dataType: 'json',
+                success: function(json) {
+                    if(json['error'] && json['error'] != '') {
+                        var html = '<option value="0">' + category_select + '</option>';
+                        $('#ebay-category').html(html);
+                        $('#ebay-stores').after('<div class="text-danger">'+json['error']+'</div>');
+                    } else {
+                        if(json.vat_enabled == "yes") {
+                            $("#vat_percentage_div").show();
+                        } else {
+                            $("#vat_percentage_div").hide();
+                        }
+
+                        var arr = $.map(json.categories, function(item) { return item });
+                        var html = '';
+                        for(i = 0; i < arr.length; i++){
+                            html+= '<option value="'+arr[i]['ebay_categories']+'">'+arr[i]['ebay_category_name']+'</option>';
+                        }
+                        $('#ebay-category').html(html);
+                        
+                        var arr = $.map(json.store_categories, function(item) { return item });
+                        var html = '';
+                        for(i = 0; i < arr.length; i++){
+                            html+= '<option value="'+arr[i]['ebay_store_category_id']+'">'+arr[i]['category_name']+'</option>';
+                        }
+                        $('#store-category').html(html);
+
+                        if(json.currency_error == undefined) {
+                            var currencies = $.map(json.currency, function(item) { return item });
+                            var html = '';
+                            for(i = 0; i < currencies.length; i++) {
+                                html+= '<option value="' + currencies[i]['code'] + '">' + currencies[i]['title'] + '</option>';
+                            }
+                            $('#ebay_currency').html(html);
+                        } else {
+                            var html  = '<option value="0">' + label_select_currency + '</option>';
+                            $('#ebay_currency').html(html);
+                            $('#ebay_currency').after('<div class="text-danger">'+ json.currency_error + '</div>');
+                        }
+
+                        if(json.shipping_profile_error == undefined) {
+                            var shipping_profiles = $.map(json.shipping_profiles, function(item) { return item });
+                            var html = '';
+                            for(i = 0; i < shipping_profiles.length; i++) {
+                                html+= '<option value="' + shipping_profiles[i]['id_ebay_shipping'] + '">' + shipping_profiles[i]['shipping_profile_name'] + '</option>';
+                            }
+                            $('#ebay_shipping_profile').html(html);
+                        } else {
+                            var html = '<option value="0">' + text_shipping_select_profile + '</option>';
+                            $('#ebay_shipping_profile').html(html);
+                            $('#ebay_shipping_profile').after('<div class="text-danger">'+ json.shipping_profile_error + '</div>');
+                        }
+                    }
+                }
+            });
+        } else{
+            $('#ebay-category').html('<option value="0" selected="selected">{{ text_ebay_category_select }}</option>');
+        }
+    });
+
+    $(document).on('change', '.ebay_root', function() {
+        $(this).parent().nextAll('.col-sm-2').remove();
+        $(this).parent().nextAll('.col-sm-10').remove();
+        var category_id = $(this).val();
+        var store_id = $('#ebay-stores').val();
+        if(category_id != 0){
+            $.ajax({
+                url: 'index.php?route={{ module_path }}/kbebay/ajaxProcessGetSubcategories&{{ session_token_key }}={{ token }}&store_id='+store_id+'&category_id='+category_id,
+                dataType: 'json',
+                success: function(json) {
+                    if(json){
+                        var arr = $.map(json, function(item) { return item });
+                        var html = '<div class="col-sm-2"></div><div class="col-sm-10">';
+                        html+= '<select class="form-control ebay_root subcat removeall">';
+                        for(i = 0; i < arr.length; i++){
+                            html+= '<option value="'+arr[i]['ebay_categories']+'">'+arr[i]['ebay_category_name']+'</option>';
+                        }
+                        html+= '</div>';
+                        $("[name='ebay[profile][ebay_category]']").closest('.col-sm-10').parent().append(html);
+                    } else{
+                        html = '<div class="col-sm-2"></div><div class="col-sm-10" style=""><input type="button" id="confirm_cat" value="{{ text_confirm_category }}"></div>';
+                        $("[name='ebay[profile][ebay_category]']").closest('.col-sm-10').parent().append(html);
+                    }
+                }
+            });
+        }
+    });
+
+    $(document).on('click', '#confirm_cat', function() {
+        var final;
+        $(".ebay_root").each(function() {
+            final = ($(this).val());
+            if (final == 0) {
+                alert('{{ select_leaf }}');
+                return false;
+            }
+        });
+        var selected_cat = final;
+        var str = [];
+        $('.ebay_root option:selected').each(function() {
+            str.push($(this).text());
+        });
+        var cat_text = (str.join('>>'));
+        document.getElementById('ebay_cat_text').value = cat_text;
+        document.getElementById('id_ebay_cat_final').value = selected_cat;
+        $('<p id="cat_text">' + cat_text + '</p>').appendTo(document.getElementById("ebay-category").closest('.col-sm-10'));
+        $(".ebay_root").hide();
+        $(".ebay_root_text").hide();
+        $("#confirm_cat").hide();
+        html = '<div class="col-sm-2" style="clear:both"></div><div class="col-sm-10"><input type="button" id="change_cat" value="{{ text_change_category }}"></div>';
+        $("[name='ebay[profile][ebay_category]']").closest('.col-sm-10').parent().append(html);
+        getPaymentMethods($("#ebay-stores").val(), selected_cat);
+    });
+
+    function getPaymentMethods(site_id, selected_cat) {
+        $.ajax({
+            url: 'index.php?route={{ module_path }}/kbebay/ajaxGetCategoryFeature&{{ session_token_key }}={{ token }}',
+            dataType: 'json',
+            type: 'post',
+            data: 'site_id=' + site_id + "&selected_cat=" + selected_cat,
+            beforeSend: function() {
+            },
+            success: function(response) {
+                var PaymentOptionList = '';
+                $('#ebay_paymenet_methodss').empty();
+                $(response.SiteDefaults.PaymentMethod).each(function (key, value) {
+                    PaymentOptionList += '<option value="' + value + '">' + value + '</option>';
+                });
+                $('#ebay_paymenet_methods').html(PaymentOptionList);
+            }
+        });
+    }
+
+    $(document).on('click', '#change_cat', function() {
+        $("#cat_text").remove();
+        $("#change_cat").remove();
+        $(".ebay_root").show();
+        $(".ebay_root_text").show();
+        $("#confirm_cat").show();
+        {% if (id_ebay_profiles is defined) %} 
+            var store_id = $('#ebay-stores').val();
+            $.ajax({
+                url: 'index.php?route={{ module_path }}/kbebay/ajaxProcessGetCategories&{{ session_token_key }}={{ token }}&store_id='+store_id,
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#ebay-category').parent().nextAll('.col-sm-2').remove();
+                    $('#ebay-category').parent().nextAll('.col-sm-10').remove();
+                },
+                success: function(json) {
+                    var arr = $.map(json.categories, function(item) { return item });
+                    var html = '';
+                    for(i = 0; i < arr.length; i++){
+                        html+= '<option value="'+arr[i]['ebay_categories']+'">'+arr[i]['ebay_category_name']+'</option>';
+                    }
+                    $('#ebay-category').html(html);
+                }
+            });
+        {% endif %}    
+    });
+
+    $(document).on('click', '#submit_general_profile_form', function() {
+
+        $('input, select').removeClass('kb-error-message-field');
+        $('.kb-error-message').remove();
+        is_error = false;
+
+        check_ebay_profile_title = velovalidation.checkMandatory($('#ebay_profile_title'));
+        check_ebay_stores = velovalidation.checkMandatory($('#ebay-stores'));
+        check_ebay_currency = velovalidation.checkMandatory($('#ebay_currency'));
+        check_ebay_languages = velovalidation.checkMandatory($('#ebay_languages'));
+        check_ebay_category = velovalidation.checkMandatory($('#ebay-category'));
+        ebay_product_quantity = velovalidation.isNumeric($('#ebay_product_quantity'), false);
+        if($('#ebay_paymenet_methods').val()==null) {
+            check_ebay_paymenet_methods = '{{ text_field_empty_error }}';
+        } else {
+            check_ebay_paymenet_methods = true;
+        }
+        if($("input[name='product_category[]']").length) {
+            check_product_category = true;
+        } else {
+            check_product_category = '{{ text_field_empty_error }}';
+        }
+        //check_ebay_paymenet_methods = velovalidation.checkMandatory($('#ebay_paymenet_methods'));
+        check_ebay_product_condition = velovalidation.checkMandatory($('#ebay_product_condition'));
+        check_ebay_product_dispatch_time = velovalidation.checkMandatory($('#ebay_product_dispatch_time'));
+
+        if (check_product_category != true) {
+            is_error = true;
+            $('#product-category').addClass('kb-error-message-field');
+            $('#product-category').after('<span class="kb-error-message">' + check_product_category + '</span>');
+        }
+        if (check_ebay_profile_title != true) {
+            is_error = true;
+            $('#ebay_profile_title').addClass('kb-error-message-field');
+            $('#ebay_profile_title').after('<span class="kb-error-message">' + check_ebay_profile_title + '</span>');
+        }
+        if (check_ebay_stores != true) {
+            is_error = true;
+            $('#ebay-stores').addClass('kb-error-message-field');
+            $('#ebay-stores').after('<span class="kb-error-message">' + check_ebay_stores + '</span>');
+        }
+        if (check_ebay_currency != true) {
+            is_error = true;
+            $('#ebay_currency').addClass('kb-error-message-field');
+            $('#ebay_currency').after('<span class="kb-error-message">' + check_ebay_currency + '</span>');
+        }
+        if (check_ebay_languages != true) {
+            is_error = true;
+            $('#ebay_languages').addClass('kb-error-message-field');
+            $('#ebay_languages').after('<span class="kb-error-message">' + check_ebay_languages + '</span>');
+        }
+        if (check_ebay_category != true) {
+            is_error = true;
+            $('#ebay-category').addClass('kb-error-message-field')
+            $('#ebay-category').after('<span class="kb-error-message">' + check_ebay_category + '</span>');
+        }
+        
+        if (ebay_product_quantity != true) {
+            //is_error = true;
+            //$('#ebay_product_quantity').addClass('kb-error-message-field')
+            //$('#ebay_product_quantity').after('<span class="kb-error-message">' + ebay_product_quantity + '</span>');
+        }
+        
+        if (check_ebay_paymenet_methods != true) {
+            is_error = true;
+            $('#ebay_paymenet_methods').addClass('kb-error-message-field')
+            $('#ebay_paymenet_methods').after('<span class="kb-error-message">' + check_ebay_paymenet_methods + '</span>');
+        }
+        if (check_ebay_product_condition != true) {
+            is_error = true;
+            $('#ebay_product_condition').addClass('kb-error-message-field')
+            $('#ebay_product_condition').after('<span class="kb-error-message">' + check_ebay_product_condition + '</span>');
+        }
+        if (check_ebay_product_dispatch_time != true) {
+            is_error = true;
+            $('#ebay_product_dispatch_time').addClass('kb-error-message-field')
+            $('#ebay_product_dispatch_time').after('<span class="kb-error-message">' + check_ebay_product_dispatch_time + '</span>');
+        }
+        
+        html_template = $('#html_template').text();
+        if (html_template.length < 15) {
+            is_error = true;
+            $('.note-editor').addClass('kb-error-message-field')
+            $('.note-editor').after('<div class="kb-error-message">' + velovalidation.error('empty_field') + '</div>');
+        }
+        
+        if($('#ebay_product_dispatch_time').val()=='1'){
+            check_ebay_return_time = velovalidation.checkMandatory($('#ebay_return_time'));
+            check_ebay_return_type = velovalidation.checkMandatory($('#ebay_return_type'));
+            check_ebay_return_shipping = velovalidation.checkMandatory($('#ebay_return_shipping'));
+            if (check_ebay_return_time != true) {
+                is_error = true;
+                $('#ebay_return_time').addClass('kb-error-message-field')
+                $('#ebay_return_time').after('<span class="kb-error-message">' + check_ebay_return_time + '</span>');
+            }
+            if (check_ebay_return_type != true) {
+                is_error = true;
+                $('#ebay_return_type').addClass('kb-error-message-field')
+                $('#ebay_return_type').after('<span class="kb-error-message">' + check_ebay_return_type + '</span>');
+            }
+            if (check_ebay_return_shipping != true) {
+                is_error = true;
+                $('#ebay_return_shipping').addClass('kb-error-message-field')
+                $('#ebay_return_shipping').after('<span class="kb-error-message">' + check_ebay_return_shipping + '</span>');
+            }
+        }
+
+        if($('#ebay_price_management').val()=='1'){
+            check_ebay_increase_decrease = velovalidation.checkMandatory($('#ebay_increase_decrease'));
+            check_ebay_product_price = velovalidation.checkAmount($('#ebay_product_price'));
+            check_ebay_product_price2 = velovalidation.checkMandatory($('#ebay_product_price'));
+            check_ebay_percentage_fixed = velovalidation.checkMandatory($('#ebay_percentage_fixed'));
+            if (check_ebay_increase_decrease != true) {
+                is_error = true;
+                $('#ebay_increase_decrease').addClass('kb-error-message-field')
+                $('#ebay_increase_decrease').after('<span class="kb-error-message">' + check_ebay_increase_decrease + '</span>');
+            }
+            if (check_ebay_product_price != true) {
+                is_error = true;
+                $('#ebay_product_price').addClass('kb-error-message-field')
+                $('#ebay_product_price').after('<span class="kb-error-message">' + check_ebay_product_price + '</span>');
+            } else if (check_ebay_product_price2 != true) {
+                $('#ebay_product_price').addClass('kb-error-message-field')
+                $('#ebay_product_price').after('<span class="kb-error-message">' + check_ebay_product_price2 + '</span>');
+            }
+            if (check_ebay_percentage_fixed != true) {
+                is_error = true;
+                $('#ebay_percentage_fixed').addClass('kb-error-message-field')
+                $('#ebay_percentage_fixed').after('<span class="kb-error-message">' + check_ebay_percentage_fixed + '</span>');
+            }
+        }
+
+
+        if(is_error==false) {
+            var data = $('#ebay-profile-add').serialize();
+            $.ajax({
+                url: 'index.php?route={{ module_path }}/kbebay/saveGeneralProfileData&{{ session_token_key }}={{ token }}',
+                type: 'POST',
+                data: data,
+                beforeSend: function() {
+                    $('#tab-general').before('<div class="image-loader-temp"><img src="{{ image_loader }}"></div>');
+                },
+                success: function(json) {
+                    if (json.toLowerCase().indexOf("savespecificsdata") >= 0 || json == '') {
+                        if(json == '') {
+                            $('.image-loader-temp').remove();
+                            $('.nav-tabs a[href="#tab-specifics"]').tab('show');
+                            $("#submit_general_profile_form").hide();
+                            $("#ebay-profile-specifics").show();
+                        } else{
+                            $('.image-loader-temp').remove();
+                            $('#tab-specifics').html(json);
+                            $("#submit_general_profile_form").hide();
+                            $("#ebay-profile-specifics").show();
+                            $('.nav-tabs a[href="#tab-specifics"]').tab('show');
+                        }
+                    } else{
+                        var data = $.parseJSON(json);
+                        $('.text-danger').remove();
+                        if(data['error']){
+                            if(data['error']['ebay_profile_title']){
+                                $('#ebay_profile_title').after('<div class="text-danger">'+data['error']['ebay_profile_title']+'</div>');
+                                $('.image-loader-temp').remove();
+                            }
+                            if(data['error']['oc_store_category']){
+                                $('#input-category').after('<div class="text-danger">'+data['error']['oc_store_category']+'</div>');
+                                $('.image-loader-temp').remove();
+                            }
+                            if(data['error']['ebay_product_quantity']){
+                                $('#ebay_product_quantity').after('<div class="text-danger">'+data['error']['ebay_product_quantity']+'</div>');
+                                $('.image-loader-temp').remove();
+                            }
+                            if(data['error']['ebay_product_dispatch_time']){
+                                $('#ebay_product_dispatch_time').after('<div class="text-danger">'+data['error']['ebay_product_dispatch_time']+'</div>');
+                                $('.image-loader-temp').remove();
+                            }
+                            if(data['error']['ebay_duration']){
+                                $('#ebay_duration').after('<div class="text-danger">'+data['error']['ebay_duration']+'</div>');
+                                $('.image-loader-temp').remove();
+                            }
+                            if(data['error']['ebay_product_condition']){
+                                $('#ebay_product_condition').after('<div class="text-danger">'+data['error']['ebay_product_condition']+'</div>');
+                                $('.image-loader-temp').remove();
+                            }
+                            if(data['error']['ebay_category']){
+                                $('#ebay-category').after('<div class="text-danger">'+data['error']['ebay_category']+'</div>');
+                                $('.image-loader-temp').remove();
+                            }
+                        }
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+
+                }
+            });
+        }
+    });
+
+    $( document ).ready(function() {
+    {% if (id_ebay_profiles is defined) %} 
+            var ebay_category_id = '{{ ebay_category_id }}';
+            var site_id = '{{ site_id }}';
+            var id_ebay_profiles = '{{ id_ebay_profiles }}';
+            var ebay_catgeory_text = "{{ ebay_catgeory_text }}";
+            document.getElementById('ebay_cat_text').value = ebay_catgeory_text;
+            document.getElementById('id_ebay_cat_final').value = ebay_category_id;
+            $('<p id="cat_text">' + ebay_catgeory_text + '</p>').appendTo(document.getElementById("ebay-category").closest('.col-sm-10'));
+            html = '<div class="col-sm-2" style="clear:both"></div><div class="col-sm-10"><input type="button" id="change_cat" value="{{ text_change_category }}"></div>';
+            $("[name='ebay[profile][ebay_category]']").closest('.col-sm-10').parent().append(html);
+            $(".ebay_root").hide();
+            $(".ebay_root_text").hide();
+            $("#cat_text").show();
+            $("#confirm_cat").hide();
+                $.ajax({
+                url: 'index.php?route={{ module_path }}/kbebay/getCategorysSecificsData&{{ session_token_key }}={{ token }}&ebay_category_id='+ebay_category_id+'&site_id='+site_id+'&id_ebay_profiles='+id_ebay_profiles,
+                type: 'GET',
+                beforeSend: function() {
+                    $('#tab-general').append('<div class="image-loader-temp"><img src="{{ image_loader }}"></div>');
+                },
+                success: function(json) {
+                    $('.image-loader-temp').remove();
+                    if(json){
+                        $('#tab-specifics').append(json);
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+
+                }
+            });
+    {% endif %} 
+
+    });
+
+    $(document).on('change', '#profile_return', function() {
+        var status = $(this).val();
+        if(status == 1) {
+            $('#ebay_return_time').closest('.form-group').css('display','block');
+            $('#ebay_return_type').closest('.form-group').css('display','block');
+            $('#ebay_return_shipping').closest('.form-group').css('display','block');
+            $('#ebay_return_description').closest('.form-group').css('display','block');
+        } else {
+            $('#ebay_return_time').closest('.form-group').css('display','none');
+            $('#ebay_return_type').closest('.form-group').css('display','none');
+            $('#ebay_return_shipping').closest('.form-group').css('display','none');
+            $('#ebay_return_description').closest('.form-group').css('display','none');
+        }
+
+    });
+
+    $(document).on('change', '#ebay_price_management', function() {
+        var status = $(this).val();
+        if(status == 1){
+            $('#ebay_increase_decrease').closest('.form-group').css('display','block');
+            $('#ebay_product_price').closest('.form-group').css('display','block');
+            $('#ebay_percentage_fixed').closest('.form-group').css('display','block');
+            $('#ebay_product_threshold_price').closest('.form-group').css('display','block');
+        } else {
+            $('#ebay_increase_decrease').closest('.form-group').css('display','none');
+            $('#ebay_product_price').closest('.form-group').css('display','none');
+            $('#ebay_percentage_fixed').closest('.form-group').css('display','none');
+            $('#ebay_product_threshold_price').closest('.form-group').css('display','none');
+        }
+    });
+
+    $('#link_tab_specifics').click(function (e) {
+        var save = document.getElementById('id_ebay_profiles').value;
+        if(save == ''){
+            var message = '{{ save_general }}';
+            alert(message);
+            $(this).attr('href','');
+            return false;
+        } else{
+            $("#submit_general_profile_form").hide();
+            $("#ebay-profile-specifics").show();
+            $(this).attr('href','#tab-specifics');
+        }
+
+    });
+
+    $('#link_tab_general').click(function (e) {
+        $("#submit_general_profile_form").show();
+        $("#ebay-profile-specifics").hide();
+    });
+</script>
+<style>
+.kb-error-message-field{
+    border-color: red;
+}
+.kb-error-message{
+    color: red;
+}
+
+.note-editor  {
+    margin-bottom: 5px;
+}
+</style>
+<script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>  
+{{ footer }} 

@@ -1,0 +1,172 @@
+{{ header }}{{ column_left }} 
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if (error['error_warning'] is defined) %} 
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error['error_warning'] }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        {% if (success) %} 
+            <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_ebay_sites }}</h3>
+            </div>
+            <div class="panel-body">
+                {{ tab_common }} 
+                <form action="" method="post" enctype="multipart/form-data" id="form-profile">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>                    
+                                    <td class="text-left">{% if (sort == 'id_ebay_site') %} 
+                                            <a href="{{ sort_id_ebay_site }}" class="">{{ column_site_id }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_id_ebay_site }}">{{ column_site_id }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">{% if (sort == 'abbreviation') %} 
+                                            <a href="{{ sort_iso_code }}" class="">{{ column_iso_code }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_iso_code }}">{{ column_iso_code }}</a>
+                                        {% endif %} 
+                                    </td>
+                                    <td class="text-left">{% if (sort == 'site_name') %} 
+                                            <a href="{{ sort_site_name }}" class="">{{ column_site_name }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_site_name }}">{{ column_site_name }}</a>
+                                        {% endif %}</td>
+                                    <td class="text-left">{% if (sort == 'enabled') %} 
+                                            <a href="{{ sort_active }}" class="">{{ column_active }}</a>
+                                        {% else %} 
+                                            <a href="{{ sort_active }}">{{ column_active }}</a>
+                                        {% endif %}</td>
+                                    <td class="text-right">{{ column_action }}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if (sites) %} 
+                                    {% for site in sites %} 
+                                        <tr>
+                                            <td class="text-left">{{ site['id_ebay_site'] }}</td>
+                                            <td class="text-left">{{ site['abbreviation'] }}</td>
+                                            <td class="text-left">{{ site['site_name'] }}</td>
+                                            <td class="text-left">{{ site['active'] }}</td>
+                                            <td class="text-right"><a data-target="#editToken-{{ site['id_ebay_countries'] }} " data-toggle="modal" title="{{ button_edit }}" class="btn btn-primary" data-toggle="tooltip" title="{{ button_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>
+                                        </tr>
+                                    {% endfor %} 
+                                {% else %} 
+                                    <tr>
+                                        <td class="text-center" colspan="9">{{ text_no_results }}</td>
+                                    </tr>
+                                {% endif %} 
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    {% if (sites) %} 
+        {% for country in sites %} 
+            <div class="modal fade saveToken" id="editToken-{{ country['id_ebay_countries'] }}"  tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">{{ text_edit_token }}</h4>
+                        </div>
+                        <form action="" method="post" enctype="multipart/form-data" id="save-token_{{ country['id_ebay_countries'] }}" class='form-horizontal'>
+                            <div class="modal-body">
+                                <div class="row" style="font-size: 14px;">
+                                    <div id="layout-message_{{ country['id_ebay_countries'] }}"></div>
+                                    <div class="form-group required" style="margin-bottom: 10px;">
+                                        <label class="col-sm-3 control-label" for="input-title">{{ text_token_status }}</label>
+                                        <div class="col-sm-9">
+                                            <select name="token_status" id="token-status-{{ country['id_ebay_countries'] }}" class="form-control">
+                                                {% if (country['status'] is defined and country['status'] == 1) %} 
+                                                    <option value="0">{{ text_disabled }}</option>
+                                                    <option value="1" selected="selected">{{ text_enabled }}</option>
+                                                {% else %} 
+                                                    <option value="0" selected="selected">{{ text_disabled }}</option>
+                                                    <option value="1" >{{ text_enabled }}</option>
+                                                {% endif %} 
+                                            </select>
+                                            <div id="layout-title-error"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="font-size: 14px;">
+                                    <div class="form-group required" style="margin-bottom: 10px;">
+                                        <label class="col-sm-3 control-label" for="input-title">{{ text_ebay_token }}</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="token" rows="5" placeholder="" id="input-token-{{ country['id_ebay_countries'] }}" class="form-control">{{ country['token'] }}</textarea>
+                                            <div id="token-error"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <img src="view/image/loader.gif" style="display: none" id="img-loader-{{ country['id_ebay_countries'] }}"/>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">{{ button_cancel }}</button>
+                                <button type="button" class="btn btn-primary savetoken" id='save-token-{{ country['id_ebay_countries'] }}'>{{ button_save }}</button>
+                            </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+
+                </div><!-- /.modal-dialog -->
+
+            </div><!-- /.modal -->
+
+        {% endfor %} 
+    {% endif %} 
+
+</div>
+<script type="text/javascript"><!--
+    var token = '{{ token }}';
+    {% for country in sites %} 
+     $('#save-token-{{ country['id_ebay_countries'] }}').click(function () {
+        country_id = '{{ country['id_ebay_countries'] }}';
+        input_token =  $('#input-token-{{ country['id_ebay_countries'] }}').val();
+        status = $('#token-status-{{ country['id_ebay_countries'] }}').val();
+        $('#layout-message_{{ country['id_ebay_countries'] }}').html("");
+        $('#img-loader-{{ country['id_ebay_countries'] }}').show();
+        $.ajax({
+            url: "index.php?route={{ module_path }}/kbebay/saveToken&{{ session_token_key }}="+token,
+            data: 'ebay_country_id=' + country_id + '&token=' + input_token + '&status=' + status,
+            type: "post",
+            dataType: "json",
+            success: function(data) {   
+                $('#img-loader-{{ country['id_ebay_countries'] }}').hide();
+                if(data.type == "error") {
+                    $('#layout-message_{{ country['id_ebay_countries'] }}').html('<div class="alert alert-warning" style="margin:0 20px"><i class="fa fa-check-circle"></i> ' + data.message +'</div>');
+                } else {
+                    $('#layout-message_{{ country['id_ebay_countries'] }}').html('<div class="alert alert-success" style="margin:0 20px"><i class="fa fa-check-circle"></i> ' + data.message +'</div>');
+                }
+            }
+        });
+     });
+    {% endfor %} 
+//--></script>
+
+{{ footer }}

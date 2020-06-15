@@ -1,0 +1,61 @@
+{% if (articles) %} 
+<div class="box blog_articles">
+	<div class="box-heading">
+		<h3>{{ heading_blog_title }}</h3>
+	</div>
+	<div class="box-content">
+		<div class="mobile-carousel">
+			{% for article in articles %} 
+			<div class="row">
+				<div class="col-sm-8">
+					<div class="article-image">
+						<figure>
+							{% if not (article.video)|trim == constant('false') %} 
+								<div class="r_frame article-video"> {{ article.video }} </div>
+							{% elseif (show_image == 1) %} 
+								<img width="{{ article.image_width }}" height="{{ article.image_height }}" src="{{ article.image }}" alt="{{ article.article_title }}"/>
+							{% endif %} 
+							<a href="{{ article.href }}" class="link"></a>
+							<div class="image-text">
+								<h2 class="article-title"> <a href="{{ article.href }}">{{ article.article_title }}</a> </h2>
+								{% if (show_readmore == 1) %} 
+									<a href='{{ article.href }}' class="btn">{{ text_button_continue}}</a>
+								{% endif %}	
+							</div>
+						</figure>						
+					</div>
+				</div>
+				<div class="tx-block col-sm-4">					
+					{% if (show_date == 1 or show_author == 1 or show_comments == 1) %}					
+						<div class="article-sub-title">							
+						{% if (show_date == 1 or show_author == 1 or show_comments == 1) %}					
+							{% if (show_date == 1) %}
+								<span class="article-date">{{ article['date_added'] }}</span>
+							{% endif %}
+							{% if (article['allow_comment'] and show_comments == 1) %} 
+								<span class="article-comments">
+									<a href="{{ article.comment_href }}">{{ article['total_comment'] }}</a>
+								</span>
+							{% endif %}
+							{% if (show_author == 1) %}
+								<h3 class="article-author">
+									<a href="{{ article.author_href }}">{{ article['author_name'] }}</a>
+								</h3>
+							{% endif %}
+						{% endif %}
+						</div>
+					{% endif %}					
+					{% if (show_description and article.description) %} 
+						<div class="article-description">{{ article.description }}</div>
+					{% endif %}						
+				</div>
+		</div>
+		{% endfor %} 
+	</div>
+</div>
+</div>
+{% else %} 
+<div class="buttons">
+	<div class="center">{{ text_no_found }}</div>
+</div>
+{% endif %}

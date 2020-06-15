@@ -1,0 +1,15 @@
+<--! Edits done by Ignition Innovations -->
+
+.btn-drop {
+	transition-duration: 0.4s;
+}
+
+.btn-drop:hover {
+	background-color: #000;
+	color: #fff;
+}
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+	background-color: #000; !important
+	color: #fff; !important
+}

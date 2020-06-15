@@ -1,0 +1,26 @@
+<div id="banner{{module}}" class="banners">
+	{% for banner in banners %} 
+	{% if (banner['link']) %} 
+	<div class="{{banner['title']}}">
+		<div class="banner-box">
+			<div class="clearfix"">
+				<img src="{{banner['image']}}" alt="{{banner['title']}}" class="img-responsive" />
+			</div>
+			<a class="link" href="{{banner['link']}}"></a>
+			{% if (banner['description']) %}
+				<div class="s-desc">{{banner['description']}}</div>
+			{% endif %} 
+		</div>
+	</div>
+	{% else %}
+	<div class="{{banner['title']}}">
+		<div class="banner-box">
+			<img src="{{banner['image']}}" alt="{{banner['title']}}" class="img-responsive" />			
+			{% if (banner['description']) %} 
+				<div class="s-desc">{{banner['description']}}</div>
+			{% endif %} 
+		</div>
+	</div>
+	{% endif %}
+	{% endfor %}
+</div>

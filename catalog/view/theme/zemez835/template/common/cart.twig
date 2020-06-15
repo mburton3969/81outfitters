@@ -1,0 +1,115 @@
+<div class="box-cart">
+	<div id="cart" class="cart toggle-wrap">
+		<button type="button" data-loading-text="{{ text_loading }}" class="toggle">
+			<i class="fa fa-shopping-cart fa-2x"></i> 
+			<strong>{{ text_shopping_cart }}</strong>
+			<span id="cart-total" class="cart-total">{{ text_items }}</span>
+			{% if (text_items2 is defined) %} 
+			<span id="cart-total2" class="cart-total2">{{ text_items2 }}</span>
+			{% endif %} 
+		</button>
+		<ul class="toggle_cont__right toggle_cont">
+			<li> <h3>{{ text_shopping_cart }}</h3> </li>
+			{% if (products or vouchers) %} 
+			<li>
+				<table class="table">
+					{% for product in products %} 
+					<tr>
+						<td class="text-center">{% if (product.thumb) %} 
+							<div class="image">
+								<a href="{{ product['href'] }}">
+									<img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-thumbnail" />
+								</a>
+							</div>
+							{% endif %} 
+						</td>
+						<td class="text-left">
+							<div class="name">
+								<a href="{{ product['href'] }}">{{ product.name }}</a>
+							</div>
+						</td>
+						<td class="text-right"><div><span class="price-cart"><i> x </i> {{ product.quantity }} <b>{{ product.total }}</b></span></div></td>
+						<td class="text-center">
+							<button type="button" onclick="cart.remove('{{ product['cart_id'] }}');" title="{{ button_remove }}" class="btn-danger btn-xs">
+								<i class="fa fa-times"></i>
+							</button>
+						</td>
+					</tr>
+					{% endfor %} 
+					{% for voucher in vouchers %} 
+					<tr>
+						<td class="text-center"></td>
+						<td class="text-left">{{ voucher['description'] }}</td>
+						<td class="text-right">x&nbsp;1</td>
+						<td class="text-right">{{ voucher['amount'] }}</td>
+						<td class="text-center text-danger">
+							<button type="button" onclick="voucher.remove('{{ voucher['key'] }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs">
+								<i class="fa fa-times"></i>
+							</button>
+						</td>
+					</tr>
+					{% endfor %} 
+				</table>
+			</li>
+			<li>
+				<table class="table total">
+					{% for total in totals %} 
+            {% if total['title'] == 'Sub-Total' %}
+              {%set tot = total['text']|replace({ ('$'): '' }) %}
+            {% endif %}
+					<tr>
+						<td class="text-left">{{ total['title'] ~' : ' }} <strong>{{ total['text'] }}</strong></td>
+						<td class="text-right"></td>
+					</tr>
+            {% if total['title'] == 'Total' %}
+              {% if tot < 35 and tot > 0 %}
+                  <tr>
+                    <td class="text-left"><b style="color:green;">Spend ${{ 35 - tot|number_format(2) }} More for FREE SHIPPING</b></td>
+                    <td class="text-right"></td>
+                  </tr>
+                {% elseif tot > 35 %}
+                  <tr>
+                    <td class="text-left"><b style="color:green;">Your Order Qualifies for FREE SHIPPING!</b></td>
+                    <td class="text-right"></td>
+                  </tr>
+                {% else %}
+                  <tr>
+                    <td class="text-left"><b style="color:green;">Spend ${{ 35 - tot|number_format(2) }} for FREE SHIPPING</b></td>
+                    <td class="text-right"></td>
+                  </tr>
+                {% endif %}
+            {% endif %}
+					{% endfor %} 
+				</table>
+				<div class="text-left">
+					<a class="btn-default" href="{{ cart }}"><span> {{ text_cart }}</span></a>
+					<a class="btn-primary" href="{{ checkout }}"><span >{{ text_checkout }}</span></a>
+				</div>
+			</li>
+			{% else %} 
+			<li>
+				<p class="text-empty">{{ text_empty }}</p>
+			</li>
+			{% endif %} 
+		</ul>
+	</div>
+</div>
+<div id="shipping-hint" style="font-size:15px;margin-top:5px;">
+<b>Spend $35 for FREE SHIPPING</b>
+ {# 
+ {% for total in totals %} 
+    {% if total['title'] == 'Sub-Total' %}
+      {%set tot = total['text']|replace({ ('$'): '' }) %}
+        {% if tot < 35 and tot > 0 %}
+          <b>Spend ${{ 35 - tot|number_format }} More for FREE SHIPPING</b>
+        {% elseif tot > 35 %}
+          <b>Your Order Qualifies for FREE SHIPPING!
+        {% else %}
+          <b>Spend ${{ 35 - tot|number_format }} for FREE SHIPPING</b>
+        {% endif %}
+    {% endif %}
+  {% endfor %} 
+  #}
+  
+  
+</div>

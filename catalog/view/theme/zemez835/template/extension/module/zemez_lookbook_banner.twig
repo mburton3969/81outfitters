@@ -1,0 +1,20 @@
+
+	<div class="col-sm-4">
+	{% if (banner_wrapper_class) %}
+		<div class="lookbook-block {{ banner_wrapper_class }}">
+			<div class="lookbook lookbook--banner" data-match-height="items-f">
+				<a href="{{ collection_id }}">
+					<img src="{{ thumb }}" alt="">
+				</a>
+				{{ description }}
+			</div>
+		</div>
+	{% else %}
+		<div class="lookbook lookbook--banner" data-match-height="items-f">
+			<a href="{{ collection_id }}">
+				<img src="{{ thumb }}" alt="">
+			</a>
+			{{ description }}		
+		</div>
+	{% endif %}
+	</div>

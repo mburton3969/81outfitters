@@ -1,0 +1,475 @@
+{{ header }}
+{{ column_left }}
+<div id="content">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="pull-right">
+				<a class="btn btn-primary" onclick="$('#form').submit();">{{ button_save }}</a>
+				<a class="btn btn-success" onclick="$('#action').val('save_stay');$('#form').submit();">{{ button_save_stay }}</a>
+				<a class="btn btn-danger" href="{{ cancel }}">{{ button_cancel }}</a>
+			</div>
+			<h1>{{ heading_title }}</h1>
+			<ul class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+					<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div id="page-content" class="container-fluid">
+		{% if error_warning %}
+			<div class="alert alert-danger">
+				<i class="fa fa-exclamation-circle"></i>
+				{{ error_warning }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		{% if error_name %}
+			<div class="alert alert-danger">
+				<i class="fa fa-exclamation-circle"></i>
+				{{ error_name }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		{% if success and success %}
+			<div class="alert alert-success">
+				<i class="fa fa-check-circle"></i>
+				{{ success }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<i class="fa fa-edit"></i>
+					{{ subheading }}
+				</h3>
+				<span></span>
+			</div>
+			<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form">
+				<input type="hidden" name="layout_builder_module[action]" id="action" value=""/>
+				<input type="hidden" value="{{ store_id }}" name="layout_builder_module[store_id]"/>
+				<div class="panel-body">
+					<div class="form-group row">
+						<label class="col-sm-2 control-label" for="op_stores">
+							{{ objlang.get('entry_default_store') }}
+						</label>
+						<div class="col-sm-10">
+							<select class="form-control no-width" class="form-control" name="layout_builder_module[stores]" id="op_stores" class="form-control">
+								{% for store in stores %}
+									{% if store.store_id == store_id %}
+										<option value="{{ store.store_id }}" selected="selected">
+											{{ store.name }}
+										</option>
+									{% else %}
+										<option value="{{ store.store_id }}">
+											{{ store.name }}
+										</option>
+									{% endif %}
+								{% endfor %}
+							</select>
+							<br>
+						</div>
+					</div>
+					<div id="screenview" class="">
+						<div class="row">
+							<div class="col-lg-3">
+								Design In
+								<div class="btn-group button-alignments">
+									<button class="btn btn-default active ptstooltip" data-option="large-screen" type="button" data-placement="top" title="Large Devices, Wide Screens">
+										<span class="fa fa-desktop"></span>
+									</button>
+									<button class="btn btn-default ptstooltip" data-option="medium-screen" type="button" data-placement="top" title="Medium Devices, Desktops">
+										<span class="fa fa-laptop"></span>
+									</button>
+									<button class="btn btn-default ptstooltip" data-option="tablet-screen" type="button" data-placement="top" title="Small Devices, Tablets">
+										<span class="fa fa-tablet"></span>
+									</button>
+									<button class="btn btn-default ptstooltip" data-option="mobile-screen"  type="button" data-placement="top" title="Extra Small Devices, Phones">
+										<span class="fa fa-mobile"></span>
+									</button>
+								</div>
+							</div>
+							<div class="col-md-3">
+								{{ olang.get('Enable Grid:') }}
+								<div class="btn-group button-enablegrid">
+									<button class="btn btn-default " onclick="$('.layout-builder').addClass('grid-editor');" type="button">
+										<span class="fa fa-check-square"></span>
+									</button>
+									<button class="btn btn-default " onclick="$('.layout-builder').removeClass('grid-editor');" type="button">
+										<span class="fa fa-check-square-o"></span>
+									</button>
+								</div>
+							</div>
+							<div class="pull-right">
+								<div id="btnocmanage" class="btn btn-info">
+									<i class="fa fa-th"></i>
+									{{ olang.get('text_add_new_module') }}
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr>
+					{% if selectedid %}
+						<div class="pull-right">
+							<a href="{{ action }}&delete=1" class="remove btn btn-danger">
+								<span>
+									<i class="fa fa-remove"></i>
+									{{ olang.get('text_edit_module') }}
+								</span>
+							</a>
+						</div>
+					{% endif %}
+					<div role="tabpanel" id="bannermodule-tab">
+						<ul class="nav nav-tabs" role="tablist">
+							<li {% if selectedid == 0 %} class="active" {% endif %} >
+								<a href="{{ link }}">
+									<span class="fa fa-clone"></span>
+									{{ olang.get('button_add_module') }}
+								</a>
+							</li>
+							{%set i = 1 %}
+							{% for key, module in moduletabs %}
+								<li role="presentation" {% if module.module_id == selectedid  %} class="active" {% endif %} >
+									<a href="{{ link }}&module_id={{ module.module_id}}" aria-controls="bannermodule-{{ key }}">
+										<span class="fa fa-edit"></span>
+										{{ module.name}}
+									</a>
+								</li>
+								{%set i = i + 1 %}
+							{% endfor %}
+						</ul>
+						<div class="tab-content">
+							{%set i = 1 %}
+							{% for key, module in modules %}
+								<div role="tabpanel" class="tab-pane{% if i == 1 %} active {% endif %}" id="bannermodule-{{ key }} {%set i = i + 1 %}">
+									<div class="row">
+										<div class="col-sm-3">
+											<div class="form-group row">
+												<label class="col-sm-4 control-label text-right" for="input-status">
+													{{ entry_status }}
+												</label>
+												<div class="col-sm-7">
+													<select class="form-control no-width" class="form-control" name="layout_builder_module[{{ key }}][status]" id="input-status" class="form-control">
+														{% if module.status and module.status %}
+															<option value="1" selected="selected">{{ text_enabled }}</option>
+															<option value="0">{{ text_disabled }}</option>
+														{% else %}
+															<option value="1">{{ text_enabled }}</option>
+															<option value="0" selected="selected">{{ text_disabled }}</option>
+														{% endif %}
+													</select>
+													<br>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3">
+											<div class="form-group required row">
+												<label class="col-sm-4 text-right control-label">
+													{{ olang.get('text_module_name') }}
+												</label>
+												<div class="col-sm-7">
+													<input class="form-control" name="layout_builder_module[{{ key }}][name]" value="{% if module.name %}{{ module.name }}{% endif %}">
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3">
+											<div class="form-group row">
+												<label class="col-sm-4 text-right">
+													{{ olang.get('text_module_class') }}
+												</label>
+												<div class="col-sm-7">
+													<input class="form-control" name="layout_builder_module[{{ key }}][class]" value="{% if module.class %}{{ module.class }}{% endif %}">
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3">
+											<div class="form-group row">
+												<label class="col-sm-4 text-right">
+													{{ olang.get('text_module_id') }}
+												</label>
+												<div class="col-sm-7">
+													<input class="form-control" name="layout_builder_module[{{ key }}][id]" value="{% if module.id %}{{ module.id }}{% endif %}">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="module-group" id="contentbannermodule{{ key }}">
+												<div class="layout-builder-wrapper">
+													<div id="layout-builder{{ key }}" class="layout-builder"></div>
+													<div>
+														<textarea name="layout_builder_module[{{ key }}][layout]" class="hidden-content-layout hide">
+															{{ module.layout ? module.layout : '{}' }}
+														</textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="row-builder" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>{{ olang.get('Row Setting') }}</h4>
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			</div>
+			<div class="modal-body clearfix">
+				<form action="" name="frmrow">
+					<div class="row-form">
+						<div class="inpt-setting">
+							<label>{{ olang.get('Class') }} : </label>
+							<input class="form-control" type="text" name="cls" />
+						</div>
+						<div class="inpt-setting fly-buttons">
+							<label>{{ olang.get('Background Color') }}</label>
+							<input class="form-control input-color" type="text" name="bgcolor" data-hex="true"/>
+						</div>
+						<div class="inpt-setting fly-buttons input-image">
+							<label>{{ olang.get('Image Background') }}: </label>
+							{% set rand = '2010-01-01'|date('U') %}
+								<a href="" id="thumb-image{{ (random(+'now'|date('U') - startDate) + startDate )|date('Y-m-d') }}" data-toggle="image" class="img-thumbnail">
+									<img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+								</a>
+								<input class="form-control" type="hidden" data-base="{{ HTTP_CATALOG ~ 'image/'}}"  name="bgimage" id="uploadimage{{ (random(+'now'|date('U') - startDate) + startDate )|date('Y-m-d') }}" class="imageuploaded"/>
+							</div>
+							<div class="inpt-setting">
+								<label>{{ olang.get('Fullwidth') }}: </label>
+								<select class="form-control" name="fullwidth">
+									<option value="1">{{ olang.get('Yes') }} </option>
+									<option value="0">{{ olang.get('No') }} </option>
+								</select>
+							</div>
+							<div class="inpt-setting">
+								<label>{{ olang.get('Background Attachment') }}: </label>
+								<select class="form-control" name="iattachment">
+									<option value="inherit">{{ olang.get('Inherit') }} </option>
+									<option value="fixed">{{ olang.get('Fixed') }} </option>
+									<option value="scroll">{{ olang.get('scroll') }} </option>
+								</select>
+							</div>
+							<div class="inpt-setting">
+								<label>{{ olang.get('Background Position') }}: </label>
+								<select class="form-control" name="iposition">
+									<option value="0 0">{{ olang.get('Left Top') }} </option>
+									<option value="0 50%">{{ olang.get('Left Center') }} </option>
+									<option value="0 50%">{{ olang.get('Left Center') }} </option>
+									<option value="50% 50%">{{ olang.get('Center Center') }} </option>
+									<option value="50% 0">{{ olang.get('Center Top') }} </option>
+									<option value="100% 0">{{ olang.get('Right Top') }} </option>
+									<option value="100% 50%">{{ olang.get('Right Center') }} </option>
+									<option value="100% 100%">{{ olang.get('Right Bottom') }} </option>
+								</select>
+							</div>
+							<div class="inpt-setting">
+								<label>{{ olang.get('Padding') }} : </label>
+								<input class="form-control" type="text" name="padding" placeholder="10px 10px 10px 10px" />
+							</div>
+							<div class="inpt-setting">
+								<label>{{ olang.get('Margin') }} : </label>
+								<input class="form-control" type="text" name="margin" placeholder="10px 10px 10px 10px" />
+							</div>
+							<div class="inpt-setting">
+								<label>
+									{{ olang.get('Row Style') }}:
+									<select class="form-control" name="sfxcls">
+										{% for clxrow in sfxclss %}
+											<option value="{{ clxrow }}">{{ clxrow }}</option>
+										{% endfor %}
+									</select>
+								</label>
+							</div>
+							<div class="inpt-setting">
+								<button type="submit" class="btn btn-sm btn-primary">{{ olang.get('Save') }}</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="col-builder" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4>{{ olang.get('Column Setting') }}</h4>
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+				</div>
+				<div class="modal-body clearfix">
+					<form action="" name="frmcol">
+						<div class="row-form ">
+							<div class="inpt-setting">
+								<label>
+									{{ olang.get('Addition Class:') }}
+									<input class="form-control" type="text" name="cls" />
+								</label>
+							</div>
+							<div class="inpt-setting">
+								<label>
+									{{ olang.get('Background Color') }}
+									<input class="form-control input-color" type="text" name="bgcolor"   data-hex="true" />
+								</label>
+							</div>
+							<div class="inpt-setting fly-buttons input-image">
+								<label>{{ olang.get('Image Background') }}: </label>
+								{% set rand = '2010-01-01'|date('U') %}
+									<a href="" id="thumb-image{{ (random(+'now'|date('U') - startDate) + startDate )|date('Y-m-d') }}" data-toggle="image" class="img-thumbnail">
+										<img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+									</a>
+									<input class="form-control" type="hidden" data-base="{{ HTTP_CATALOG ~ 'image/'}}" name="bgimage" id="uploadimage{{ (random(+'now'|date('U') - startDate) + startDate )|date('Y-m-d') }}" class="imageuploaded"/>
+								</div>
+								<div class="inpt-setting">
+									<label>{{ olang.get('Background Attachment') }}: </label>
+									<select class="form-control" name="iattachment">
+										<option value="inherit">{{ olang.get('Inherit') }} </option>
+										<option value="fixed">{{ olang.get('Fixed') }} </option>
+										<option value="scroll">{{ olang.get('scroll') }} </option>
+									</select>
+								</div>
+								<div class="inpt-setting">
+									<label>{{ olang.get('Background Position') }}: </label>
+									<select class="form-control" name="iposition">
+										<option value="0 0">{{ olang.get('Left Top') }} </option>
+										<option value="0 50%">{{ olang.get('Left Center') }} </option>
+										<option value="0 50%">{{ olang.get('Left Center') }} </option>
+										<option value="50% 50%">{{ olang.get('Center Center') }} </option>
+										<option value="50% 0">{{ olang.get('Center Top') }} </option>
+										<option value="100% 0">{{ olang.get('Right Top') }} </option>
+										<option value="100% 50%">{{ olang.get('Right Center') }} </option>
+										<option value="100% 100%">{{ olang.get('Right Bottom') }} </option>
+									</select>
+								</div>
+								<div class="inpt-setting">
+									<label>{{ olang.get('Padding') }} : </label>
+									<input class="form-control" type="text" name="padding" placeholder="10px 10px 10px 10px" />
+								</div>
+								<div class="inpt-setting">
+									<label>{{ olang.get('Margin') }} : </label>
+									<input class="form-control" type="text" name="margin" placeholder="10px 10px 10px 10px" />
+								</div>
+								<div class="inpt-setting">
+									<label>
+										{{ olang.get('Column Style') }}
+										<select class="form-control" name="sfxcls">
+											{% for clxrow in sfxclss %}
+												<option value="{{ clxrow }}">{{ clxrow }}</option>
+											{% endfor %}
+										</select>
+									</label>
+								</div>
+								<div class="inpt-setting">
+									<button type="submit" class="btn btn-primary"> {{ olang.get('Save') }}</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="modallistmodules" class="modal fade" >
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4>{{ olang.get('Column Setting') }}</h4>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+					</div>
+					<div class="modal-body clearfix">
+						<div id="listmods">
+							{%set i = 0 %}
+							{% for key, ext in extensions %}
+								{% if (i + 1) is divisible by(3) == 1 %}
+									<div class="row">
+									{% endif %}
+									<div class="col-sm-4 mod-widget">
+										<div class="mod-head">{{ ext.name|striptags }}</div>
+										<div class="mod-items">
+											{% for emod in ext.module %}
+												<div class="mod-item wpo-ijwidget" data-module="{{ emod.code  }}" data-type="module" data-name="{{ emod.name }}">
+													<div class="w-inner">
+														<h5>{{ emod.name }}</h5>
+														<p class="explan">( Code: {{ emod.code }} )</p>
+													</div>
+													<div title="Edit" data-href="{% if emod.id %} {{ ourl.link('extension/module/' ~ key, 'module_id=' ~ emod.id ~ '&user_token=' ~ user_token) }} {% else %} {{ ourl.link('extension/module/' ~ key, 'user_token=' ~ user_token) }} {% endif %}" data-module="{{ key }}" data-placement="top" class="wpo-wedit ptstooltip">
+													</div>
+													<div title="Delete" data-placement="top" class="wpo-wdelete ptstooltip"></div>
+												</div>
+											{% endfor %}
+										</div>
+									</div>
+									{% if i is divisible by(3) == 0 or i == extensions|length %}
+									</div>
+								{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="ocmodules" class="modal fade" >
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4>{{ olang.get('Modules Management') }}</h4>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+					</div>
+					<div class="modal-body clearfix">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$("#btnocmanage").click( function(){
+				var html  = '<iframe src="{{ ifmocmod }}" style="padding:0; margin: 0; display: block; width: 100%; height: 100%;" frameborder="no" scrolling="auto"></iframe>';
+				$("#ocmodules .modal-body").html( html );
+				$("#ocmodules").modal( 'hide' );
+				$("#ocmodules iframe").load( function(){
+					$('body', $('#ocmodules iframe').contents() ).find("#menu").remove();
+					$('body', $('#ocmodules iframe').contents() ).find("#header").remove();
+					$('body', $('#ocmodules iframe').contents() ).find("#footer,#column-left").remove();
+					$('body', $('#ocmodules iframe').contents() ).find(".breadcrumb").remove();
+					$("#ocmodules").modal( 'show' );
+				});
+			});
+			$(".layout-builder-wrapper").each( function(){
+				var config = { 
+					urlwidgets:'',
+					urlwidget:'',
+					urlwidgetdata:'',
+					imageurl : '{{ HTTP_CATALOG ~ "image/"}}',
+					placeholder:'{{ placeholder }}'
+				};
+				$($(".layout-builder", this)).WPO_Layout(config, $(".hidden-content-layout",this).val());
+			});
+			$('#op_stores').bind('change', function () {
+				url = 'index.php?route=module/zemez_layout_builder&user_token={{ user_token }}';
+				var id = $(this).val();
+				if (id) {
+					url += '&store_id=' + encodeURIComponent(id);
+				}
+				window.location = url;
+			});
+			$(".remove").click( function(){
+				if( confirm('Are you sure to remove this?') ){
+					$(this).parent().parent().remove();
+					$($(this).parent().attr('href')).remove();
+					return true;
+				}
+				return false;
+			});
+		</script>

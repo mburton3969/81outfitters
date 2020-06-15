@@ -1,0 +1,744 @@
+{{ header }}{{ column_left }} 
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary" id="save-shipping-profile"><i class="fa fa-save"></i></a>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+            </div>
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        {% if (error['error_warning'] is defined) %} 
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error['error_warning'] }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        {% if (success is defined and success != '') %} 
+            <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        {% endif %} 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_shipping_add_profile }}</h3>
+            </div>
+            <div class="panel-body">
+                {{ tab_common }} 
+                <div class="panel">
+                    <form action="" method="post" enctype="multipart/form-data" id="ebay-shipping-profile-add" class="form-horizontal">
+                        <input type="hidden" name="shipping[id_ebay_shipping]" value="{% if (id_ebay_shipping is defined) %} {{ id_ebay_shipping }}{% endif %}" placeholder="" id="id_ebay_shipping" class="form-control"/>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="ebay-sites">{{ text_ebay_sites }}</label>
+                            <div class="col-sm-10">
+                                <select name="shipping[ebay_site]" id="ebay-stores" class="form-control" {% if (id_ebay_shipping is defined) %} {{ "readonly" }} {% endif %}>
+                                    {% for sites in ebay_sites %} 
+                                    {% if (sites['id_ebay_countries'] == ebay_select_sites) %} 
+                                        <option value="{{ sites['id_ebay_countries'] }}" selected="selected">{{ sites['description'] }}</option>
+                                    {% else %} 
+                                        {% if (id_ebay_shipping is not defined) %} 
+                                        <option value="{{ sites['id_ebay_countries'] }}">{{ sites['description'] }}</option>
+                                        {% endif %} 
+                                        {% endif %} 
+                                    {% endfor %} 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="service-type">{{ text_service_types }}</label>
+                            <div class="col-sm-10">
+                                <select name="shipping[service_type]" id="service-type" class="form-control" {% if (id_ebay_shipping is defined) %} {{ "readonly" }} {% endif %} onchange="showCalculatedFields();">
+                                    {% for service_type in service_type_list %} 
+                                        {% if (service_type['service_value'] == ebay_service_type) %} 
+                                            <option value="{{ service_type['service_value'] }}" selected="selected">{{ service_type['service_value'] }}</option>
+                                        {% else %} 
+                                            {% if (id_ebay_shipping is not defined) %} 
+                                            <option value="{{ service_type['service_value'] }}">{{ service_type['service_value'] }}</option>
+                                        {% endif %} 
+                                        {% endif %} 
+                                    {% endfor %} 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group required calculated">
+                            <label class="col-sm-2 control-label" for="package-type">{{ text_package_type }}</label>
+                            <div class="col-sm-10">
+                                <select name="shipping[package_type]" id="package-type" class="form-control">
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="shipping_profile_name">{{ text_shipping_profile_title }}</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="shipping[shipping_profile_name]" value="{% if (shipping_profile_name is defined) %}{{ shipping_profile_name }}{% endif %}" placeholder="" id="shipping_profile_name" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="international_shipping_allowed">{{ text_international_shipping_allowed }}</label>
+                            <div class="col-sm-10">
+                                <select name="shipping[international_shipping_allowed]" id="international_shipping_allowed" onchange="showInternationalShipping();" class="form-control">
+                                    {% if (international_shipping_allowed) %} 
+                                        <option value="1" selected="selected">{{ text_yes }}</option>
+                                        <option value="0">{{ text_no }}</option>
+                                    {% else %} 
+                                        <option value="1">{{ text_yes }}</option>
+                                        <option value="0" selected="selected">{{ text_no }}</option>
+                                    {% endif %} 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group required calculated">
+                            <label class="col-sm-2 control-label" for="shipping_postal_code">{{ text_shipping_postal_code }}</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="shipping[shipping_postal_code]" value="{% if (shipping_postal_code is defined) %}{{ shipping_postal_code }} {% endif %}" placeholder="" id="shipping_postal_code" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="excluded_location">{{ text_exclude_destination }}</label>
+                            <div class="col-sm-10">
+                                <select name="shipping[excluded_location][]" id="excluded_location" value="{{ shipping_excluded_location }}" class="form-control" multiple="">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default"  id="domestic-shipping">
+                            <div class="panel-heading"><h3 class="panel-title">{{ text_add_domestic_shipping }}</h3></div>
+                            <div class ="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <td class="text-left">{{ column_domestic_shipping_service }}</td>
+                                                <td class="text-left">{{ column_domestic_free_shipping }}</td>
+                                                <td class="text-left">{{ column_domestic_shipping_priority }}</td>
+                                                <td class="text-left">{{ column_domestic_shipping_service_cost }}</td>
+                                                <td class="text-left">{{ column_domestic_shipping_additional_cost }}</td>
+                                                <td class="text-left">
+                                                    {{ column_action }} 
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="domestic_shipping_list">
+                                       {% set domestic_shipping_row = 0 %}
+                                            {% for domestic_shipping in domestic_shippings %} 
+                                                <tr id="domestic-shipping-row-{{ domestic_shipping_row }}" class="domestic">
+                                                    <td class="text-left">
+                                                        <input type="hidden" id="domestic_services_{{ domestic_shipping_row }}" value="{{ domestic_shipping['service'] }}">
+                                                        <div id="shipping_{{ domestic_shipping_row }}_service">
+                                                            <select name="shipping[domestic_shipping][{{ domestic_shipping_row }}][service]" id="domestic_shipping_services_{{ domestic_shipping_row }}" value="{{ domestic_shipping['service'] }}" class="form-control">
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <div id="shipping_{{ domestic_shipping_row }}_free_shipping_allowed">
+                                                            <select onchange="checkFields('{{ domestic_shipping_row }}')" id="domestic_free_shipping_{{ domestic_shipping_row }}" name="shipping[domestic_shipping][{{ domestic_shipping_row }}][free_shipping_allowed]" class="form-control dfs">
+                                                                {% if (domestic_shipping['free_shipping_allowed']) %} 
+                                                                    <option value="1"  selected="selected" >{{ text_yes }}</option>
+                                                                    <option value="0">{{ text_no }}</option>
+                                                                {% else %} 
+                                                                    <option value="0" selected="selected">{{ text_no }}</option>
+                                                                    <option value="1">{{ text_yes }}</option>
+                                                                {% endif %} 
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <input type="text" name="shipping[domestic_shipping][{{ domestic_shipping_row }}][priority]" id="domesting_shipping_profile_priority-{{ domestic_shipping_row }}" value="{{ domestic_shipping['priority'] }}"  class="form-control dsp" />
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <input type="text" name="shipping[domestic_shipping][{{ domestic_shipping_row }}][service_cost]" value="{% if (domestic_shipping['service_cost'] is defined) %}{{ domestic_shipping['service_cost'] }}{% endif %}" id="domestic_shipping_service_cost_{{ domestic_shipping_row }}"  class="form-control check-{{ domestic_shipping_row }} dsc" {% if (domestic_shipping['free_shipping_allowed'] or ebay_service_type == 'Calculated') %} {{ "readonly=true" }} {% endif %} />
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <input type="text" name="shipping[domestic_shipping][{{ domestic_shipping_row }}][additional_cost]" value="{% if (domestic_shipping['additional_cost'] is defined) %}{{ domestic_shipping['additional_cost'] }}{% endif %}" id="domestic_shipping_additional_cost_{{ domestic_shipping_row }}"  class="form-control dac check-{{ domestic_shipping_row }}" {% if (domestic_shipping['free_shipping_allowed'] or ebay_service_type == 'Calculated') %} {{ "readonly=true" }} {% endif %} />
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <button type="button" onclick="$('#domestic-shipping-row-{{ domestic_shipping_row }}').remove();" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="{{ text_remove }}"><i class="fa fa-minus-circle"></i></button>
+                                                    </td>
+                                                </tr>
+                                                 {% set domestic_shipping_row = domestic_shipping_row + 1 %}
+                                            {% endfor %}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="5"></td>
+                                                <td class="text-left"><button type="button" onclick="addDomesticShipping();" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="{{ text_add_domestic_shipping }}"><i class="fa fa-plus-circle"></i></button></td>
+                                            </tr>
+                                        </tfoot>
+                                        <input type="hidden" id="domestic_shipping_row" value="{{ domestic_shipping_row }}"/>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default" id="international-shipping">
+                            <div class="panel-heading"><h3 class="panel-title">{{ text_add_international_shipping }}</h3></div>
+                            <div class ="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <td class="text-left">{{ column_international_shipping_service }}</td>
+                                                <td class="text-left">{{ column_international_shipping_location }}</td>
+                                                <td class="text-left">{{ column_international_shipping_priority }}</td>
+                                                <td class="text-left">{{ column_international_shipping_service_cost }}</td>
+                                                <td class="text-left">{{ column_international_shipping_additional_cost }}</td>
+                                                <td class="text-left">
+                                                    {{ column_action }} 
+                                                </td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="international_shipping_list">
+                                            {% set international_shipping_row = 0 %}
+                                            {% for international_shipping in international_shippings %} 
+                                                 <tr id="international-shipping-row-{{ international_shipping_row }}" class="international">
+                                                    <td class="text-left">
+                                                        <div id="shipping_{{ international_shipping_row }}_service">
+                                                            <input type="hidden" id="international_services_{{ international_shipping_row }}" value="{{ international_shipping['service'] }}">
+                                                            <select name="shipping[international_shipping][{{ international_shipping_row }}][service]" id="international_shipping_services_{{ international_shipping_row }}" value="{{ international_shipping['service'] }}" class="form-control iss">
+
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <div id="shipping_{{ international_shipping_row }}_free_shipping_allowed">
+                                                            <select name="shipping[international_shipping][{{ international_shipping_row }}][location][]" id="international_shipping_location_{{ international_shipping_row }}" value="print_r(international_shipping['location'])" class="form-control isl" multiple>
+
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <input type="text" name="shipping[international_shipping][{{ international_shipping_row }}][priority]" id="interntational_shipping_profile_priority-{{ international_shipping_row }}" value="{{ international_shipping['priority'] }}"  class="form-control isp" />
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <input type="text" name="shipping[international_shipping][{{ international_shipping_row }}][service_cost]" id="international_shipping_service_cost_{{ international_shipping_row }}"  value="{{ international_shipping['service_cost'] }}"  class="form-control check isc" />
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <input type="text" name="shipping[international_shipping][{{ international_shipping_row }}][additional_cost]" id="international_shipping_adding_cost_{{ international_shipping_row }}"  value="{{ international_shipping['additional_cost'] }}" class="form-control check iac" />
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <button type="button" onclick="$('#international-shipping-row-{{ international_shipping_row }}').remove();" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="{{ text_remove }}"><i class="fa fa-minus-circle"></i></button>
+                                                    </td>
+                                                </tr>
+                                                {% set international_shipping_row = international_shipping_row + 1 %} 
+                                            {% endfor %} 
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="5"></td>
+                                                <td class="text-left"><button type="button" onclick="addInternationalShipping();" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="{{ text_add_international_shipping }}"><i class="fa fa-plus-circle"></i></button></td>
+                                            </tr>
+                                        </tfoot>
+                                        <input type="hidden" id="international_shipping_row" value="{{ international_shipping_row }}"/>
+                                    </table>
+                                </div>
+                            </div>
+                   
+                </div>
+                        </form>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+</div>
+
+<script type="text/javascript">
+    velovalidation.setErrorLanguage({
+        empty_field: '{{ text_error_empty_field }}',
+        valid_amount: '{{ text_error_valid_amount }}',
+        number_field: '{{ text_error_number_field }}'
+    });
+     
+    $(document).ready(function () {
+
+        // if ebay site is not selected hide domestic shipping, international_shipping, package_type and shipping postal_code.
+
+        if ($("#ebay-stores").val() == "select") {
+            $('.calculated').attr('style', 'display:none');
+            $('#domestic-shipping').attr('style', 'display:none');
+            $('#international-shipping').attr('style', 'display:none');
+        } else {
+            if(!$("#id_ebay_shipping").val()){
+                unSetRows();
+                showCalculatedFields();
+                showDomesticShipping();
+                showInternationalShipping();
+            } else {
+                if ($("#service-type").val() == "Calculated") {
+                    getShippingDetails();
+                    $('.domestic').each(function() {
+                         var result = $(this).attr('id').split('-');
+                         var row = result[3];
+                         getDomesticShippingServices(row);
+
+                     });
+                    if($("#international_shipping_row").val() > 0) {
+                        $('.international').each(function() {
+                            var result = $(this).attr('id').split('-');
+                            var row = result[3];
+                            //getInternationalShippingServices(row);
+                            getInternationalShippingLocations(row);
+                        });
+                    } else {
+                        $('#international-shipping').attr('style', 'display:none');
+                    }
+                    excludedLocation();
+                } else {
+                    $('.calculated').attr('style', 'display:none');
+                    $('.domestic').each(function() {
+                        var result = $(this).attr('id').split('-');
+                        var row = result[3];
+                        getDomesticShippingServices(row);
+                       
+                    });
+                    $('.international').each(function() {
+                        var result = $(this).attr('id').split('-');
+                        var row = result[3];
+                        //getInternationalShippingServices(row);
+                        getInternationalShippingLocations(row);
+                    });
+                    excludedLocation();
+                }
+            }
+        }
+
+        $("#ebay-stores").change(function () {
+            $('.text-danger').remove();
+            if ($(this).val() != "select") {
+                excludedLocation();
+                showCalculatedFields();
+                showDomesticShipping();
+                showInternationalShipping();
+            } else {
+                showCalculatedFields();
+                showDomesticShipping();
+                showInternationalShipping();
+            }
+        });
+    });
+    function excludedLocation() {
+        var excluded_location = '{{ shipping_excluded_location }}';
+        var arrJson = JSON.parse(excluded_location);
+        $.ajax({
+            url: 'index.php?route={{ module_path }}/kbebay/getExcludeLocation&{{ session_token_key }}={{ token }}&site_id=' + $('#ebay-stores').val(),
+            dataType: 'json',
+            success: function (json) {
+                if (json.type != undefined && json.type == 'failed') {
+                    $('#ebay-stores').after('<div class="text-danger">' + json['message'] + '</div>');
+                } else {
+                    html = '<option value="">{{ text_none }}</option>';;
+                    $.each(json, function (key, value) {
+                        if ( $.inArray( json[key]['Location'], arrJson ) >= 0 ) {
+                            html += '<option value="' + json[key]['Location'] + '" selected>' + json[key]['Description'] + '</option>';
+                        } else {
+                            html += '<option value="' + json[key]['Location'] + '">' + json[key]['Description'] + '</option>';
+                        }
+                        
+                    });
+                }
+                $("#excluded_location").html(html);
+            }
+        });
+    }
+    function showCalculatedFields() {
+        unSetRows();
+        if ($("#ebay-stores").val() == "select") {
+            alert('{{ text_site_select }}');
+            $("#service-type").val("Flat");
+            $('.calculated').attr('style', 'display:none');
+            $('#domestic-shipping').attr('style', 'display:none');
+            $('#international-shipping').attr('style', 'display:none');
+            return false;
+        } else {
+            if ($("#service-type").val() == "Calculated") {
+                $('.calculated').attr('style', 'display:block');
+                $('#domestic-shipping').attr('style', 'display:none');
+                $('#international-shipping').attr('style', 'display:none');
+                showDomesticShipping();
+                if($('#international_shipping_allowed').val()=="1") {
+                    showInternationalShipping();
+                }
+                getShippingDetails();
+            } else {
+                $('.calculated').attr('style', 'display:none');
+                $('#domestic-shipping').attr('style', 'display:none');
+                $('#international-shipping').attr('style', 'display:none');
+            }
+        }
+
+    }
+    function getShippingDetails() {
+        var ebay_package_type = '{{ ebay_package_type }}'
+        $.ajax({
+            url: 'index.php?route={{ module_path }}/kbebay/getShippingDetails&{{ session_token_key }}={{ token }}&store_id=' + $("#ebay-stores").val() + '&service_type=' + $('#service-type').val(),
+            dataType: 'json',
+            beforeSend: function () {
+            },
+            success: function (json) {
+                if (json.type != undefined && json.type == 'failed') {
+                    $('#ebay-stores').after('<div class="text-danger">' + json['message'] + '</div>');
+                } else {
+                    html = "";
+                    $.each(json['package_type'], function (key, value) {
+                        html += '<option value="' + key + '" >' + value + '</option>';
+                    });
+                    $('#package-type').html(html);
+                }
+                
+                if(ebay_package_type != '') {
+                    $('#package-type').val(ebay_package_type);
+                }
+            }
+        });
+    }
+    function showDomesticShipping() {
+        if ($("#ebay-stores").val() == "select") {
+            $('#domestic-shipping').attr('style', 'display:none');
+            return false;
+        } else {
+            $('#domestic-shipping').attr('style', 'display:block');
+            if ($('#international_shipping_row').val() == 0) {
+                addDomesticShipping();
+            }
+        }
+    }
+
+    function addDomesticShipping() {
+        var row = $('#domestic_shipping_row').val();
+
+        var html = "";
+        html += '<tr id="domestic-shipping-row-' + row + '" class="domestic">';
+        html += '<td class="text-left">';
+        html += '<div>';
+        html += '<select name="shipping[domestic_shipping][' + row + '][service]" class="form-control dss" id="domestic_shipping_services_'+row+'">';
+        html += '</select>';
+        html += '</div>';
+        html += '</td>';
+        html += '<td class="text-left">';
+        html += '<div id="shipping_' + row + '_free_shipping_allowed">';
+        html += '<select name="shipping[domestic_shipping][' + row + '][free_shipping_allowed]" onchange="checkFields(' + row + ')" id="domestic_free_shipping_' + row + '" class="form-control dfs">';
+        html += '<option value="0">{{ text_no }}</option>';
+        html += '<option value="1">{{ text_yes }}</option>';
+        html += '</select>';
+        html += '</div>';
+        html += '</td>';
+        html += '<td class="text-left">';
+        html += '<input type="text" name="shipping[domestic_shipping][' + row + '][priority]" id="domesting_shipping_profile_priority-'+row+'" value=""  class="form-control  dsp" />';
+        html += '</td>';
+        html += '<td class="text-left">';
+        html += '<input type="text" name="shipping[domestic_shipping][' + row + '][service_cost]" id="domestic_shipping_service_cost_'+row+'" value=""  class="form-control check-' + row + ' dsc"  />';
+        html += '</td>';
+        html += '<td class="text-left">';
+        html += '<input type="text" name="shipping[domestic_shipping][' + row + '][additional_cost]" id="domestic_shipping_additional_cost_'+row+'" value="" class="form-control check-' + row + ' dac"  />';
+        html += '</td>';
+        html += '<td class="text-left">';
+        html += '<button type="button" onclick=\'$("#domestic-shipping-row-' + row + '").remove();\' data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="{{ text_remove }}"><i class="fa fa-minus-circle"></i></button>';
+        html += '</td>';
+        html += '</tr>';
+
+        $('#domestic_shipping_list').append(html);
+
+        if ($('#service-type').val() == 'Calculated') {
+            $('.check-' + row).attr('readonly', 'true');
+        }
+        getDomesticShippingServices(row);
+        var next = parseInt(row) + 1;
+        $('#domestic_shipping_row').val(next);
+    }
+    function getDomesticShippingServices(row) {
+        var ds_value = $('#domestic_services_' + row).val();
+        var service_type = $('#service-type').val();
+        $.ajax({
+            url: 'index.php?route={{ module_path }}/kbebay/getDomesticShippingDetails&{{ session_token_key }}={{ token }}&site_id=' + $("#ebay-stores").val() + '&service_type=' + $('#service-type').val(),
+            dataType: 'json',
+            beforeSend: function () {
+            },
+            success: function (json) {
+                if (json.type != undefined && json.type == 'failed') {
+                    $('#ebay-stores').after('<div class="text-danger">' + json['message'] + '</div>');
+                } else {
+                    var html = "";
+                    $.each(json['service_type'], function (key, value) {
+                        html += '<option value="' + key + '">' + value + '</option>';
+                    });
+                    $('#domestic_shipping_services_' + row).html(html);
+                    $('#domestic_shipping_services_' + row).val(ds_value);
+                    
+                    html = "";
+                    $.each(json['service_type_array'], function (key, value) {
+                        html += '<option value="' + key + '">' + value + '</option>';
+                    });
+                    $('#service-type').html(html);
+                    $('#service-type').val(service_type);
+                }
+            }
+        });
+    }
+    function unSetRows() {
+        $('.domestic').each(function() {
+            $("#"+$(this).attr('id')).remove();
+        });
+        $('.international').each(function() {
+            $("#"+$(this).attr('id')).remove();
+        });
+    }
+    function getInternationalShippingServices(row) {
+        var is_value = $('#international_services_' + row).val();
+        $.ajax({
+            url: 'index.php?route={{ module_path }}/kbebay/getInternationalShippingDetails&{{ session_token_key }}={{ token }}&site_id=' + $("#ebay-stores").val() + '&service_type=' + $('#service-type').val(),
+            dataType: 'json',
+            beforeSend: function () {
+            },
+            success: function (json) {
+                if (json.type != undefined && json.type == 'failed') {
+                    $('#ebay-stores').after('<div class="text-danger">' + json['message'] + '</div>');
+                } else {
+                    var html = "";
+                    $.each(json['service_type'], function (key, value) {
+                        html += '<option value="' + key + '">' + value + '</option>';
+                    });
+                    $('#international_shipping_services_' + row).html(html);
+                    $('#international_shipping_services_' + row).val(is_value);
+                }
+            }
+        });
+    }
+
+    function checkFields(row) {
+        if ($('#service-type').val() == 'Calculated' || $('#domestic_free_shipping_' + row).val() == '1') {
+            $('.check-' + row).attr('readonly', 'true');
+        } else {
+            $('.check-' + row).removeAttr('readonly');
+        }
+    }
+
+    function showInternationalShipping() {
+        if ($("#ebay-stores").val() == "select") {
+            $('#international-shipping').attr('style', 'display:none');
+            return false;
+        } else {
+            if ($("#international_shipping_allowed").val() == "1") {
+                $('#international-shipping').attr('style', 'display:block');
+                if ($('#international_shipping_row').val() == 0) {
+                    addInternationalShipping();
+                }
+            } else {
+                $('#international-shipping').attr('style', 'display:none');
+            }
+        }
+    }
+    
+    function getInternationalShippingLocations(row) {
+        
+        var international_location = '{{ ship_international_string }}';
+        var arrJson = JSON.parse(international_location);
+        var is_value = $('#international_services_' + row).val();
+        
+        $.ajax({
+            url: 'index.php?route={{ module_path }}/kbebay/getExcludeLocation&type=1&{{ session_token_key }}={{ token }}&site_id=' + $("#ebay-stores").val() + '&service_type=' + $('#service-type').val(),
+            dataType: 'json',
+            success: function (json) {
+                if (json.type != undefined && json.type == 'failed') {
+                    $('#ebay-stores').after('<div class="text-danger">' + json['message'] + '</div>');
+                } else {
+                    var html = '';
+                    $.each(json.location, function (key, value) {
+                        if($.inArray(json.location[key]['Location'], arrJson[row]) >= 0) {
+                            html += '<option value="' + json.location[key]['Location'] + '" selected>' + json.location[key]['Description'] + '</option>';
+                        } else {
+                            html += '<option value="' + json.location[key]['Location'] + '">' + json.location[key]['Description'] + '</option>';
+                        }
+                    });
+                    $("#international_shipping_location_"+row).html(html);
+                    
+                    var html = "";
+                    $.each(json.service_type, function (key, value) {
+                        html += '<option value="' + key + '">' + value + '</option>';
+                    });
+                    $('#international_shipping_services_' + row).html(html);
+                    $('#international_shipping_services_' + row).val(is_value);
+                }
+            }
+        });
+    }
+    
+    function addInternationalShipping() {
+        var row = $('#international_shipping_row').val();
+
+        var html = "";
+        html +='<tr id="international-shipping-row-{{ international_shipping_row }}" class="international">';
+        html +='<td class="text-left">';
+        html +='<div>';
+        html +='<select name="shipping[international_shipping]['+row+'][service]" id="international_shipping_services_'+row+'" class="form-control iss">';
+        html +='</select>';
+        html +='</div>';
+        html +='</td>';
+        html +='<td class="text-left">';
+        html +='<div>';
+        html +='<select name="shipping[international_shipping]['+row+'][location][]" id="international_shipping_location_'+row+'" class="form-control isl" multiple>';
+        html +='</select>';
+        html +='</div>';
+        html +='</td>';
+        html +='<td class="text-left">';
+        html +='<input type="text" name="shipping[international_shipping]['+row+'][priority]" id="international_shipping_profile_priority-'+row+'" value=""  class="form-control isp" />';
+        html +='</td>';
+        html +='<td class="text-left">';
+        html +='<input type="text" name="shipping[international_shipping]['+row+'][service_cost]" id="international_shipping_service_cost_'+row+'"  value=""  class="form-control check isc" />';
+        html +='</td>';
+        html +='<td class="text-left">';
+        html +='<input type="text" name="shipping[international_shipping]['+row+'][additional_cost]" id="international_shipping_adding_cost_'+row+'"  value="" class="form-control check iac" />';
+        html +='</td>';
+        html +='<td class="text-left">';
+        html +='<button type="button" onclick=\'$("#international-shipping-row-'+row+'").remove();\' data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="{{ text_remove }}"><i class="fa fa-minus-circle"></i></button>';
+        html +='</td>';
+        html +='</tr>';
+        
+        $('#international_shipping_list').append(html);
+        
+        
+        getInternationalShippingLocations(row); 
+        
+        //getInternationalShippingServices(row);
+        
+        var next = parseInt(row) + 1;
+        $('#international_shipping_row').val(next);
+    }
+    
+    $('#save-shipping-profile').on('click',function(){
+        $('input, select').removeClass('kb-error-message-field');
+        $('.kb-error-message').remove();
+        is_error = false;
+        
+        if ($('#ebay-stores').val() == 'select') {
+            is_error = true;
+            $('#ebay-stores').addClass('kb-error-message-field');
+            $('#ebay-stores').after('<span class="kb-error-message">{{ text_site_select }}</span>');
+        }
+        check_ebay_shipping_profile_name = velovalidation.checkMandatory($('#shipping_profile_name'));
+        if (check_ebay_shipping_profile_name != true) {
+            is_error = true;
+            $('#shipping_profile_name').addClass('kb-error-message-field');
+            $('#shipping_profile_name').after('<span class="kb-error-message">' + check_ebay_shipping_profile_name + '</span>');
+        }
+       $('.dsp').each(function(){
+            check_ebay_domestic_priority = velovalidation.isNumeric($('#'+$(this).attr('id')));
+            if (check_ebay_domestic_priority != true) {
+                is_error = true;
+                $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_domestic_priority + '</span>');
+            }
+       });
+       
+       $('.dsc').each(function() {
+            if($(this).attr('readonly') == undefined) {
+                check_ebay_domestic_service_cost = velovalidation.checkAmount($('#'+$(this).attr('id')));
+                check_ebay_domestic_service_cost2 = velovalidation.checkMandatory($('#'+$(this).attr('id')));
+                if (check_ebay_domestic_service_cost != true) {
+                    is_error = true;
+                    $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                    $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_domestic_service_cost + '</span>');
+                } else if (check_ebay_domestic_service_cost2 != true) {
+                    is_error = true;
+                    $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                    $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_domestic_service_cost2 + '</span>');
+                }
+            }
+       });
+       
+       $('.dac').each(function(){
+           if($(this).attr('readonly') == undefined) {
+                check_ebay_domestic_additional_cost = velovalidation.checkAmount($('#'+$(this).attr('id')));
+                check_ebay_domestic_additional_cost2 = velovalidation.checkMandatory($('#'+$(this).attr('id')));
+                if (check_ebay_domestic_additional_cost != true) {
+                    is_error = true;
+                    $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                    $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_domestic_additional_cost + '</span>');
+                } else if(check_ebay_domestic_additional_cost2 !=true) {
+                    is_error = true;
+                    $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                    $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_domestic_additional_cost2 + '</span>');
+                }
+            }
+       });
+       
+       $('.isp').each(function(){
+           check_ebay_international_priority = velovalidation.isNumeric($('#'+$(this).attr('id')));
+           if (check_ebay_international_priority != true) {
+                is_error = true;
+                $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_international_priority + '</span>');
+            }
+       });
+       
+        $('.isc').each(function(){
+            check_ebay_international_service_cost = velovalidation.checkAmount($('#'+$(this).attr('id')));
+            check_ebay_international_service_cost2 = velovalidation.checkMandatory($('#'+$(this).attr('id')));
+            if (check_ebay_international_service_cost != true) {
+                is_error = true;
+                $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_international_service_cost + '</span>');
+            } else if(check_ebay_international_service_cost2 !=true) {
+                is_error = true;
+                $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_international_service_cost2 + '</span>');
+            }
+        });
+       
+        $('.iac').each(function(){
+             check_ebay_international_additional_cost = velovalidation.checkAmount($('#'+$(this).attr('id')));
+             check_ebay_international_additional_cost2 = velovalidation.checkMandatory($('#'+$(this).attr('id')));
+             if (check_ebay_international_additional_cost != true) {
+                 is_error = true;
+                 $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                 $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_international_additional_cost + '</span>');
+             } else if (check_ebay_international_additional_cost2 != true) {
+                 is_error = true;
+                 $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                 $('#'+$(this).attr('id')).after('<span class="kb-error-message">' + check_ebay_international_additional_cost2 + '</span>');
+             }
+        });
+       
+        $('.isl').each(function(){
+             if ($('#'+$(this).attr('id')).val()==null) {
+                 is_error = true;
+                 $('#'+$(this).attr('id')).addClass('kb-error-message-field');
+                 $('#'+$(this).attr('id')).after('<span class="kb-error-message">{{ text_select_state_error }}</span>');
+             }
+        });
+       
+        if($('#service-type').val()=='Calculated') {
+            check_ebay_postal_code = velovalidation.checkMandatory($('#shipping_postal_code'));
+            if (check_ebay_postal_code != true) {
+                 is_error = true;
+                 $('#shipping_postal_code').addClass('kb-error-message-field');
+                 $('#shipping_postal_code').after('<span class="kb-error-message">' + check_ebay_postal_code + '</span>');
+             }
+        }
+       
+        if(is_error === false){
+            $('#ebay-shipping-profile-add').submit();
+        }
+       
+    });
+    
+    
+</script>
+<style>
+.kb-error-message-field{
+    border-color: red;
+}
+.kb-error-message{
+    color: red;
+}
+</style>
+{{ footer }} 

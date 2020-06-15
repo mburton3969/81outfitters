@@ -1,0 +1,32 @@
+{
+  "name": "Image1",
+  "collection_name": "AMELIA",
+  "display_content": "0",
+  "status": "1",
+  "banner_wrapper_class": "image1",
+  "banner_image": "catalog\/lookbook\/lookbook-0-img.jpg",
+  "banner_image_width": "370",
+  "banner_image_height": "370",
+  "banner_description": {
+    "1": {
+      "description": "&lt;h3&gt;AMELIA&lt;\/h3&gt;"
+    },
+    "2": {
+      "description": "&lt;h3&gt;AMELIA&lt;\/h3&gt;"
+    },
+    "4": {
+      "description": "&lt;h3&gt;AMELIA&lt;\/h3&gt;"
+    },
+    "3": {
+      "description": "&lt;h3&gt;AMELIA&lt;\/h3&gt;"
+    }
+  },
+  "collection_image": "catalog\/lookbook\/lookbook-0.jpg",
+  "collection_image_width": "770",
+  "collection_image_height": "520",
+  "product_name": "",
+  "product": ["45"],
+  "product_image_width": "270",
+  "product_image_height": "358",
+  "product_map": "\t\t\t\t\t\t\t\t\t\t&lt;map name=&quot;map&quot;&gt;&lt;area shape=&quot;poly&quot; coords=&quot;1018, 500, 1032, 405, 1024, 400, 1033, 393, 987, 255, 982, 254, 982, 251, 1022, 246, 1023, 248, 1019, 251, 1068, 339, 1154, 338, 1154, 342, 1146, 343, 1135, 386, 1157, 389, 1164, 393, 1164, 400, 1157, 409, 1165, 503, 1162, 502, 1148, 412, 1134, 417, 1120, 416, 1123, 527, 1117, 527, 1106, 413, 1070, 410, 1062, 481, 1057, 480, 1062, 409, 1042, 407, 1023, 501&quot; data-mapid=&quot;46&quot; \/&gt;&lt;area shape=&quot;poly&quot; coords=&quot;399, 330, 477, 260, 525, 218, 575, 180, 583, 176, 639, 131, 641, 134, 646, 131, 659, 150, 656, 158, 661, 168, 681, 167, 683, 183, 670, 186, 671, 201, 669, 223, 652, 246, 637, 260, 614, 273, 595, 274, 575, 268, 559, 262, 557, 254, 553, 252, 549, 254, 534, 264, 532, 270, 539, 274, 543, 283, 548, 303, 548, 321, 536, 340, 511, 363, 487, 374, 469, 374, 463, 373, 460, 389, 453, 396, 439, 392, 443, 378, 446, 363, 436, 360, 428, 352, 423, 352, 413, 352, 401, 337&quot; data-mapid=&quot;45&quot; \/&gt;&lt;\/map&gt;\r\n\t\t\t\t\t\t\t\t\t"
+}

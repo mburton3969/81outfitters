@@ -1,0 +1,56 @@
+<div class="swiper-container swiper-slider" data-loop="{{ loop }}" data-autoplay="{{ autoplay }}" data-height="{{ height ~ 'px' }}" data-min-height="{{ min_height ~ 'px' }}" data-slide-effect="{{ effect }}"
+data-slide-speed="{{ speed ~ 'ms' }}" data-keyboard="{{ keyboard_control }}" data-mousewheel="{{ mousewheel_control }}"
+data-mousewheel-release="{{ mousewheel_release_on_edges }}" style="height: {{ height ~ 'px;' }}">
+
+<div class="swiper-wrapper">
+	{% if (slides is defined and slides) %}
+		{% for slide in slides %}
+			{% if (slide['slide_type']) %}
+				<div class="swiper-slide {{ slide['title'] }} vide" data-vide-bg="{{ slide['video'] }}"
+				data-vide-options="playbackRate: {{ slide['video_playback_rate'] }}, autoplay: {{ slide['video_autoplay'] }},
+				loop: {{ slide['video_loop'] }}, {{ slide['video_muted'] ? '' : 'volume: ' ~ slide['video_volume'] ~ ',' }}
+				muted: {{ slide['video_muted'] }}">
+				{% if (slide['link']) %}
+					<a href="{{ slide['link'] }}" class="swiper-slide__link">
+						<div class="slide-desc">{{ slide['description'] }}</div>
+					</a>
+				{% else %}
+					<div class="slide-desc">{{ slide['description'] }}</div>
+				{% endif %}
+			</div>
+
+		{% else %}
+
+			<div class="swiper-slide {{ slide['title'] }}" >
+				{% if (slide['link']) %}
+					<a href="{{ slide['link'] }}" class="swiper-slide__link">
+						<div class="slide-desc">{{ slide['description'] }}</div>
+						<div class="slide-img"><img src="{{ slide['image'] }}" alt="" class="img-responsive" /></div>
+					</a>
+				{% else %}
+					<div class="slide-desc">{{ slide['description'] }}</div>
+					<div class="slide-img"><img src="{{ slide['image'] }}" alt="" class="img-responsive" /></div>
+				{% endif %}				
+			</div>
+
+		{% endif %}
+	{% endfor %}
+{% endif %}
+</div>
+
+{% if (pagination) %}
+	<div class="swiper-pagination" data-index-bullet="{{ pagination_bullet_render }}" data-clickable="{{ pagination_clickable }}"></div>
+{% endif %}
+
+{% if (next_button) %}
+	<div class="swiper-button-next"></div>
+{% endif %}
+
+{% if (prev_button) %}
+	<div class="swiper-button-prev"></div>
+{% endif %}
+
+{% if (scrollbar and loop == "false") %}
+	<div class="swiper-scrollbar" data-draggable="{{ scrollbar_draggable }}"></div>
+{% endif %}
+</div>
