@@ -1,5 +1,59 @@
 <?php
 class ModelCatalogCategory extends Model {
+  
+  public function getCategoriesByProducts($category_id){
+    $sql = "SELECT DISTINCT fgd.filter_group_id, fgd.name
+            FROM oc_product_to_category p2c
+            LEFT JOIN oc_product_filter pf
+            ON p2c.product_id = pf.product_id
+            LEFT JOIN oc_filter_description fd
+            ON fd.filter_id = pf.filter_id
+            LEFT JOIN oc_filter_group_description fgd
+            ON fgd.filter_group_id = fd.filter_group_id
+            LEFT JOIN oc_filter_group fg
+            ON fg.filter_group_id = fgd.filter_group_id
+            WHERE p2c.category_id = '" . (int)$category_id . "'
+            ORDER BY fg.sort_order ASC";
+    $query = $this->db->query($sql);
+    $fg_query = $query->rows;
+    
+    $filter_group_data = array();
+    foreach($fg_query as $filter_group){
+      $filter_data = array();
+      
+      $sql = "SELECT DISTINCT fd.filter_id, fd.name, fd.filter_category
+              FROM oc_product_to_category p2c
+              LEFT JOIN oc_product_filter pf
+              ON p2c.product_id = pf.product_id
+              LEFT JOIN oc_filter_description fd
+              ON fd.filter_id = pf.filter_id
+              LEFT JOIN oc_filter_group_description fgd
+              ON fgd.filter_group_id = fd.filter_group_id
+              WHERE p2c.category_id = '" . (int)$category_id . "'
+              AND fgd.filter_group_id = '" . (int)$filter_group['filter_group_id'] . "'";
+      $query = $this->db->query($sql);
+      $f_query = $query->rows;
+      foreach ($f_query as $filter) {
+            $filter_data[] = array(
+              'filter_id' => $filter['filter_id'],
+              'name'      => $filter['name'],
+              'filter_cat' => $filter['filter_category']
+            );
+          }
+
+				if ($filter_data) {
+					$filter_group_data[] = array(
+						'filter_group_id' => $filter_group['filter_group_id'],
+						'name'            => $filter_group['name'],
+						'filter'          => $filter_data
+					);
+				}
+    }
+    //print_r($filter_group_data);
+    //echo '<br><br><br>';
+    return $filter_group_data;
+  }
+  
 	public function getCategory($category_id) {
 		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_description cd ON (c.category_id = cd.category_id) LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON (c.category_id = c2s.category_id) WHERE c.category_id = '" . (int)$category_id . "' AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND c.status = '1'");
 
