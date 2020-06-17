@@ -1,6 +1,10 @@
 var urlParams = new URLSearchParams(window.location.search);
 var path = urlParams.get('path');
 var filters = urlParams.get('filter');
+var limit = urlParams.get('limit');
+if(limit === '' || limit === null){
+  limit = '25';
+}
 var fgs = urlParams.get('fgs');
 if((filters) && filters !== ''){
   var stop = 'Y';
@@ -41,7 +45,8 @@ function navigate_categories(cid){
         }
         if(stop !== 'Y'){
           //window.location = "index.php?route=product/category&path="+r.parent_path+"&filter="+r.filters+"&stop=Y";
-          window.location = "index.php?route=product/category&path="+use_path+"&filter="+r.filters+"&fgs="+r.filter_groups+"&stop=Y";
+          console.log('Line 45');
+          window.location = "index.php?route=product/category&path="+use_path+"&filter="+r.filters+"&fgs="+r.filter_groups+"&limit="+limit+"&stop=Y";
         }
         //Add Filter Buttons...
         var fa = filters.split(',');
@@ -65,7 +70,8 @@ function navigate_categories(cid){
 
 
 function setPath(p){
-  window.location = "index.php?route=product/category&path="+p+"&filter="+filters+"&fgs="+fgs;
+  console.log('Line 70');
+  window.location = "index.php?route=product/category&path="+p+"&filter="+filters+"&limit="+limit+"&fgs="+fgs;
 }
 
 function add_filter_button(fid){
@@ -117,10 +123,12 @@ function remove_filter(fid,parent_lvl){
           console.log(r);
           if(r.response === 'GOOD'){
             var new_path = r.category_id;
-            window.location = "index.php?route=product/category&path="+new_path+"&filter="+f+"&fgs="+fgs;
+            console.log('Line 123');
+            window.location = "index.php?route=product/category&path="+new_path+"&filter="+f+"&limit="+limit+"&fgs="+fgs;
           }else{
             var new_path = r.category_id;
-            window.location = "index.php?route=product/category&path="+new_path+"&filter="+f+"&fgs="+fgs;
+            console.log('Line 127');
+            window.location = "index.php?route=product/category&path="+new_path+"&filter="+f+"&limit="+limit+"&fgs="+fgs;
           }
 
         }
@@ -128,7 +136,8 @@ function remove_filter(fid,parent_lvl){
     xhttp.open("GET", "api/get-path-details.php?lvl="+parent_lvl+"&path="+path, true);
     xhttp.send();
   }else{
-    window.location = "index.php?route=product/category&path="+path+"&filter="+f+"&fgs="+fgs+"&stop=Y";
+    console.log('Line 136');
+    window.location = "index.php?route=product/category&path="+path+"&filter="+f+"&fgs="+fgs+"&limit="+limit+"&stop=Y";
   }
 }
 

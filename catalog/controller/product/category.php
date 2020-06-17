@@ -62,6 +62,10 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
+      
+      if (isset($this->request->get['fgs'])) {
+				$url .= '&fgs=' . $this->request->get['fgs'];
+			}
 
 			$path = '';
 
@@ -135,6 +139,10 @@ class ControllerProductCategory extends Controller {
 
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
+			}
+      
+      if (isset($this->request->get['fgs'])) {
+				$url .= '&fgs=' . $this->request->get['fgs'];
 			}
 
 			$data['categories'] = array();
@@ -235,6 +243,10 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
+      
+      if (isset($this->request->get['fgs'])) {
+				$url .= '&fgs=' . $this->request->get['fgs'];
+			}
 
 			$data['sorts'] = array();
 
@@ -307,6 +319,10 @@ class ControllerProductCategory extends Controller {
 			if (isset($this->request->get['order'])) {
 				$url .= '&order=' . $this->request->get['order'];
 			}
+      
+      if (isset($this->request->get['fgs'])) {
+				$url .= '&fgs=' . $this->request->get['fgs'];
+			}
 
 			$data['limits'] = array();
 
@@ -346,6 +362,10 @@ class ControllerProductCategory extends Controller {
 			}else{
         $url .= '&limit=25';
       }
+      
+      if (isset($this->request->get['fgs'])) {
+				$url .= '&fgs=' . $this->request->get['fgs'];
+			}
 
 			$pagination = new Pagination();
 			$pagination->total = $product_total;
@@ -417,6 +437,10 @@ class ControllerProductCategory extends Controller {
 			}else{
         $url .= '&limit=25';
       }
+      
+      if (isset($this->request->get['fgs'])) {
+				$url .= '&fgs=' . $this->request->get['fgs'];
+			}
 
 			$data['breadcrumbs'][] = array(
 				'text' => $this->language->get('text_error'),
