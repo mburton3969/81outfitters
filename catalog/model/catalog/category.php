@@ -30,7 +30,8 @@ class ModelCatalogCategory extends Model {
               LEFT JOIN oc_filter_group_description fgd
               ON fgd.filter_group_id = fd.filter_group_id
               WHERE p2c.category_id = '" . (int)$category_id . "'
-              AND fgd.filter_group_id = '" . (int)$filter_group['filter_group_id'] . "'";
+              AND fgd.filter_group_id = '" . (int)$filter_group['filter_group_id'] . "'
+              ORDER BY fd.name ASC";
       $query = $this->db->query($sql);
       $f_query = $query->rows;
       foreach ($f_query as $filter) {
