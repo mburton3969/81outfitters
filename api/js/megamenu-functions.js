@@ -27,6 +27,10 @@ function navigate_categories(cid){
         console.log(r);
         document.getElementById('button-filter-parent').innerHTML = r.cat_0_name+' <span class="caret"></span>';
         console.log('Res Filters: '+r.filters);
+        if(document.getElementById('filter-group10')){
+          document.getElementById('filter-group10').style.display = 'none';
+          document.getElementById('filter-link10').style.display = 'none';
+        }
         if(r.level === '2'){
           if(document.getElementById('filter-group9')){
             document.getElementById('filter-group9').style.display = 'none';
@@ -46,8 +50,10 @@ function navigate_categories(cid){
         if(stop !== 'Y'){
           //window.location = "index.php?route=product/category&path="+r.parent_path+"&filter="+r.filters+"&stop=Y";
           console.log('Line 45');
-          window.location = "index.php?route=product/category&path="+use_path+"&filter="+r.filters+"&fgs="+r.filter_groups+"&limit="+limit+"&stop=Y";
+          //window.location = "index.php?route=product/category&path="+use_path+"&filter="+r.filters+"&fgs="+r.filter_groups+"&limit="+limit+"&stop=Y";
         }
+        filters = r.filters;
+        fgs = r.filter_groups;
         //Add Filter Buttons...
         var fa = filters.split(',');
         console.warn('Filters: '+filters);

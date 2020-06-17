@@ -66,6 +66,7 @@ class ControllerProductCategory extends Controller {
       if (isset($this->request->get['fgs'])) {
 				$url .= '&fgs=' . $this->request->get['fgs'];
 			}
+      
 
 			$path = '';
 

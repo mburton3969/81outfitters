@@ -17,12 +17,19 @@ class ModelCatalogProduct extends Model {
             FROM oc_product p 
             LEFT JOIN oc_product_to_category p2c 
             ON p.product_id = p2c.product_id
-            WHERE p2c.category_id = '" . $data['filter_category_id'] . "'";
+            LEFT JOIN oc_product_filter pf2
+            ON p.product_id = pf2.product_id
+            WHERE p2c.category_id = '" . $data['filter_category_id'] . "'
+            AND pf2.filter_id = '" . $data['filter_filter'] . "'";
+    //print_r($filters_array);
     foreach($filters_array as $f){
-      $sql .= " AND EXISTS (SELECT 1 FROM oc_product_filter pf
-                        WHERE pf.product_id = p.product_id
-                        AND pf.filter_id = '" . $f . "')";
+      if($f != ''){
+        $sql .= " AND EXISTS (SELECT 1 FROM oc_product_filter pf
+                          WHERE pf.product_id = p.product_id
+                          AND pf.filter_id = '" . $f . "')";
+      }
     }
+    //echo $sql;
     $query = $this->db->query($sql); 
     return $query->row['total'];  
     

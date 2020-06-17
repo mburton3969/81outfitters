@@ -29,6 +29,7 @@ class ControllerExtensionModuleFilter extends Controller {
 			if (isset($this->request->get['limit'])) {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
+      
 
 			$data['action'] = str_replace('&amp;', '&', $this->url->link('product/category', 'path=' . $this->request->get['path'] . $url));
 
@@ -42,7 +43,8 @@ class ControllerExtensionModuleFilter extends Controller {
 
 			$data['filter_groups'] = array();
 
-			$filter_groups = $this->model_catalog_category->getCategoryFilters($category_id);
+			//$filter_groups = $this->model_catalog_category->getCategoryFilters($category_id);
+      $filter_groups = $this->model_catalog_category->getCategoriesByProducts($category_id);
 
 			if ($filter_groups) {
 				foreach ($filter_groups as $filter_group) {
@@ -61,13 +63,13 @@ class ControllerExtensionModuleFilter extends Controller {
               'other_filters'      => $fgs_data
 						);
             
-            /*if($fgs_data != '' && $fgs_data != '0'){
-              $name_data = $filter['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getCustomTotal($filter_data) . ')' : '');
-            }else{
-              $name_data = $filter['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : '');
-            }*/
+            //if($fgs_data != '' && $fgs_data != '0'){
+              //$name_data = $filter['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getCustomTotal($filter_data) . ')' : '');
+            //}else{
+              //$name_data = $filter['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : '');
+            //}
             $name_data = $filter['name'];
-
+            //echo $filter['filter_id'] . ' - ' . $name_data . '<br>';
 						$childen_data[] = array(
 							'filter_id' => $filter['filter_id'],
 							//'name'      => $filter['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),

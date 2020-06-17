@@ -272,3 +272,23 @@ Stack trace:
 #4 /home1/outfitters/beta/catalog/controller/extension/module/filter.php(67): Proxy->__call('getCustomTotal', Array)
 #5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleFilter->index(Array)
 #6 /home1/outfitters/storage/modification/system/engine/loader.php(48): Action in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[17-Jun-2020 08:46:35 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home1/outfitters/beta/catalog/model/catalog/category.php:14
+Stack trace:
+#0 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogCategory->getCategoriesByProducts('608')
+#1 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#2 /home1/outfitters/beta/catalog/controller/extension/module/filter.php(46): Proxy->__call('getCategoriesBy...', Array)
+#3 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleFilter->index(Array)
+#4 /home1/outfitters/storage/modification/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#5 /home1/outfitters/beta/catalog/controller/common/column_left.php(52): Loader->controller('extension/modul...')
+#6 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerCommonColumnLeft->index(Array)
+#7 /home1/outfitters/storage/modification/system/engine/loader.php(48): Action->execute(Object(Re in /home1/outfitters/beta/catalog/model/catalog/category.php on line 14
+[17-Jun-2020 08:48:19 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home1/outfitters/beta/catalog/model/catalog/category.php:14
+Stack trace:
+#0 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelCatalogCategory->getCategoriesByProducts('608')
+#1 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#2 /home1/outfitters/beta/catalog/controller/extension/module/filter.php(46): Proxy->__call('getCategoriesBy...', Array)
+#3 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerExtensionModuleFilter->index(Array)
+#4 /home1/outfitters/storage/modification/system/engine/loader.php(48): Action->execute(Object(Registry), Array)
+#5 /home1/outfitters/beta/catalog/controller/common/column_left.php(52): Loader->controller('extension/modul...')
+#6 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerCommonColumnLeft->index(Array)
+#7 /home1/outfitters/storage/modification/system/engine/loader.php(48): Action->execute(Object(Re in /home1/outfitters/beta/catalog/model/catalog/category.php on line 14
