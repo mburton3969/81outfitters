@@ -132,6 +132,10 @@ class ControllerCommonCart extends Controller {
 
 		$data['cart'] = $this->url->link('checkout/cart');
 		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
+    
+    $data['logged'] = $this->customer->isLogged();
+    $data['fname']  = $this->customer->getFirstName();
+    $data['lname']  = $this->customer->getLastName();
 
 		return $this->load->view('common/cart', $data);
 	}
