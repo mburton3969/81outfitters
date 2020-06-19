@@ -27,6 +27,8 @@ class ControllerExtensionModuleZemezNav extends Controller {
 		}
 
 		$data['logged']        = $this->customer->isLogged();
+    $data['fname']         = $this->customer->getFirstName();
+    $data['lname']         = $this->customer->getLastName();
 		$data['home']          = $this->url->link('common/home');
 		$data['account']       = $this->url->link('account/account', '', true);
 		$data['order']         = $this->url->link('account/order', '', true);

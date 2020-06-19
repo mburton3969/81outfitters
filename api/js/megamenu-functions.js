@@ -26,6 +26,7 @@ function navigate_categories(cid){
         var r = JSON.parse(this.responseText);
         console.log(r);
         document.getElementById('button-filter-parent').innerHTML = r.cat_0_name+' <span class="caret"></span>';
+        document.getElementById('gender-button').style.display = 'inline';
         console.log('Res Filters: '+r.filters);
         if(document.getElementById('filter-group10')){
           document.getElementById('filter-group10').style.display = 'none';

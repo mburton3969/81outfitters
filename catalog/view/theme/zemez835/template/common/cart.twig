@@ -95,6 +95,9 @@
 	</div>
 </div>
 <div id="shipping-hint" style="font-size:15px;margin-top:5px;">
+{% if (logged) %}
+<span style="color:#000;">Welcome, {{ fname }} {{ lname }}</span><br>
+{% endif %}
 <b>Spend $35 for FREE SHIPPING</b>
  {# 
  {% for total in totals %} 
