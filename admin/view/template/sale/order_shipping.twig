@@ -93,7 +93,10 @@
             {% for option in product.option %}
             <br />
             &nbsp;<small> - {{ option.name }}: {{ option.value }}</small>
-            {% endfor %}</td>
+            {% endfor %}
+            <br />
+            <img src="{{ product.image }}" style="width:25%;" />
+          </td>
           <td>{{ product.weight }}</td>
           <td>{{ product.model }}</td>
           <td class="text-right">{{ product.quantity }}</td>

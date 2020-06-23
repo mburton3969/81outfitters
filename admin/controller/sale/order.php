@@ -1805,6 +1805,7 @@ class ControllerSaleOrder extends Controller {
 
 						$product_data[] = array(
 							'name'     => $product_info['name'],
+              'image'    => $product_info['image'],
 							'model'    => $product_info['model'],
 							'option'   => $option_data,
 							'quantity' => $product['quantity'],
