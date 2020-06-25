@@ -1,0 +1,14 @@
+{
+							"name": "81 Outfitters POS",
+							"short_name": "81O POS",
+							"start_url": "./wkpos",
+							"display": "standalone",
+							"theme_color": "",
+							"gcm_sender_id": "103953800507",
+							"background_color": "",
+							"icons": [{
+								"src": "image/",
+								"sizes": "192x192",
+								"type": "image/png"
+							}]
+						}

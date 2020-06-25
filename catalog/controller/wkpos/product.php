@@ -61,9 +61,11 @@ class ControllerWkposProduct extends Controller {
 		if ($products) {
 			foreach ($products as $product) {
 				if ($product['image'] && is_file(DIR_IMAGE . $product['image'])) {
-					$image = $this->model_tool_image->resize($product['image'], 120, 120);
+          $image = $product['image'];
+					//$image = $this->model_tool_image->resize($product['image'], 120, 120);
 				} else {
-					$image = $this->model_tool_image->resize('no_image.png', 120, 120);
+          $image = $product['image'];
+					//$image = $this->model_tool_image->resize('no_image.png', 120, 120);
 				}
 
 				$product['price'] = $product['discount'] ? $product['discount'] : $product['price'];
