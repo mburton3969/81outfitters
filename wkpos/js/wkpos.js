@@ -798,7 +798,7 @@ function searchProduct (keyword) {
 
         }else{
           if (pos_products[value]["name"].toLowerCase().search(search_keyword) != '-1' || pos_products[value]["model"].toLowerCase().search(search_keyword) != '-1' || pos_products[value]["sku"].toLowerCase().search(search_keyword) != '-1' || pos_products[value]["barcode"].toLowerCase().search(search_keyword) != '-1') {
-            html = '<div class="col-sm-2 col-xs-6 product-select" product-id="' + pos_products[value]["product_id"] + '" option="' + pos_products[value]["option"] + '">';
+            html = '<div class="col-sm-2 col-xs-6 product-select" product-id="' + pos_products[value]["product_id"] + '" option="' + pos_products[value]["option"] + '" style="height:200px;">';
 
             html += '  <img src="' + pos_products[value]["image"] + '" class="product-image" width="100%" height="100%">';
             html += '  <div class="col-xs-12 product-detail">';
@@ -3843,6 +3843,7 @@ function getLocalForage(key) {
       }
       if (key == 'pos_orders') {
         pos_orders = JSON.parse(value);
+        console.log(pos_orders);
       }
       if (key == 'pos_returns') {
         pos_returns = JSON.parse(value);
