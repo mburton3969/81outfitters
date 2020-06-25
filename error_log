@@ -850,3 +850,4 @@ Stack trace:
 #1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
 #2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
 #3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+
