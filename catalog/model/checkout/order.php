@@ -214,6 +214,7 @@ class ModelCheckoutOrder extends Model {
 				'shipping_custom_field'   => json_decode($order_query->row['shipping_custom_field'], true),
 				'shipping_method'         => $order_query->row['shipping_method'],
 				'shipping_code'           => $order_query->row['shipping_code'],
+				'tracking'				  => $order_query->row['tracking'],
 				'comment'                 => $order_query->row['comment'],
 				'total'                   => $order_query->row['total'],
 				'order_status_id'         => $order_query->row['order_status_id'],
@@ -236,6 +237,141 @@ class ModelCheckoutOrder extends Model {
 			return false;
 		}
 	}
+	
+	public function getOrdersQuery($id = null) {
+        if ($id) {
+            $where = "o.order_id = $id";
+        } else {
+            $where = "o.order_status_id in (1,2,5,15) order by o.order_id limit 1000";
+        }
+        $query = "
+        SELECT
+            o.order_id as id
+            , o.date_added as created
+            , o.order_id as orderNumber
+            , o.shipping_method as shippingService
+            , t.value as shipping_total
+            , 9999 as items
+            , 9999 as destination
+            , o.shipping_company as company
+            , concat(o.shipping_firstname, ' ', o.shipping_lastname) as name
+            , o.shipping_address_1 as address1
+            , o.shipping_address_2 as address2
+            , o.shipping_city as city
+            , o.shipping_postcode as zip
+            , c.iso_code_2 as country
+            , z.code as state
+            , o.telephone as phone
+            , o.email
+            , 9999 as weight
+            , 'lb' as weightUnit
+            , 'in' as dimUnit
+            , o.comment as customerNotes
+         FROM `" . DB_PREFIX . "order` o
+         left join `" . DB_PREFIX . "order_total` t on o.order_id = t.order_id and t.code = 'shipping'
+         left join `" . DB_PREFIX . "country` c on o.shipping_country_id = c.country_id
+         left join `" . DB_PREFIX . "zone` z on o.shipping_country_id = z.country_id and o.shipping_zone_id = z.zone_id
+         WHERE $where
+        ";
+        return $query;
+    }
+    
+    public function getOrders() {
+        $query = $this->getOrdersQuery();
+        $orders_query = $this->db->query($query);
+        if (!empty($orders_query)) {
+            $orders = array();
+            foreach ($orders_query->rows as $order) {
+                $orders[] = $this->adaptOrder($order);
+            }
+        }
+        if (!empty($orders)) {
+            $success = true;
+            $data = $orders;
+            $msg = '';
+        } else {
+            $success = false;
+            $data = '';
+            $msg = 'No orders found';
+        }
+        return array($success, $data, $msg);
+    }
+    
+    public function getAPIOrder($order_id) {
+        $query = $this->getOrdersQuery($order_id);
+        $order = $this->db->query($query);
+        if (!empty($order->row)) {
+            $success = true;
+            $order = $this->adaptOrder($order->row);
+            $message = '';
+        } else {
+            $success = false;
+            $order = array();
+            $message = 'Could not find order';
+        }
+        return array($success, $order, $message);
+    }
+    
+    public function adaptOrder($order) {
+        $query = "
+        SELECT
+            o.product_id as productId
+            , o.product_id as lineId
+            , name as title
+            , o.price
+            , o.quantity
+            , p.image as imgUrl
+            , p.weight as shippingWeight
+            , p.length as productLength
+            , p.width as productWidth
+            , p.height as productHeight
+            , p.sku as sku
+         FROM `" . DB_PREFIX . "order_product` o
+         left join `" . DB_PREFIX . "product` p on o.product_id = p.product_id
+         WHERE o.order_id = {$order['id']} order by order_product_id
+         ";
+        $oproducts_query = $this->db->query($query);
+        $weight = 0;
+        $serverName = $this->request->server['SERVER_NAME'];
+        $imagePrefix = $this->request->server['HTTPS'] ? 'https://'.$serverName : 'http://'.$serverName;
+        foreach ($oproducts_query->rows as &$product) {
+            $weight += $product['shippingWeight'];
+            $product['price'] = number_format($product['price'], 2);
+            $product['imgUrl'] = $imagePrefix.'/image/cache/'.str_replace('.jpg', '-228x228.jpg', $product['imgUrl']);
+        }
+        $order['created'] = date('m/d/Y', strtotime($order['created']));
+        $order['timestamp'] = strtotime($order['created']);
+        $order['source'] = 'OpenCart';
+        $order['orderGroup'] = '1';
+        $order['dueByDate'] = null;
+        $order['weight'] = (string) $weight;
+        $order['shipping_total'] = number_format($order['shipping_total'], 2);
+        $order['items'] = $oproducts_query->rows;
+        // $order['items'] = $oproducts_query->rows;
+        $order['destination'] = array(
+            'company' => $order['company'],
+            'name' => $order['name'],
+            'address1' => $order['address1'],
+            'address2' => $order['address2'],
+            'city' => $order['city'],
+            'zip' => $order['zip'],
+            'country' => $order['country'],
+            'state' => $order['state'],
+            'phone' => $order['phone'],
+            'email' => $order['email'],
+        );
+        unset($order['company']);
+        unset($order['name']);
+        unset($order['address1']);
+        unset($order['address2']);
+        unset($order['city']);
+        unset($order['zip']);
+        unset($order['country']);
+        unset($order['state']);
+        unset($order['phone']);
+        unset($order['email']);
+        return $order;
+    }
 	
 	public function getOrderProducts($order_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
