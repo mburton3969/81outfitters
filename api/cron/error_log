@@ -1,0 +1,6 @@
+[28-Jun-2020 08:08:41 America/Chicago] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home1/outfitters/beta/api/cron/remove-deleted-items.php on line 105
+[28-Jun-2020 08:46:57 America/Chicago] PHP Warning:  include(../../php/connection.php): failed to open stream: No such file or directory in /home1/outfitters/beta/api/cron/update-items.php on line 2
+[28-Jun-2020 08:46:57 America/Chicago] PHP Warning:  include(../../php/connection.php): failed to open stream: No such file or directory in /home1/outfitters/beta/api/cron/update-items.php on line 2
+[28-Jun-2020 08:46:57 America/Chicago] PHP Warning:  include(): Failed opening '../../php/connection.php' for inclusion (include_path='.:/opt/php71/lib/php') in /home1/outfitters/beta/api/cron/update-items.php on line 2
+[28-Jun-2020 08:46:57 America/Chicago] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home1/outfitters/beta/api/cron/update-items.php on line 104
+[28-Jun-2020 08:47:10 America/Chicago] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home1/outfitters/beta/api/cron/update-items.php on line 104

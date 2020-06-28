@@ -592,3 +592,23 @@ Stack trace:
 #1 /home1/outfitters/beta/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
 #2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
 #3 /home1/outfitters/beta in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[28-Jun-2020 15:00:20 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'ebay_listing_id' in 'where clause'<br />Error No: 1054<br />SELECT * FROM oc_kb_ebay_profile_products WHERE ebay_listing_id = '283801085454' in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home1/outfitters/beta/catalog/model/ebay_feed/cron.php(984): DB->query('SELECT * FROM o...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelEbayFeedCron->processEbayReport()
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home1/outfitters/beta/catalog/controller/ebay_feed/cron.php(574): Proxy->__call('processEbayRepo...', Array)
+#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerEbayFeedCron->processEbayReport()
+#6 /home1/outfitters/beta/catalog/controller/startup/router.php(25): Action->execute(Object(Registry))
+#7 /home1/outfitters/storage/modification/system/ in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+[28-Jun-2020 16:00:17 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'ebay_listing_id' in 'where clause'<br />Error No: 1054<br />SELECT * FROM oc_kb_ebay_profile_products WHERE ebay_listing_id = '283801085454' in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home1/outfitters/beta/catalog/model/ebay_feed/cron.php(984): DB->query('SELECT * FROM o...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelEbayFeedCron->processEbayReport()
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home1/outfitters/beta/catalog/controller/ebay_feed/cron.php(574): Proxy->__call('processEbayRepo...', Array)
+#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerEbayFeedCron->processEbayReport()
+#6 /home1/outfitters/beta/catalog/controller/startup/router.php(25): Action->execute(Object(Registry))
+#7 /home1/outfitters/storage/modification/system/ in /home1/outfitters/beta/system/library/db/mysqli.php on line 40

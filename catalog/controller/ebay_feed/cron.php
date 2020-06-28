@@ -2,6 +2,14 @@
 
 class ControllerEbayFeedCron extends Controller
 {
+  
+    public function updateEbayListing()
+    {
+        $this->load->model('ebay_feed/cron');
+        $this->model_ebay_feed_cron->updateEbayListing();
+        echo "Success";
+        die;
+    }
 
     public function on_order_history_add($event, $data)
     {

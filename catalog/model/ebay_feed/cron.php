@@ -1,6 +1,56 @@
 <?php
 
 class ModelEbayFeedCron extends Model {
+  
+  public function updateEbayListing() {
+        $sql = "SELECT * FROM oc_kb_ebay_sites WHERE id_ebay_countries = 0";
+        $row = $this->db->query($sql);
+        $siteDetails = $row->row;
+        $token = $siteDetails['token'];
+        //echo 'Token: ' . $token;
+        $call_name = 'ReviseInventoryStatus';
+        $headers = $this->getEbayHeaders($call_name, 0);
+        $sandbox = false;
+    
+        $psql = "SELECT * FROM oc_kb_ebay_profile_products WHERE `status` = 'Updated'";
+        $rows = $this->db->query($psql);
+        $items = $rows->rows;
+        $i = 0;
+        foreach($items as $item){
+          //if($i < 2){
+          $qsql = "SELECT * FROM oc_product WHERE product_id = '" . $item['id_product'] . "'";
+          $row = $this->db->query($qsql);
+          $item_info = $row->row;
+          
+          $xmlFeed = '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+          $xmlFeed .= '<ReviseInventoryStatusRequest xmlns="urn:ebay:apis:eBLBaseComponents">' . "\n";
+          $xmlFeed .= '<RequesterCredentials>' . "\n";
+          $xmlFeed .= '<eBayAuthToken>' . $token . '</eBayAuthToken>' . "\n";
+          $xmlFeed .= '</RequesterCredentials>' . "\n";
+          //$xmlFeed .= '<ErrorLanguage>en_US</ErrorLanguage>' . "\n";
+          //$xmlFeed .= '<WarningLevel>High</WarningLevel>' . "\n";
+          $xmlFeed .= '<InventoryStatus>' . "\n";
+          $xmlFeed .= '<ItemID>' . $item['ebay_listiing_id'] . '</ItemID>' . "\n";
+          $xmlFeed .= '<Quantity>' . $item_info['quantity'] . '</Quantity>' . "\n";
+          $xmlFeed .= '</InventoryStatus>' . "\n";
+          $xmlFeed .= '</ReviseInventoryStatusRequest>' . "\n";
+          echo $this->sendrequest($xmlFeed, $headers, $sandbox);
+          echo '<br><br>';
+          if($item_info['quantity'] <= 0){
+            $dsql = "DELETE FROM oc_kb_ebay_profile_products WHERE id_ebay_profile_products = '" . $item['id_ebay_profile_products'] . "'";
+            $this->db->query($dsql);
+            echo 'Item Removed from website database <br><br>';
+          }else{
+            $usql = "UPDATE oc_kb_ebay_profile_products SET `status` = 'Listed', `revise` = 0 WHERE id_ebay_profile_products = '" . $item['id_ebay_profile_products'] . "'";
+            $this->db->query($usql);
+            echo 'Item Updated <br><br>';
+          }
+          
+          
+          //}
+          $i++;
+        }
+    }
 
     public function getAllNewProducts($profile_product_id = "") {
         if ($profile_product_id != "") {
@@ -930,6 +980,12 @@ class ModelEbayFeedCron extends Model {
                                     }
                                     $update1 .= " WHERE ebay_listiing_id = '" . $this->db->escape($item['ItemID']) . "'";
                                     $this->db->query($update1);
+                                    $gq = "SELECT * FROM " . DB_PREFIX . "kb_ebay_profile_products WHERE ebay_listing_id = '" . $this->db->escape($item['ItemID']) . "'";
+                                    $gr = $this->db->query($gq);
+                                    $row = $gr->row;
+                                    $updateq = "UPDATE " . DB_PREFIX . "product SET `quantity` = '" . $this->db->escape($item['Quantity']) . "' WHERE product_id = '" . $row['id_product'] . "'";
+                                    $this->db->query($updateq);
+                                    //echo 'Updated Product ID: ' . $row['id_product'] . ' to QTY: ' . $item['Quantity'] . '<br>';
                                 }
                             }
                         }
