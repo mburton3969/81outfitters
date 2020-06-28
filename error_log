@@ -592,6 +592,7 @@ Stack trace:
 #1 /home1/outfitters/beta/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
 #2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
 #3 /home1/outfitters/beta in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+<<<<<<< HEAD
 [28-Jun-2020 15:00:20 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'ebay_listing_id' in 'where clause'<br />Error No: 1054<br />SELECT * FROM oc_kb_ebay_profile_products WHERE ebay_listing_id = '283801085454' in /home1/outfitters/beta/system/library/db/mysqli.php:40
 Stack trace:
 #0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
@@ -603,6 +604,277 @@ Stack trace:
 #6 /home1/outfitters/beta/catalog/controller/startup/router.php(25): Action->execute(Object(Registry))
 #7 /home1/outfitters/storage/modification/system/ in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
 [28-Jun-2020 16:00:17 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'ebay_listing_id' in 'where clause'<br />Error No: 1054<br />SELECT * FROM oc_kb_ebay_profile_products WHERE ebay_listing_id = '283801085454' in /home1/outfitters/beta/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home1/outfitters/beta/catalog/model/ebay_feed/cron.php(984): DB->query('SELECT * FROM o...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelEbayFeedCron->processEbayReport()
+#3 /home1/outfitters/beta/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home1/outfitters/beta/catalog/controller/ebay_feed/cron.php(574): Proxy->__call('processEbayRepo...', Array)
+#5 /home1/outfitters/storage/modification/system/engine/action.php(79): ControllerEbayFeedCron->processEbayReport()
+#6 /home1/outfitters/beta/catalog/controller/startup/router.php(25): Action->execute(Object(Registry))
+#7 /home1/outfitters/storage/modification/system/ in /home1/outfitters/beta/system/library/db/mysqli.php on line 40
+=======
+[25-Jun-2020 18:23:57 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:24:27 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:26:31 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:27:01 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:27:31 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:28:03 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:28:34 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:29:05 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:29:39 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:30:09 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:30:40 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:31:13 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:31:44 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:32:15 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:32:46 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:33:17 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:33:49 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:34:20 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:34:50 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:35:22 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:35:52 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:36:24 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:36:55 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:37:25 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:37:56 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:38:27 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:38:58 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:39:31 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:40:03 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:40:35 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:41:05 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:41:37 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:42:07 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:42:41 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:43:12 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:43:42 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:44:13 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:44:45 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:45:17 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:46:16 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:46:48 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 18:47:21 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+[25-Jun-2020 19:45:55 UTC] PHP Fatal error:  Uncaught Exception: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYq' at line 1<br />Error No: 1064<br />SELECT * FROM `oc_api` WHERE `username` = 'Default' `key` = 'wdM8w6wh1wU35r4mrwcAKOFYuctqiYHJpaWCASa5lit6jh8vi7xewNmBoqkXU3zzsAajJYqxV7yvKiOZNrda61qCDnIP2hluYYIOOGRH4nOQiGBUG3SfTHzrRMj1Kdu6fUvoi2XYhaBFDWnYo1h00BVHLHPPLOhQ1qRKRrOKcy57KjjNen4tHYvURF3m3RNYR1JHa4TvpLEVKxy8DcM01bQLeKoTPWrNMK88kIZHrUlSZ0yOlVjyhRfAPUTGaRxd' AND status = '1' in /home1/outfitters/public_html/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home1/outfitters/public_html/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home1/outfitters/public_html/catalog/model/account/api.php(4): DB->query('SELECT * FROM `...')
+#2 /home1/outfitters/storage/modification/system/engine/loader.php(248): ModelAccountApi->login('Default', 'wdM8w6wh1wU35r4...')
+#3 / in /home1/outfitters/public_html/system/library/db/mysqli.php on line 40
+
+>>>>>>> bb07189530207ae2a7910d8ae754aaa22f8d000d
+[28-Jun-2020 17:00:17 UTC] PHP Fatal error:  Uncaught Exception: Error: Unknown column 'ebay_listing_id' in 'where clause'<br />Error No: 1054<br />SELECT * FROM oc_kb_ebay_profile_products WHERE ebay_listing_id = '283801085454' in /home1/outfitters/beta/system/library/db/mysqli.php:40
 Stack trace:
 #0 /home1/outfitters/beta/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
 #1 /home1/outfitters/beta/catalog/model/ebay_feed/cron.php(984): DB->query('SELECT * FROM o...')
