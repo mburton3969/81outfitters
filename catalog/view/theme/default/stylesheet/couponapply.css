@@ -1,0 +1,51 @@
+.cart-module > div {
+	display: block;
+}
+
+#content .cart-module > div {
+background: #e7e7e7;
+color:#474747;
+display:block;
+}
+
+#content .cart-module > div.coupon-alert.alert-danger {
+	background-color: #f2dede;
+	color:#a94442;
+	border-color: #ebccd1;
+	display:block;
+}
+
+
+#content .cart-module > div.coupon-alert.alert-success {
+	background-color: #dff0d8;
+	color:#3c763d;
+	border-color: #d6e9c6;
+	display:block;
+}
+
+.cart-module .cart-heading {
+	border: 1px solid #DBDEE1;
+	padding: 8px 8px 8px 22px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #555555;
+	margin-bottom: 15px;
+	cursor: pointer;
+}
+
+.cart-module .cart-content {
+	padding: 15px;
+	display: none;
+	overflow: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+
+.cart-content label {
+	color: #4b4b4b;
+}
+
+#button-coupon {
+	margin-top: 0.5em;
+}

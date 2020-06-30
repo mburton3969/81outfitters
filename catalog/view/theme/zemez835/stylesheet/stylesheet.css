@@ -1,6 +1,8 @@
 @charset "UTF-8";
 /*========================================================
                    Bootstrap Reset
+Change Log:
+1. Changed all instances of color code: #ffed4c to color code: #FDBF30
 =========================================================*/
 button, .btn {
   background: none;
@@ -162,7 +164,7 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 }
 .bootstrap-datetimepicker-widget a[data-action]:hover,
 .bootstrap-datetimepicker-widget .timepicker td > span:hover {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 .bootstrap-datetimepicker-widget .timepicker {
   margin-top: 5px;
@@ -215,7 +217,7 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
 
 .bootstrap-datetimepicker-widget td.day.active,
 .bootstrap-datetimepicker-widget td.day.active:hover {
-  background: #ffed4c;
+  background: #FDBF30;
   color: #000;
   cursor: inherit;
 }
@@ -566,13 +568,13 @@ a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, 
   border: none;
 }
 .pagination > li > a:hover, .pagination > li > a:focus, .pagination > li > span:hover, .pagination > li > span:focus {
-  color: #ffed4c;
+  color: #FDBF30;
   background: none;
   border: none;
 }
 .pagination > li.active > a, .pagination > li.active > a:hover, .pagination > li.active > a:focus, .pagination > li.active > span, .pagination > li.active > span:hover, .pagination > li.active > span:focus {
   background: none;
-  color: #ffed4c;
+  color: #FDBF30;
   border: none;
   z-index: auto;
 }
@@ -1343,7 +1345,7 @@ header + .container {
   }
 }
 .color-primary {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 
 section.bottom {
@@ -1393,7 +1395,7 @@ aside ul li > a:hover {
   background: #efefef;
 }
 .box.account ul a:hover, .box.affilate ul a:hover {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 
 .manufacturer-content div, #content ul.list-unstyled {
@@ -1633,7 +1635,7 @@ aside ul li > a:hover {
   background: #f7f7f7;
 }
 #livesearch_search_results li:hover, #livesearch_search_results li:visited:hover, #livesearch_search_results li:focus:hover {
-  background-color: #ffed4c;
+  background-color: #FDBF30;
 }
 #livesearch_search_results li:hover a, #livesearch_search_results li:visited:hover a, #livesearch_search_results li:focus:hover a {
   color: #000;
@@ -1752,7 +1754,7 @@ aside ul li > a:hover {
   background: none;
 }
 .box-cart .btn-danger:hover, .box-cart .btn-danger:focus:hover {
-  color: #ffed4c;
+  color: #FDBF30;
   background: none;
 }
 .box-cart .btn-danger:focus, .box-cart .btn-danger:focus:focus {
@@ -1791,7 +1793,7 @@ aside ul li > a:hover {
   right: -15px;
   display: inline-block;
   color: #333;
-  background: #ffed4c;
+  background: #FDBF30;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -1831,7 +1833,7 @@ aside ul li > a:hover {
 .cart-remove-btn, .cart-remove-btn:visited {
   display: inline-block;
   font-size: 22px;
-  color: #ffed4c;
+  color: #FDBF30;
 }
 .cart-remove-btn:focus, .cart-remove-btn:visited:focus {
   text-decoration: none;
@@ -1895,7 +1897,7 @@ aside ul li > a:hover {
   border: 1px solid #e2e2e2;
 }
 .cart .toggle_cont .image a:hover {
-  border-color: #ffed4c;
+  border-color: #FDBF30;
 }
 .cart .toggle_cont img {
   max-width: 72px;
@@ -2370,7 +2372,7 @@ aside ul li > a:hover {
   font-weight: 600;
   padding: 4px 6px;
   color: #333;
-  background: #ffed4c;
+  background: #FDBF30;
   position: absolute;
 }
 
@@ -2487,7 +2489,7 @@ aside ul li > a:hover {
   color: #ccc;
 }
 .fa-stack i.star {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 
 .fa-stack-2x {
@@ -2495,7 +2497,7 @@ aside ul li > a:hover {
 }
 
 .rat {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 
 /* ===================   Product Quickview   =================== */
@@ -2633,7 +2635,7 @@ aside ul li > a:hover {
   padding: 5px 8px;
   list-style: none;
   text-align: center;
-  background: #ffed4c;
+  background: #FDBF30;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -2680,7 +2682,7 @@ aside ul li > a:hover {
   font-size: 10px;
   line-height: 14px;
   color: #000;
-  background: #ffed4c;
+  background: #FDBF30;
   padding: 5px 7px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -2916,7 +2918,7 @@ aside .blog-search .box-heading {
     color: #2a4655;
   }
   aside .box .box-heading:hover:after, .column-left .box .box-heading:hover:after, .col-lg-3 .box .box-heading:hover:after {
-    color: #ffed4c;
+    color: #FDBF30;
   }
   aside .box .box-heading.active:after, .column-left .box .box-heading.active:after, .col-lg-3 .box .box-heading.active:after {
     content: '\f068';
@@ -3017,7 +3019,7 @@ button {
   transition: 0.3s all ease;
 }
 .agree:hover b {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 
 .btn.active, .btn:active {
@@ -3094,7 +3096,7 @@ button {
 }
 .btn-primary, .btn-primary:visited {
   color: #000;
-  background: #ffed4c;
+  background: #FDBF30;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:visited:hover, .btn-primary:focus:active, .btn-primary:active:focus {
   color: #fff;
@@ -3158,7 +3160,7 @@ button {
 .product-buttons li button {
   display: inline-block;
   background: none;
-  color: #ffed4c;
+  color: #FDBF30;
   padding: 0;
 }
 .product-buttons li button:hover, .product-buttons li button:focus {
@@ -3193,11 +3195,11 @@ button {
 
 /* ================   Tooltip  ================= */
 .tooltip-inner {
-  background: #ffed4c;
+  background: #FDBF30;
 }
 
 [class][class].tooltip-arrow {
-  border-top-color: #ffed4c;
+  border-top-color: #FDBF30;
 }
 
 /*========================================================
@@ -3568,7 +3570,7 @@ input[type="radio"] + label:after {
 }
 
 input[type="radio"]:checked + label:after {
-  /*background: #ffed4c;*/
+  /*background: #FDBF30;*/
   background: url("../image/checkmark.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -3629,7 +3631,7 @@ input[type="checkbox"][name="agree"] + label:before, input[type="checkbox"][name
 }
 
 #habla_window_div #habla_topbar_div {
-  background: #ffed4c !important;
+  background: #FDBF30 !important;
 }
 
 #at15s, #at20mc {
@@ -4052,7 +4054,7 @@ aside .megamenu .sf-menu > li > a, aside .megamenu .sf-menu > li > span, .column
   color: #2d2d2d;
 }
 .rd-mobilemenu_ul .submenu_category_title > a:hover, .rd-mobilemenu_ul li > a:hover {
-  background: #ffed4c;
+  background: #FDBF30;
   color: #000;
 }
 .rd-mobilemenu_ul .submenu_category_title > a .rd-submenu-toggle, .rd-mobilemenu_ul li > a .rd-submenu-toggle {
@@ -5877,7 +5879,7 @@ div.article-title a:visited {
   color: #000;
 }
 div.article-title a:hover, div.article-title a:active, div.article-title a:focus {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 
 h3.article-title {
@@ -5910,7 +5912,7 @@ h3.article-title {
 }
 .article-description ul li, .article-description ol li {
   position: relative;
-  color: #ffed4c;
+  color: #FDBF30;
   text-transform: uppercase;
   padding-left: 50px;
 }
@@ -5959,7 +5961,7 @@ h3.article-title {
 
 .related-article h4 {
   text-transform: uppercase;
-  color: #ffed4c;
+  color: #FDBF30;
 }
 .related-article h4 a:hover {
   color: #000;
@@ -6024,7 +6026,7 @@ h3.article-title {
 
 .reply-cancel {
   font-size: 16px;
-  color: #ffed4c;
+  color: #FDBF30;
   -moz-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
   -webkit-transition: 0.3s all ease;
@@ -6164,7 +6166,7 @@ h3.article-title {
   display: inline;
 }
 .top .blog_articles .image-text h2.article-title a, .top .blog_articles .image-text h2.article-title a:visited, .top .blog_articles .image-text h2.article-title a:focus {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 .top .blog_articles .image-text h2.article-title a:hover {
   color: #b2a000;
@@ -6207,7 +6209,7 @@ aside .blog-categories ul > li > i {
   font-size: 20px;
 }
 aside .blog-categories ul > li > i:hover {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 aside .blog-categories ul > li > a {
   background: #f2f2f2;
@@ -6220,7 +6222,7 @@ aside .blog-categories ul > li > a {
 }
 aside .blog-categories ul > li > a:hover {
   color: #000;
-  background: #ffed4c;
+  background: #FDBF30;
 }
 aside .blog-categories ul > li + li {
   border-top: 2px solid #fff;
@@ -6666,7 +6668,7 @@ aside #blog-search a:hover {
 .ajax-quickview-images .next-img:hover,
 .ajax-quickview-images .prev-img:hover {
   color: #fff;
-  background: #ffed4c;
+  background: #FDBF30;
 }
 .ajax-quickview-images .next-img {
   right: 0;
@@ -6936,7 +6938,7 @@ aside #blog-search a:hover {
   transition: 0.3s all ease;
 }
 .lookbook-block:hover h3 {
-  background: #ffed4c;
+  background: #FDBF30;
 }
 
 .lookbook {
@@ -6997,7 +6999,7 @@ aside #blog-search a:hover {
 .lookbook [data-marker] > i, .lookbook [data-marker] .close-btn {
   width: 15px;
   height: 15px;
-  background: #ffed4c;
+  background: #FDBF30;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -7051,7 +7053,7 @@ aside #blog-search a:hover {
   opacity: 0;
   color: #000;
   pointer-events: auto;
-  border: 2px solid #ffed4c;
+  border: 2px solid #FDBF30;
 }
 .lookbook .marker__cnt .name, .lookbook .marker__cnt .price {
   padding-left: 15px;
@@ -7084,7 +7086,7 @@ aside #blog-search a:hover {
   margin-bottom: 5px;
 }
 .lookbook [data-mapid]:not(area).active .img-block {
-  box-shadow: 0 0 0 3px #ffed4c;
+  box-shadow: 0 0 0 3px #FDBF30;
 }
 .lookbook [data-mapid]:not(area) .product-options {
   line-height: 8px;
@@ -7146,7 +7148,7 @@ aside #blog-search a:hover {
   border-radius: 6px;
 }
 .product-lookbook-block a:hover {
-  background: #ffed4c;
+  background: #FDBF30;
 }
 .product-lookbook-block a:hover img {
   opacity: .8;
@@ -7302,7 +7304,7 @@ aside #blog-search a:hover {
                      Color Schemes
 =========================================================*/
 .color_scheme_1 {
-  background: #ffed4c;
+  background: #FDBF30;
 }
 .color_scheme_1:before {
   background: #000000;
@@ -7340,7 +7342,7 @@ aside #blog-search a:hover {
 }
 
 #style_switcher .toggler:hover {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 
 #style_switcher div.color_scheme {
@@ -7545,10 +7547,10 @@ body.mobile_mode.mobile #style_switcher {
   color: #000;
 }
 .breadcrumb a:hover {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 .breadcrumb a:hover i {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 .breadcrumb > li {
   position: relative;
@@ -8179,7 +8181,7 @@ body.mobile_mode.mobile #style_switcher {
   border-radius: 14px;
 }
 .option-color .radio input[type="radio"]:checked + label:after {
-  border-color: #ffed4c;
+  border-color: #FDBF30;
   background: none;
 }
 .option-color .text-danger {
@@ -8404,7 +8406,7 @@ body.mobile_mode.mobile #style_switcher {
   color: #c8c8c8;
 }
 .button-view .compare-total:hover, .button-view .compare-total:focus, .button-view .compare-total:active {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 @media (min-width: 768px) {
   .button-view .compare-total span {
@@ -8421,7 +8423,7 @@ body.mobile_mode.mobile #style_switcher {
 #grid-view:hover,
 #list-view.active,
 #grid-view.active {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 
 .product-filter {
@@ -8490,7 +8492,7 @@ body.mobile_mode.mobile #style_switcher {
   transition: 0.3s all ease;
 }
 .list-group [id*="filter-group"] label:hover {
-  color: #ffed4c;
+  color: #FDBF30;
 }
 
 .results {
@@ -8548,7 +8550,7 @@ body.mobile_mode.mobile #style_switcher {
   font-size: 18px;
 }
 .checkout-checkout #content .table-responsive .table tfoot tr:last-child td:last-child {
-  color: #ffed4c;
+  color: #FDBF30;
   font-family: "Muli", sans-serif;
   font-weight: 900;
 }
@@ -8566,7 +8568,7 @@ body.mobile_mode.mobile #style_switcher {
 .cart-remove-btn, .cart-remove-btn:visited {
   display: inline-block;
   font-size: 22px;
-  color: #ffed4c;
+  color: #FDBF30;
 }
 .cart-remove-btn:focus, .cart-remove-btn:visited:focus {
   text-decoration: none;
@@ -8715,7 +8717,7 @@ body.mobile_mode.mobile #style_switcher {
 }
 .count-box strong {
   display: block;
-  color: #ffed4c;
+  color: #FDBF30;
   font-weight: 700;
   font-size: 56px;
   line-height: 60px;
@@ -8730,7 +8732,7 @@ body.mobile_mode.mobile #style_switcher {
   text-align: center;
   font-size: 66px;
   color: #fff;
-  background: #ffed4c;
+  background: #FDBF30;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   margin-bottom: 25px;
   -webkit-border-radius: 50%;
@@ -8749,7 +8751,7 @@ body.mobile_mode.mobile #style_switcher {
 .testimonials blockquote:before {
   content: '\e09d';
   display: inline-block;
-  color: #ffed4c;
+  color: #FDBF30;
   font-size: 84px;
   line-height: 100px;
   font-family: "material-design";
@@ -8781,7 +8783,7 @@ body.mobile_mode.mobile #style_switcher {
   overflow: hidden;
 }
 .thumbnail a:hover {
-  border-color: #ffed4c;
+  border-color: #FDBF30;
 }
 @media (max-width: 767px) {
   .thumbnail a {
@@ -8852,7 +8854,7 @@ body.mobile_mode.mobile #style_switcher {
   position: absolute;
   left: 0;
   bottom: -7px;
-  color: #ffed4c;
+  color: #FDBF30;
   font-size: 34px;
   line-height: 34px;
   font-family: "material-design";
@@ -8878,7 +8880,7 @@ body.mobile_mode.mobile #style_switcher {
   height: 40px;
   line-height: 40px;
   text-align: center;
-  background: #ffed4c;
+  background: #FDBF30;
   font-size: 16px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -8922,7 +8924,7 @@ body.mobile_mode.mobile #style_switcher {
   top: 10.5px;
   bottom: 10.5px;
   width: 1px;
-  background: #ffed4c;
+  background: #FDBF30;
 }
 .site-map-page #content ul.category-list .ul-with-ul:before, .site-map-page #content ul.category-list .ul-with-ul:after {
   -moz-transform: translate(0, 0);
@@ -8985,7 +8987,7 @@ body.mobile_mode.mobile #style_switcher {
   border-radius: 50%;
 }
 .site-map-page #content ul.category-list > li:before, .site-map-page #content ul.category-list > li:after {
-  background: #ffed4c;
+  background: #FDBF30;
 }
 @media (max-width: 767px) {
   .site-map-page .col-sm-6 + .col-sm-6 {
@@ -9041,7 +9043,7 @@ body.mobile_mode.mobile #style_switcher {
   line-height: 55px;
   text-align: center;
   color: #000;
-  background: #ffed4c;
+  background: #FDBF30;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -9139,7 +9141,7 @@ body.mobile_mode.mobile #style_switcher {
   clear: both;
 }
 .well .heading i {
-  color: #ffed4c;
+  color: #FDBF30;
   float: left;
   font-size: 56px;
   margin-right: 14px;
@@ -9212,7 +9214,7 @@ body.mobile_mode.mobile #style_switcher {
   transition: 0.3s all ease;
 }
 .datepicker .prev:hover, .datepicker .prev.active, .datepicker .next:hover, .datepicker .next.active, .datepicker .day:hover, .datepicker .day.active, .datepicker .year:hover, .datepicker .year.active, .datepicker .month:hover, .datepicker .month.active, .datepicker .picker-switch:hover, .datepicker .picker-switch.active {
-  color: #ffed4c;
+  color: #FDBF30;
   background: transparent;
 }
 .datepicker th {
