@@ -1,4 +1,7 @@
 <?php
+if(strpos($_SERVER['HTTP_HOST'], 'www.') !== false){
+  header('Location: http://81outfitters.com');
+}
 // Version
 define('VERSION', '3.0.2.0');
 
